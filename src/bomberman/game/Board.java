@@ -13,9 +13,11 @@ public class Board {
 		this.height = (height % 2 == 1) ? height : height + 1;
 		this.width = (width % 2 == 1) ? width : width + 1;
 		this.field = new int[height][width];
+
+		initializeCollisions();
 	}
 
-	public void initializeCollisions() {
+	private void initializeCollisions() {
 		for (int i = 1; i < height; i += 2) {
 			for (int j = 1; j < width; j += 2) {
 				field[i][j] = 1;
