@@ -1,6 +1,9 @@
 package bomberman.game.objects;
 
 public class Bomb {
+	/*
+	 * TODO: do we want to finalize them? thinking of pushing/kicking bombs...
+	 */
 	final private int posX;
 	final private int posY;
 
