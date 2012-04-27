@@ -11,4 +11,12 @@ public class Bomb {
 		this.posX = posX;
 		this.posY = posY;
 	}
+
+	public int getPosX() {
+		return posX;
+	}
+
+	public int getPosY() {
+		return posY;
+	}
 }

@@ -42,4 +42,8 @@ public class BomberHuman {
 	public void moveVertically(final int offset) {
 		posY += offset;
 	}
+
+	public boolean isHuman() {
+		return human;
+	}
 }
