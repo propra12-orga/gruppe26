@@ -6,17 +6,22 @@ import bomberman.game.character.BomberHuman;
 
 public class Game {
 
-	final Board field;
-	final BomberHuman bman;
+	private final int TILESIZE = 50;
+	private final Board field;
+	private final BomberHuman bman;
 
 	public Game() {
-		field = new Board(15, 15);
-		bman = new BomberHuman(true, 0, 0, 1);
+		field = new Board(15, 30);
+		bman = new BomberHuman(true, 0, 0);
 	}
 
 	public void start() {
-		StdDraw.setXscale(0, 500);
-		StdDraw.setYscale(0, 500);
+		final int width = field.getField()[0].length;
+		final int height = field.getField().length;
+		StdDraw.setCanvasSize(width * TILESIZE, height * TILESIZE);
+
+		StdDraw.setXscale(0, width * TILESIZE);
+		StdDraw.setYscale(0, height * TILESIZE);
 
 		while (true) {
 
@@ -49,6 +54,6 @@ public class Game {
 
 	private void drawSomething() {
 		StdDraw.clear();
-		StdDraw.circle(bman.getPosX(), bman.getPosY(), 2);
+		StdDraw.circle(bman.getPosX(), bman.getPosY(), 5);
 	}
 }
