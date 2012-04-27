@@ -21,9 +21,10 @@ public class BomberHuman {
 		return speed;
 	}
 
-	public void setSpeed(final int offset) {
-		if (speed + offset < 0)
-			throw new IllegalArgumentException("negative speed is not allowed");
+	public void boostSpeed(final int offset) {
+		// TODO: maybe we will use this as inverted controls powerdown.
+		// if (speed + offset <= 0)
+		// throw new IllegalArgumentException("negative speed is not allowed");
 		speed += offset;
 	}
 
@@ -36,11 +37,11 @@ public class BomberHuman {
 	}
 
 	public void moveHorizontally(final int offset) {
-		posX += offset;
+		posX += offset * speed;
 	}
 
 	public void moveVertically(final int offset) {
-		posY += offset;
+		posY += offset * speed;
 	}
 
 	public boolean isHuman() {
