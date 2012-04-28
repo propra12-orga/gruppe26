@@ -1,8 +1,12 @@
 package bomberman;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import messing.around.StdDraw;
 import bomberman.game.Board;
 import bomberman.game.character.BomberHuman;
+import bomberman.game.objects.Bomb;
 
 public class Game {
 
@@ -11,6 +15,7 @@ public class Game {
 	private final BomberHuman bman;
 	private final int height;
 	private final int width;
+	private final List<Bomb> bombs = new ArrayList<Bomb>();
 
 	public Game(final int height, final int width) {
 		board = new Board(height, width);
@@ -30,7 +35,27 @@ public class Game {
 
 		while (true) {
 			doSomethingWithInput(bman);
+			manageBombs();
 			drawSomething();
+		}
+	}
+
+	private void manageBombs() {
+		final List<Integer> exploded = new ArrayList<Integer>();
+
+		int count = 0;
+
+		for (Bomb b : bombs) {
+			b.tick();
+			final boolean exists = b.isStillThere();
+
+			if (!exists)
+				exploded.add(count);
+			count++;
+		}
+
+		for (Integer integer : exploded) {
+			bombs.remove((int) integer);
 		}
 	}
 
@@ -64,8 +89,17 @@ public class Game {
 				else
 					bman.moveHorizontally(TILESIZE - 1 - (bman.getPosX() % 50));
 				break;
+			case 'e':
+				dropBomb(bman);
 			}
 		}
+	}
+
+	private void dropBomb(BomberHuman bman) {
+		final int posX = bman.getPosX();
+		final int posY = bman.getPosY();
+		final Bomb b = new Bomb(posX, posY, 300);
+		bombs.add(b);
 	}
 
 	private void drawSomething() {
@@ -81,6 +115,11 @@ public class Game {
 				}
 			}
 		}
+
+		for (Bomb b : bombs) {
+			StdDraw.filledCircle(b.getPosX(), b.getPosY(), 5);
+		}
+
 		StdDraw.circle(bman.getPosX(), bman.getPosY(), 5);
 		StdDraw.show();
 	}
