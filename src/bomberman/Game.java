@@ -55,7 +55,7 @@ public class Game {
 	}
 
 	private void drawSomething() {
-		// StdDraw.clear();
+		StdDraw.clear();
 		for (int i = 0; i < width; i++) {
 			for (int j = 0; j < height; j++) {
 				if (board.getField()[j][i] != 0)
@@ -63,5 +63,6 @@ public class Game {
 			}
 		}
 		StdDraw.circle(bman.getPosX(), bman.getPosY(), 5);
+		StdDraw.show();
 	}
 }
