@@ -30,6 +30,17 @@ public class BoardTest {
 		assertArrayEquals(expected, board.getField());
 	}
 
+	@Test
+	public void testCorrectDimensionsOfBoard() {
+		final Board board = new Board(5, 7);
+		int[][] expected = { { 0, 0, 0, 0, 0, 0, 0 }, { 0, 1, 0, 1, 0, 1, 0 },
+				{ 0, 0, 0, 0, 0, 0, 0 }, { 0, 1, 0, 1, 0, 1, 0 },
+				{ 0, 0, 0, 0, 0, 0, 0 } };
+		assertArrayEquals(expected, board.getField());
+		assertEquals(board.getHeight(), 5);
+		assertEquals(board.getWidth(), 7);
+	}
+
 	@Test(expected = IllegalArgumentException.class)
 	public void testExceptionOnConstruct() {
 		new Board(1, 1);

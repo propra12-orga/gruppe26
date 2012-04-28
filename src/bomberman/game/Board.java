@@ -12,7 +12,7 @@ public class Board {
 
 		this.height = (height % 2 == 1) ? height : height + 1;
 		this.width = (width % 2 == 1) ? width : width + 1;
-		this.field = new int[height][width];
+		this.field = new int[this.height][this.width];
 
 		initializeCollisions();
 	}
