@@ -62,4 +62,33 @@ public class BomberHumanTest {
 		new BomberHuman(true, 12, -10);
 	}
 
+	@Test
+	public void testSpecifiedMovement() {
+		final BomberHuman b = new BomberHuman(true, 0, 0);
+		b.moveHorizontally(5);
+		assertEquals(b.getPosX(), 5);
+
+		b.moveHorizontally(10);
+		assertEquals(b.getPosX(), 15);
+
+		b.moveHorizontally(-5);
+		assertEquals(b.getPosX(), 10);
+
+		b.moveHorizontally(-15);
+		assertEquals(b.getPosX(), -5);
+
+		b.moveVertically(5);
+		assertEquals(b.getPosY(), 5);
+
+		b.moveVertically(10);
+		assertEquals(b.getPosY(), 15);
+
+		b.moveVertically(-5);
+		assertEquals(b.getPosY(), 10);
+
+		b.moveVertically(-15);
+		assertEquals(b.getPosY(), -5);
+
+	}
+
 }

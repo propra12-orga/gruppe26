@@ -29,12 +29,12 @@ public class Game {
 		bman.boostSpeed(10);
 
 		while (true) {
-			doSomethingWithInput();
+			doSomethingWithInput(bman);
 			drawSomething();
 		}
 	}
 
-	private void doSomethingWithInput() {
+	private void doSomethingWithInput(final BomberHuman bman) {
 
 		if (StdDraw.hasNextKeyTyped()) {
 			final char c = StdDraw.nextKeyTyped();
@@ -88,7 +88,8 @@ public class Game {
 	public boolean canMoveThere(final char direction, final BomberHuman b) {
 		final char[] enabledDirections = { 'w', 'a', 's', 'd' };
 		if (!arrayContainsChar(enabledDirections, direction))
-			return false;
+			throw new IllegalArgumentException(
+					"this method does not support this key input");
 
 		final int posX = b.getPosX();
 		final int posY = b.getPosY();
