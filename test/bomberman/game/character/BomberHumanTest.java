@@ -27,11 +27,11 @@ public class BomberHumanTest {
 
 		assertEquals(b.getSpeed(), 4);
 
-		b.moveVertically(-1);
+		b.moveDown();
 		assertEquals(b.getPosX(), 10);
 		assertEquals(b.getPosY(), 6);
 
-		b.moveHorizontally(1);
+		b.moveRight();
 		assertEquals(b.getPosX(), 14);
 		assertEquals(b.getPosY(), 6);
 	}
@@ -43,11 +43,11 @@ public class BomberHumanTest {
 		b.boostSpeed(2);
 		assertEquals(b.getSpeed(), 6);
 
-		b.moveVertically(5);
+		b.moveUp();
 		assertEquals(b.getPosX(), 10);
 		assertEquals(b.getPosY(), 16);
 
-		b.moveHorizontally(-1);
+		b.moveLeft();
 		assertEquals(b.getPosX(), 4);
 		assertEquals(b.getPosY(), 16);
 	}

@@ -34,13 +34,20 @@ public class BomberHuman {
 		return posY;
 	}
 
-	// TODO: only sign is relevant, don't want to use boolean though.
-	public void moveHorizontally(final int direction) {
-		posX = (direction > 0) ? posX + speed : posX - speed;
+	public void moveRight() {
+		posX += speed;
 	}
 
-	public void moveVertically(final int direction) {
-		posY = (direction > 0) ? posY + speed : posY - speed;
+	public void moveLeft() {
+		posX -= speed;
+	}
+
+	public void moveUp() {
+		posY += speed;
+	}
+
+	public void moveDown() {
+		posY -= speed;
 	}
 
 	public boolean isHuman() {

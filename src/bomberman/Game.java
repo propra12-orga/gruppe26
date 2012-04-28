@@ -42,19 +42,19 @@ public class Game {
 			switch (c) {
 			case 'w':
 				if (canMoveThere('w', bman))
-					bman.moveVertically(1);
+					bman.moveUp();
 				break;
 			case 's':
 				if (canMoveThere('s', bman))
-					bman.moveVertically(-1);
+					bman.moveDown();
 				break;
 			case 'a':
 				if (canMoveThere('a', bman))
-					bman.moveHorizontally(-1);
+					bman.moveLeft();
 				break;
 			case 'd':
 				if (canMoveThere('d', bman))
-					bman.moveHorizontally(1);
+					bman.moveRight();
 				break;
 			}
 		}
