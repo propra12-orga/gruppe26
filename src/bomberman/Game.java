@@ -43,18 +43,26 @@ public class Game {
 			case 'w':
 				if (canMoveThere('w', bman))
 					bman.moveUp();
+				else
+					bman.moveVertically(TILESIZE - 1 - (bman.getPosY() % 50));
 				break;
 			case 's':
 				if (canMoveThere('s', bman))
 					bman.moveDown();
+				else
+					bman.moveVertically(-(bman.getPosY() % 50));
 				break;
 			case 'a':
 				if (canMoveThere('a', bman))
 					bman.moveLeft();
+				else
+					bman.moveHorizontally(-(bman.getPosX() % 50));
 				break;
 			case 'd':
 				if (canMoveThere('d', bman))
 					bman.moveRight();
+				else
+					bman.moveHorizontally(TILESIZE - 1 - (bman.getPosX() % 50));
 				break;
 			}
 		}

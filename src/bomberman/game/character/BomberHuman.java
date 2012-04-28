@@ -50,6 +50,14 @@ public class BomberHuman {
 		posY -= speed;
 	}
 
+	public void moveHorizontally(final int offset) {
+		posX += offset;
+	}
+
+	public void moveVertically(final int offset) {
+		posY += offset;
+	}
+
 	public boolean isHuman() {
 		return human;
 	}
