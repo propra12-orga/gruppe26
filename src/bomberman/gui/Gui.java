@@ -46,12 +46,14 @@ public class Gui {
 	}
 
 	public void drawBomber() {
-		StdDraw.circle(bman.getPosX(), bman.getPosY(), 5);
+		// StdDraw.circle(bman.getPosX(), bman.getPosY(), 5);
+		StdDraw.picture(bman.getPosX(), bman.getPosY(),
+				"graphics/bomberman.png");
 	}
 
 	public void drawBombs() {
 		for (Bomb b : bombs) {
-			StdDraw.filledCircle(b.getPosX(), b.getPosY(), 5);
+			StdDraw.picture(b.getPosX(), b.getPosY() + 20, "graphics/bomb.png");
 			if (b.isCurrentlyExploding()) {
 				drawExplosion(b);
 			}

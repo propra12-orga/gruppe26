@@ -855,7 +855,7 @@ public final class StdDraw implements ActionListener, MouseListener,
 
 		offscreen.drawImage(image, (int) Math.round(xs - ws / 2.0),
 				(int) Math.round(ys - hs / 2.0), null);
-		draw();
+		// draw();
 	}
 
 	/**
