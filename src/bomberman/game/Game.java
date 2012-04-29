@@ -9,19 +9,22 @@ import bomberman.gui.Gui;
 
 public class Game {
 
+	private final int EXPLOSION_RADIUS = 5; // in tiles at the moment
 	private final int TILESIZE = 50;
+
 	private final Board board;
 	private final BomberHuman bman;
 	private final List<Bomb> bombs = new ArrayList<Bomb>();
 	private final Gui gui;
 	private final Controls controls;
+	private final ExplosionAreaCalculator eac;
 
 	public Game(final int height, final int width) {
 		board = new Board(height, width);
 		bman = new BomberHuman(true, 0, 0);
-		// this.height = board.getHeight();
-		// this.width = board.getWidth();
-		this.gui = new Gui(board.getField(), TILESIZE, bombs, bman);
+		this.eac = new ExplosionAreaCalculator(board.getField(),
+				EXPLOSION_RADIUS, TILESIZE);
+		this.gui = new Gui(board.getField(), TILESIZE, bombs, bman, eac);
 		this.controls = new Controls(board, TILESIZE, bombs);
 	}
 
@@ -58,7 +61,10 @@ public class Game {
 		}
 
 		for (Integer integer : exploded) {
-			bombs.remove((int) integer);
+			final Bomb b = bombs.get(integer);
+
+			if (!b.isCurrentlyExploding())
+				bombs.remove((int) integer);
 		}
 	}
 

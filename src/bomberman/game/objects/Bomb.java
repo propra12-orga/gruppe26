@@ -42,4 +42,8 @@ public class Bomb {
 	public boolean isStillThere() {
 		return exists;
 	}
+
+	public boolean isCurrentlyExploding() {
+		return (timer <= 0 && timer > -50);
+	}
 }
