@@ -1,5 +1,7 @@
 package bomberman;
 
+import bomberman.game.Game;
+
 public class Main {
 
 	public static void main(String[] args) {
