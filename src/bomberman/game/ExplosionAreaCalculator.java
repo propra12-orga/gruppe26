@@ -1,5 +1,6 @@
 package bomberman.game;
 
+import bomberman.game.character.BomberHuman;
 import bomberman.game.objects.Bomb;
 
 public class ExplosionAreaCalculator {
@@ -17,6 +18,24 @@ public class ExplosionAreaCalculator {
 		this.width = field[0].length;
 		this.height = field.length;
 		this.TILESIZE = TILESIZE;
+	}
+
+	public boolean isInExplosionArea(Bomb b, BomberHuman bman) {
+		final int posX = bman.getPosX();
+		final int posY = bman.getPosY();
+		final int arrPosX = getArrayPos(posX);
+		final int arrPosY = getArrayPos(posY);
+
+		return isInExplosionArea(b, arrPosX, arrPosY);
+	}
+
+	public boolean isInExplosionArea(Bomb b, Bomb c) {
+		final int posX = c.getPosX();
+		final int posY = c.getPosY();
+		final int arrPosX = getArrayPos(posX);
+		final int arrPosY = getArrayPos(posY);
+
+		return isInExplosionArea(b, arrPosX, arrPosY);
 	}
 
 	public boolean isInExplosionArea(Bomb b, final int X, final int Y) {

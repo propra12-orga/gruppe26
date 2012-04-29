@@ -94,4 +94,16 @@ public class Gui {
 		drawBombs();
 		StdDraw.show();
 	}
+
+	public void lost() {
+		StdDraw.clear();
+		StdDraw.text(width * TILESIZE / 2, height * TILESIZE / 2, "BOMF!");
+		StdDraw.show();
+
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// we seriously don't care as this is just temporary
+		}
+	}
 }

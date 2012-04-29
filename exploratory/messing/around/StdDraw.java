@@ -992,7 +992,7 @@ public final class StdDraw implements ActionListener, MouseListener,
 		int ws = metrics.stringWidth(s);
 		int hs = metrics.getDescent();
 		offscreen.drawString(s, (float) (xs - ws / 2.0), (float) (ys + hs));
-		draw();
+		// draw();
 	}
 
 	/**

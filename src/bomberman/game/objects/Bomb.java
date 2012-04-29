@@ -29,6 +29,11 @@ public class Bomb {
 		return timer;
 	}
 
+	public void goBomf() {
+		timer = (timer > 20) ? 20 : timer;
+
+	}
+
 	public void tick() {
 		timer--;
 		if (timer <= 0)

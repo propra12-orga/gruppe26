@@ -19,6 +19,8 @@ public class Game {
 	private final Controls controls;
 	private final ExplosionAreaCalculator eac;
 
+	private boolean alive = true;
+
 	public Game(final int height, final int width) {
 		board = new Board(height, width);
 		bman = new BomberHuman(true, 0, 0);
@@ -37,7 +39,7 @@ public class Game {
 	}
 
 	private void loop() {
-		while (true) {
+		while (alive) {
 			controls.doSomethingWithInput(bman);
 			manageBombs();
 
@@ -60,11 +62,31 @@ public class Game {
 			count++;
 		}
 
-		for (Integer integer : exploded) {
-			final Bomb b = bombs.get(integer);
+		count = 0;
 
+		for (Integer integer : exploded) {
+			final Bomb b = bombs.get(integer - count);
+			tryToKillStuff(b);
 			if (!b.isCurrentlyExploding())
-				bombs.remove((int) integer);
+				bombs.remove(integer - count);
+			count++;
+		}
+	}
+
+	private void tryToKillStuff(Bomb b) {
+		// right now, there's only bomberman. as soon as enemies are
+		// implemented, we should add a list of Characters or something like
+		// that. we will probably need that interface at this point.
+		for (Bomb bomb : bombs) {
+			if (bomb != b && !bomb.isCurrentlyExploding()) {
+				if (eac.isInExplosionArea(b, bomb))
+					bomb.goBomf();
+			}
+		}
+
+		if (eac.isInExplosionArea(b, bman)) {
+			alive = false;
+			gui.lost();
 		}
 	}
 
