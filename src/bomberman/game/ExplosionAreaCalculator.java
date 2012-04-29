@@ -48,6 +48,10 @@ public class ExplosionAreaCalculator {
 		if (X != arrPosX && Y != arrPosY)
 			return false;
 
+		if (arrPosX + RADIUS < X || arrPosY + RADIUS < Y
+				|| arrPosX - RADIUS > X || arrPosY - RADIUS > Y)
+			return false;
+
 		for (int i = arrPosX; i <= X; i++)
 			if (field[arrPosY][i] != 0)
 				return false;
