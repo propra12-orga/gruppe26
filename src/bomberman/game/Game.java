@@ -23,7 +23,7 @@ public class Game {
 
 	public Game(final int height, final int width) {
 		board = new Board(height, width);
-		bman = new BomberHuman(true, 0, 0);
+		bman = new BomberHuman(true, 10, 10);
 		this.eac = new ExplosionAreaCalculator(board.getField(),
 				EXPLOSION_RADIUS, TILESIZE);
 		this.gui = new Gui(board.getField(), TILESIZE, bombs, bman, eac);

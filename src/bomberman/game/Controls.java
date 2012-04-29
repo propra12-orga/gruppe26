@@ -13,6 +13,7 @@ public class Controls {
 	private final List<Bomb> bombs;
 	private final int height;
 	private final int width;
+	private final int COLLISIONBOX = 10;
 
 	public Controls(final Board board, final int TILESIZE,
 			final List<Bomb> bombs) {
@@ -38,25 +39,25 @@ public class Controls {
 		// FIXME: okay, that's dirty here. refactor me.
 		switch (direction) {
 		case 'w':
-			final int newArrayPosY = getArrayPos(posY + speed);
+			final int newArrayPosY = getArrayPos(posY + speed + 10);
 			if (newArrayPosY < height)
 				if (field[newArrayPosY][arrayPosX] == 0)
 					return true;
 			break;
 		case 's':
-			final int newArrayPosY2 = getArrayPos(posY - speed);
+			final int newArrayPosY2 = getArrayPos(posY - speed - 10);
 			if (newArrayPosY2 >= 0)
 				if (field[newArrayPosY2][arrayPosX] == 0)
 					return true;
 			break;
 		case 'a':
-			final int newArrayPosX = getArrayPos(posX - speed);
+			final int newArrayPosX = getArrayPos(posX - speed - 10);
 			if (newArrayPosX >= 0)
 				if (field[arrayPosY][newArrayPosX] == 0)
 					return true;
 			break;
 		case 'd':
-			final int newArrayPosX2 = getArrayPos(posX + speed);
+			final int newArrayPosX2 = getArrayPos(posX + speed + 10);
 			if (newArrayPosX2 < width)
 				if (field[arrayPosY][newArrayPosX2] == 0)
 					return true;
@@ -89,26 +90,28 @@ public class Controls {
 				if (canMoveThere('w', bman))
 					bman.moveUp();
 				else
-					bman.moveVertically(TILESIZE - 1
+					bman.moveVertically(TILESIZE - 1 - COLLISIONBOX
 							- (bman.getPosY() % TILESIZE));
 				break;
 			case 's':
 				if (canMoveThere('s', bman))
 					bman.moveDown();
 				else
-					bman.moveVertically(-(bman.getPosY() % TILESIZE));
+					bman.moveVertically(COLLISIONBOX
+							- (bman.getPosY() % TILESIZE));
 				break;
 			case 'a':
 				if (canMoveThere('a', bman))
 					bman.moveLeft();
 				else
-					bman.moveHorizontally(-(bman.getPosX() % TILESIZE));
+					bman.moveHorizontally(COLLISIONBOX
+							- (bman.getPosX() % TILESIZE));
 				break;
 			case 'd':
 				if (canMoveThere('d', bman))
 					bman.moveRight();
 				else
-					bman.moveHorizontally(TILESIZE - 1
+					bman.moveHorizontally(TILESIZE - 1 - COLLISIONBOX
 							- (bman.getPosX() % TILESIZE));
 				break;
 			case 'e':
