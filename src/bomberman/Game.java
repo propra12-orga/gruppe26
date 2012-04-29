@@ -7,6 +7,7 @@ import messing.around.StdDraw;
 import bomberman.game.Board;
 import bomberman.game.character.BomberHuman;
 import bomberman.game.objects.Bomb;
+import bomberman.gui.Gui;
 
 public class Game {
 
@@ -16,27 +17,28 @@ public class Game {
 	private final int height;
 	private final int width;
 	private final List<Bomb> bombs = new ArrayList<Bomb>();
+	private final Gui gui;
 
 	public Game(final int height, final int width) {
 		board = new Board(height, width);
 		bman = new BomberHuman(true, 0, 0);
 		this.height = board.getHeight();
 		this.width = board.getWidth();
+		this.gui = new Gui(board.getField(), TILESIZE, bombs, bman);
 	}
 
 	public void start() {
-		StdDraw.setCanvasSize(width * TILESIZE, height * TILESIZE);
-
-		StdDraw.setXscale(0, width * TILESIZE);
-		StdDraw.setYscale(0, height * TILESIZE);
-
+		gui.initialize();
 		// DEBUG mode
 		bman.boostSpeed(10);
 
 		while (true) {
 			doSomethingWithInput(bman);
 			manageBombs();
-			drawSomething();
+			gui.drawWalls();
+			gui.drawBomber();
+			gui.drawBombs();
+			gui.finish();
 		}
 	}
 
@@ -49,8 +51,9 @@ public class Game {
 			b.tick();
 			final boolean exists = b.isStillThere();
 
-			if (!exists)
+			if (!exists) {
 				exploded.add(count);
+			}
 			count++;
 		}
 
@@ -102,30 +105,6 @@ public class Game {
 		final int posY = bman.getPosY();
 		final Bomb b = new Bomb(posX, posY, 300);
 		bombs.add(b);
-	}
-
-	private void drawSomething() {
-		StdDraw.clear();
-		for (int i = 0; i < width; i++) {
-			for (int j = 0; j < height; j++) {
-				if (board.getField()[j][i] != 0)
-					StdDraw.filledSquare(i * TILESIZE + TILESIZE / 2, j
-							* TILESIZE + TILESIZE / 2, TILESIZE / 2);
-				else {
-					StdDraw.setPenColor(StdDraw.LIGHT_GRAY);
-					StdDraw.filledSquare(i * TILESIZE + TILESIZE / 2, j
-							* TILESIZE + TILESIZE / 2, TILESIZE / 2);
-					StdDraw.setPenColor(StdDraw.BLACK);
-				}
-			}
-		}
-
-		for (Bomb b : bombs) {
-			StdDraw.filledCircle(b.getPosX(), b.getPosY(), 5);
-		}
-
-		StdDraw.circle(bman.getPosX(), bman.getPosY(), 5);
-		StdDraw.show();
 	}
 
 	public boolean canMoveThere(final char direction, final BomberHuman b) {

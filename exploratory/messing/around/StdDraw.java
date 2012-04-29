@@ -506,7 +506,7 @@ public final class StdDraw implements ActionListener, MouseListener,
 		else
 			offscreen.draw(new Ellipse2D.Double(xs - ws / 2, ys - hs / 2, ws,
 					hs));
-		draw();
+		// draw();
 	}
 
 	/**
