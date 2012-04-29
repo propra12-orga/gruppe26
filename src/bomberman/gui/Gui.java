@@ -58,7 +58,10 @@ public class Gui {
 		StdDraw.setYscale(0, height * TILESIZE);
 	}
 
-	public void finish() {
+	public void draw() {
+		drawWalls();
+		drawBomber();
+		drawBombs();
 		StdDraw.show();
 	}
 }

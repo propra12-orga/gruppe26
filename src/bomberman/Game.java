@@ -35,10 +35,8 @@ public class Game {
 		while (true) {
 			doSomethingWithInput(bman);
 			manageBombs();
-			gui.drawWalls();
-			gui.drawBomber();
-			gui.drawBombs();
-			gui.finish();
+
+			gui.draw();
 		}
 	}
 
