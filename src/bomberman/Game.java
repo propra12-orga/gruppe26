@@ -69,25 +69,27 @@ public class Game {
 				if (canMoveThere('w', bman))
 					bman.moveUp();
 				else
-					bman.moveVertically(TILESIZE - 1 - (bman.getPosY() % 50));
+					bman.moveVertically(TILESIZE - 1
+							- (bman.getPosY() % TILESIZE));
 				break;
 			case 's':
 				if (canMoveThere('s', bman))
 					bman.moveDown();
 				else
-					bman.moveVertically(-(bman.getPosY() % 50));
+					bman.moveVertically(-(bman.getPosY() % TILESIZE));
 				break;
 			case 'a':
 				if (canMoveThere('a', bman))
 					bman.moveLeft();
 				else
-					bman.moveHorizontally(-(bman.getPosX() % 50));
+					bman.moveHorizontally(-(bman.getPosX() % TILESIZE));
 				break;
 			case 'd':
 				if (canMoveThere('d', bman))
 					bman.moveRight();
 				else
-					bman.moveHorizontally(TILESIZE - 1 - (bman.getPosX() % 50));
+					bman.moveHorizontally(TILESIZE - 1
+							- (bman.getPosX() % TILESIZE));
 				break;
 			case 'e':
 				dropBomb(bman);
@@ -107,10 +109,12 @@ public class Game {
 		for (int i = 0; i < width; i++) {
 			for (int j = 0; j < height; j++) {
 				if (board.getField()[j][i] != 0)
-					StdDraw.filledSquare(i * 50 + 25, j * 50 + 25, 25);
+					StdDraw.filledSquare(i * TILESIZE + TILESIZE / 2, j
+							* TILESIZE + TILESIZE / 2, TILESIZE / 2);
 				else {
 					StdDraw.setPenColor(StdDraw.LIGHT_GRAY);
-					StdDraw.filledSquare(i * 50 + 25, j * 50 + 25, 25);
+					StdDraw.filledSquare(i * TILESIZE + TILESIZE / 2, j
+							* TILESIZE + TILESIZE / 2, TILESIZE / 2);
 					StdDraw.setPenColor(StdDraw.BLACK);
 				}
 			}
