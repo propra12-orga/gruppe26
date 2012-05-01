@@ -120,7 +120,8 @@ public class Gui {
 
 	private void drawExit() {
 		StdDraw.setPenColor(StdDraw.GREEN);
-		StdDraw.filledSquare(exit.getPosX(), exit.getPosY(), 25);
+		StdDraw.filledSquare(exit.getArrayPosX() * TILESIZE + TILESIZE / 2,
+				exit.getArrayPosY() * TILESIZE + TILESIZE / 2, TILESIZE / 2);
 		StdDraw.setPenColor(StdDraw.BLACK);
 	}
 

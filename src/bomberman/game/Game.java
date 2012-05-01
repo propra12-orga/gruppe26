@@ -31,7 +31,7 @@ public class Game {
 		bman = new BomberHuman(true, 10, 10);
 		this.eac = new ExplosionAreaCalculator(board.getField(),
 				EXPLOSION_RADIUS, TILESIZE);
-		this.exit = new Exit(975, 325);
+		this.exit = new Exit(4, 4, TILESIZE);
 
 		this.gui = new Gui(board.getField(), TILESIZE, bombs, bman, exit, eac);
 		this.controls = new Controls(board, TILESIZE, bombs);
