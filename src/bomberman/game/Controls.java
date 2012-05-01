@@ -13,7 +13,8 @@ public class Controls {
 	private final List<Bomb> bombs;
 	private final int height;
 	private final int width;
-	private final int COLLISIONBOX = 10;
+	// private final int COLLISIONBOX = 10;
+	private final int COLLISIONBOX = 0;
 
 	public Controls(final Board board, final int TILESIZE,
 			final List<Bomb> bombs) {
@@ -39,25 +40,25 @@ public class Controls {
 		// FIXME: okay, that's dirty here. refactor me.
 		switch (direction) {
 		case 'w':
-			final int newArrayPosY = getArrayPos(posY + speed + 10);
+			final int newArrayPosY = getArrayPos(posY + speed + COLLISIONBOX);
 			if (newArrayPosY < height)
 				if (field[newArrayPosY][arrayPosX] == 0)
 					return true;
 			break;
 		case 's':
-			final int newArrayPosY2 = getArrayPos(posY - speed - 10);
+			final int newArrayPosY2 = getArrayPos(posY - speed - COLLISIONBOX);
 			if (newArrayPosY2 >= 0)
 				if (field[newArrayPosY2][arrayPosX] == 0)
 					return true;
 			break;
 		case 'a':
-			final int newArrayPosX = getArrayPos(posX - speed - 10);
+			final int newArrayPosX = getArrayPos(posX - speed - COLLISIONBOX);
 			if (newArrayPosX >= 0)
 				if (field[arrayPosY][newArrayPosX] == 0)
 					return true;
 			break;
 		case 'd':
-			final int newArrayPosX2 = getArrayPos(posX + speed + 10);
+			final int newArrayPosX2 = getArrayPos(posX + speed + COLLISIONBOX);
 			if (newArrayPosX2 < width)
 				if (field[arrayPosY][newArrayPosX2] == 0)
 					return true;
