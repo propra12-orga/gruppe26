@@ -13,8 +13,10 @@ public class Controls {
 	private final List<Bomb> bombs;
 	private final int height;
 	private final int width;
+
 	// private final int COLLISIONBOX = 10;
 	private final int COLLISIONBOX = 0;
+	private final int BOMBTICKS = 300;
 
 	public Controls(final Board board, final int TILESIZE,
 			final List<Bomb> bombs) {
@@ -124,7 +126,7 @@ public class Controls {
 	private void dropBomb(BomberHuman bman) {
 		final int posX = bman.getPosX();
 		final int posY = bman.getPosY();
-		final Bomb b = new Bomb(posX, posY, 300);
+		final Bomb b = new Bomb(posX, posY, BOMBTICKS);
 		bombs.add(b);
 	}
 }
