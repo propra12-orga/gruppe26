@@ -71,28 +71,36 @@ public class ExplosionAreaCalculator {
 		return true;
 	}
 
-	public int getLeftBoundsOfExplosion(final int posX) {
-		if ((posX - RADIUS) < 0)
-			return 0;
-		return posX - RADIUS;
+	public int getLeftBoundsOfExplosion(final int posX, final int posY) {
+		int i = posX;
+		while (field[posY][i] == 0 && i > 0 && i + RADIUS > posX) {
+			i--;
+		}
+		return i;
 	}
 
-	public int getRightBoundsOfExplosion(final int posX) {
-		if ((posX + RADIUS) >= width)
-			return width - 1;
-		return posX + RADIUS;
+	public int getRightBoundsOfExplosion(final int posX, final int posY) {
+		int i = posX;
+		while (field[posY][i] == 0 && i < width - 1 && i < posX + RADIUS) {
+			i++;
+		}
+		return i;
 	}
 
-	public int getUpperBoundsOfExplosion(final int posY) {
-		if ((posY + RADIUS) >= height)
-			return height - 1;
-		return posY + RADIUS;
+	public int getUpperBoundsOfExplosion(final int posX, final int posY) {
+		int i = posY;
+		while (field[i][posX] == 0 && i < height - 1 && i < posY + RADIUS) {
+			i++;
+		}
+		return i;
 	}
 
-	public int getLowerBoundsOfExplosion(final int posY) {
-		if ((posY - RADIUS) < 0)
-			return 0;
-		return posY - RADIUS;
+	public int getLowerBoundsOfExplosion(final int posX, final int posY) {
+		int i = posY;
+		while (field[i][posX] == 0 && i > 0 && i + RADIUS > posY) {
+			i--;
+		}
+		return i;
 	}
 
 	// TODO: copied from Controls.java; maybe we could refactor again?

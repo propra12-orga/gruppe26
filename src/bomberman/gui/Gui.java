@@ -74,20 +74,50 @@ public class Gui {
 		final int arrPosX = eac.getArrayPos(posX);
 		final int arrPosY = eac.getArrayPos(posY);
 
-		final int leftBound = eac.getLeftBoundsOfExplosion(arrPosX);
-		final int rightBound = eac.getRightBoundsOfExplosion(arrPosX);
-		final int upperBound = eac.getUpperBoundsOfExplosion(arrPosY);
-		final int lowerBound = eac.getLeftBoundsOfExplosion(arrPosY);
+		final int leftBound = eac.getLeftBoundsOfExplosion(arrPosX, arrPosY);
+		final int rightBound = eac.getRightBoundsOfExplosion(arrPosX, arrPosY);
+		final int upperBound = eac.getUpperBoundsOfExplosion(arrPosX, arrPosY);
+		final int lowerBound = eac.getLowerBoundsOfExplosion(arrPosX, arrPosY);
 
 		StdDraw.setPenColor(StdDraw.RED);
 
 		// TODO: calculating too much here, a whole rectangle. but this is a lot
 		// shorter.
-		for (int i = leftBound; i <= rightBound; i++)
-			for (int j = lowerBound; j <= upperBound; j++)
-				if (eac.isInExplosionArea(b, i, j))
-					StdDraw.filledSquare(i * TILESIZE + TILESIZE / 2, j
-							* TILESIZE + TILESIZE / 2, TILESIZE / 2);
+		for (int i = leftBound; i <= rightBound; i++) {
+			if (eac.isInExplosionArea(b, i, arrPosY)) {
+				if (i == leftBound)
+					StdDraw.picture(i * TILESIZE + TILESIZE / 2, arrPosY
+							* TILESIZE + TILESIZE / 2,
+							"graphics/explosion_edge_l.png");
+				else if (i == rightBound)
+					StdDraw.picture(i * TILESIZE + TILESIZE / 2, arrPosY
+							* TILESIZE + TILESIZE / 2,
+							"graphics/explosion_edge_r.png");
+				else
+					StdDraw.picture(i * TILESIZE + TILESIZE / 2, arrPosY
+							* TILESIZE + TILESIZE / 2,
+							"graphics/explosion_hori.png");
+			}
+		}
+
+		for (int j = lowerBound; j <= upperBound; j++) {
+			if (eac.isInExplosionArea(b, arrPosX, j)) {
+				if (j == lowerBound)
+					StdDraw.picture(arrPosX * TILESIZE + TILESIZE / 2, j
+							* TILESIZE + TILESIZE / 2,
+							"graphics/explosion_edge_b.png");
+				else if (j == upperBound)
+					StdDraw.picture(arrPosX * TILESIZE + TILESIZE / 2, j
+							* TILESIZE + TILESIZE / 2,
+							"graphics/explosion_edge_t.png");
+				else
+					StdDraw.picture(arrPosX * TILESIZE + TILESIZE / 2, j
+							* TILESIZE + TILESIZE / 2,
+							"graphics/explosion_vert.png");
+			}
+		}
+		// StdDraw.filledSquare(i * TILESIZE + TILESIZE / 2, j
+		// * TILESIZE + TILESIZE / 2, TILESIZE / 2);
 
 		StdDraw.setPenColor(StdDraw.BLACK);
 	}
