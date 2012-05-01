@@ -62,8 +62,8 @@ public class Gui {
 			} else {
 				final int bombsprite = 11 - (11 * b.getTimer() / b
 						.getMaxTimer());
-				StdDraw.picture(b.getPosX(), b.getPosY() + 20, "graphics/bomb"
-						+ bombsprite + ".png");
+				StdDraw.picture(b.getPosX(), b.getPosY() + 20,
+						"graphics/bomb/bomb" + bombsprite + ".png");
 			}
 		}
 	}
@@ -88,15 +88,15 @@ public class Gui {
 				if (i == leftBound)
 					StdDraw.picture(i * TILESIZE + TILESIZE / 2, arrPosY
 							* TILESIZE + TILESIZE / 2,
-							"graphics/explosion_edge_l.png");
+							"graphics/explosion/explosion_edge_l.png");
 				else if (i == rightBound)
 					StdDraw.picture(i * TILESIZE + TILESIZE / 2, arrPosY
 							* TILESIZE + TILESIZE / 2,
-							"graphics/explosion_edge_r.png");
+							"graphics/explosion/explosion_edge_r.png");
 				else
 					StdDraw.picture(i * TILESIZE + TILESIZE / 2, arrPosY
 							* TILESIZE + TILESIZE / 2,
-							"graphics/explosion_hori.png");
+							"graphics/explosion/explosion_hori.png");
 			}
 		}
 
@@ -105,15 +105,15 @@ public class Gui {
 				if (j == lowerBound)
 					StdDraw.picture(arrPosX * TILESIZE + TILESIZE / 2, j
 							* TILESIZE + TILESIZE / 2,
-							"graphics/explosion_edge_b.png");
+							"graphics/explosion/explosion_edge_b.png");
 				else if (j == upperBound)
 					StdDraw.picture(arrPosX * TILESIZE + TILESIZE / 2, j
 							* TILESIZE + TILESIZE / 2,
-							"graphics/explosion_edge_t.png");
+							"graphics/explosion/explosion_edge_t.png");
 				else
 					StdDraw.picture(arrPosX * TILESIZE + TILESIZE / 2, j
 							* TILESIZE + TILESIZE / 2,
-							"graphics/explosion_vert.png");
+							"graphics/explosion/explosion_vert.png");
 			}
 		}
 		// StdDraw.filledSquare(i * TILESIZE + TILESIZE / 2, j
