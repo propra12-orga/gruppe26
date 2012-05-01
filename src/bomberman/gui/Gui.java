@@ -6,6 +6,7 @@ import messing.around.StdDraw;
 import bomberman.game.ExplosionAreaCalculator;
 import bomberman.game.character.BomberHuman;
 import bomberman.game.objects.Bomb;
+import bomberman.game.objects.Exit;
 
 public class Gui {
 
@@ -14,16 +15,19 @@ public class Gui {
 	private final int width;
 	private final int height;
 	private final BomberHuman bman;
+	private final Exit exit;
 	private final List<Bomb> bombs;
 	private final ExplosionAreaCalculator eac;
 
 	public Gui(final int[][] field, final int TILESIZE, final List<Bomb> bombs,
-			final BomberHuman bman, final ExplosionAreaCalculator eac) {
+			final BomberHuman bman, final Exit exit,
+			final ExplosionAreaCalculator eac) {
 		this.field = field;
 		this.TILESIZE = TILESIZE;
 		this.width = field[0].length;
 		this.height = field.length;
 		this.bman = bman;
+		this.exit = exit;
 		this.bombs = bombs;
 		this.eac = eac;
 	}
@@ -96,6 +100,7 @@ public class Gui {
 
 	public void draw() {
 		drawWalls();
+		drawExit();
 		drawBomber();
 		drawBombs();
 		StdDraw.show();
@@ -104,6 +109,25 @@ public class Gui {
 	public void lost() {
 		StdDraw.clear();
 		StdDraw.text(width * TILESIZE / 2, height * TILESIZE / 2, "BOMF!");
+		StdDraw.show();
+
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// we seriously don't care as this is just temporary
+		}
+	}
+
+	private void drawExit() {
+		StdDraw.setPenColor(StdDraw.GREEN);
+		StdDraw.filledSquare(exit.getPosX(), exit.getPosY(), 25);
+		StdDraw.setPenColor(StdDraw.BLACK);
+	}
+
+	public void won() {
+		StdDraw.setPenColor(StdDraw.GREEN);
+		StdDraw.text(width * TILESIZE / 2, height * TILESIZE / 2, "VICTORY");
+		StdDraw.setPenColor(StdDraw.BLACK);
 		StdDraw.show();
 
 		try {
