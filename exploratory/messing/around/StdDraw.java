@@ -1031,6 +1031,7 @@ public final class StdDraw implements ActionListener, MouseListener,
 		FontMetrics metrics = offscreen.getFontMetrics();
 		double xs = scaleX(x);
 		double ys = scaleY(y);
+		@SuppressWarnings("unused")
 		int ws = metrics.stringWidth(s);
 		int hs = metrics.getDescent();
 		offscreen.drawString(s, (float) (xs), (float) (ys + hs));
@@ -1072,6 +1073,7 @@ public final class StdDraw implements ActionListener, MouseListener,
 	 * @param t
 	 *            number of milliseconds
 	 */
+	@SuppressWarnings("static-access")
 	public static void show(int t) {
 		defer = false;
 		draw();
