@@ -53,9 +53,13 @@ public class Gui {
 
 	public void drawBombs() {
 		for (Bomb b : bombs) {
-			StdDraw.picture(b.getPosX(), b.getPosY() + 20, "graphics/bomb.png");
 			if (b.isCurrentlyExploding()) {
 				drawExplosion(b);
+			} else {
+				final int bombsprite = 11 - (11 * b.getTimer() / b
+						.getMaxTimer());
+				StdDraw.picture(b.getPosX(), b.getPosY() + 20, "graphics/bomb"
+						+ bombsprite + ".png");
 			}
 		}
 	}

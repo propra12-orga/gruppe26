@@ -6,6 +6,7 @@ public class Bomb {
 	 */
 	final private int posX;
 	final private int posY;
+	final private int maxTimer;
 	private int timer;
 	private boolean exists = true;
 
@@ -15,6 +16,11 @@ public class Bomb {
 		this.posX = posX;
 		this.posY = posY;
 		this.timer = timer;
+		this.maxTimer = timer;
+	}
+
+	public int getMaxTimer() {
+		return maxTimer;
 	}
 
 	public int getPosX() {

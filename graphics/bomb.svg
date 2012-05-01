@@ -46,14 +46,6 @@
     </filter>
     <filter
        inkscape:collect="always"
-       id="filter3865">
-      <feGaussianBlur
-         inkscape:collect="always"
-         stdDeviation="0.56167638"
-         id="feGaussianBlur3867" />
-    </filter>
-    <filter
-       inkscape:collect="always"
        id="filter3887">
       <feGaussianBlur
          inkscape:collect="always"
@@ -92,9 +84,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.96291535"
-     inkscape:cx="297.46886"
-     inkscape:cy="687.80039"
+     inkscape:zoom="3.8516613"
+     inkscape:cx="408.80379"
+     inkscape:cy="724.84225"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -111,7 +103,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -119,9 +111,22 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1">
+    <rect
+       style="fill:none;fill-opacity:1;stroke:none"
+       id="rect3051"
+       width="348.81128"
+       height="441.70203"
+       x="105.01054"
+       y="159.40535"
+       inkscape:export-filename="/home/philipp/code/gruppe26/graphics/bomb1.png"
+       inkscape:export-xdpi="9.1416006"
+       inkscape:export-ydpi="9.1416006" />
     <g
        id="g3837"
-       transform="translate(4.4060369,-71.965271)">
+       transform="translate(4.4060369,-71.965271)"
+       inkscape:export-filename="/home/philipp/code/gruppe26/graphics/bomb1.png"
+       inkscape:export-xdpi="9.1416006"
+       inkscape:export-ydpi="9.1416006">
       <path
          style="fill:none;fill-opacity:1;stroke:#ff1d1d;stroke-width:1.13697231000000021px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter3887)"
          d="m 358.43837,233.45323 c 5.41367,66.2181 -47.7676,54.72571 -47.7676,54.72571 0,0 53.60242,21.8076 -4.45832,49.80038 42.56969,-15.24052 42.77158,-5.66025 33.11888,54.17847 26.65069,-57.2743 63.05324,-37.76075 63.05324,-37.76075 0,0 -39.40808,-44.30884 30.57126,-48.15863 -60.58545,9.83165 -48.08611,-12.62725 -14.64872,-49.25313 -44.2646,33.42304 -49.99677,41.59152 -59.86874,-23.53205 z"
@@ -170,7 +175,10 @@
        inkscape:connector-curvature="0"
        id="path3926"
        d="m 339.86544,275.0287 c -3.48374,2.54574 -20.4688,12.40665 -20.4688,12.40665 0,0 -27.19977,11.0771 -50.00732,76.23143 l 7.10217,-0.27724 c 22.85735,-57.61622 39.078,-65.78637 43.83827,-69.51972 l 22.06207,-12.7098 c 7.15282,-3.88556 21.89009,-24.71721 24.92484,-35.36867 l -3.89039,-8.86777 c -4.9022,22.91885 -20.70137,36.01556 -23.56084,38.10512 z"
-       style="fill:none;stroke:#ffeeaa;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter3944)" />
+       style="fill:none;stroke:#ffeeaa;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter3944)"
+       inkscape:export-filename="/home/philipp/code/gruppe26/graphics/bomb0.png"
+       inkscape:export-xdpi="9"
+       inkscape:export-ydpi="9" />
     <path
        sodipodi:type="arc"
        style="fill:#000000;fill-opacity:0.73958330999999999;stroke:none;filter:url(#filter3853)"
@@ -180,17 +188,26 @@
        sodipodi:rx="87.754341"
        sodipodi:ry="16.875834"
        d="m 324.53529,573.86737 a 87.754341,16.875834 0 1 1 -175.50869,0 87.754341,16.875834 0 1 1 175.50869,0 z"
-       transform="translate(-2.0770258,-8.8273595)" />
+       transform="translate(-2.0770258,-8.8273595)"
+       inkscape:export-filename="/home/philipp/code/gruppe26/graphics/bomb1.png"
+       inkscape:export-xdpi="9.1416006"
+       inkscape:export-ydpi="9.1416006" />
     <path
        style="fill:#ffeeaa;stroke:none;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        d="m 339.86544,275.0287 c -3.48374,2.54574 -20.4688,12.40665 -20.4688,12.40665 0,0 -27.19977,11.0771 -50.00732,76.23143 l 7.10217,-0.27724 c 22.85735,-57.61622 39.078,-65.78637 43.83827,-69.51972 l 22.06207,-12.7098 c 7.15282,-3.88556 21.89009,-24.71721 24.92484,-35.36867 l -3.89039,-8.86777 c -4.9022,22.91885 -20.70137,36.01556 -23.56084,38.10512 z"
        id="path3822"
        inkscape:connector-curvature="0"
-       sodipodi:nodetypes="scccccccs" />
+       sodipodi:nodetypes="scccccccs"
+       inkscape:export-filename="/home/philipp/code/gruppe26/graphics/bomb0.png"
+       inkscape:export-xdpi="9"
+       inkscape:export-ydpi="9" />
     <path
        style="fill:#141414;fill-rule:evenodd;stroke:none;fill-opacity:1"
        d="M 269.09375 359.8125 C 263.55318 359.74924 259.21504 362.57217 258.0625 366.71875 C 251.23179 365.23836 244.14354 364.4375 236.875 364.4375 C 181.36476 364.4375 136.375 409.90062 136.375 465.96875 C 136.375 522.03688 181.36476 567.5 236.875 567.5 C 292.38524 567.5 337.40625 522.03688 337.40625 465.96875 C 337.40625 426.83787 315.45695 392.88413 283.34375 375.9375 C 283.97167 374.70407 284.29258 373.31564 284.21875 371.8125 C 283.92832 365.89967 277.75132 360.55865 270.4375 359.875 C 269.98039 359.83227 269.53714 359.81756 269.09375 359.8125 z "
-       id="path2985" />
+       id="path2985"
+       inkscape:export-filename="/home/philipp/code/gruppe26/graphics/bomb1.png"
+       inkscape:export-xdpi="9.1416006"
+       inkscape:export-ydpi="9.1416006" />
     <path
        sodipodi:type="arc"
        style="fill:#ffffff;stroke:none;fill-opacity:0.125"
@@ -200,15 +217,24 @@
        sodipodi:rx="34.345188"
        sodipodi:ry="25.253813"
        d="m 291.93409,424.0473 a 34.345188,25.253813 0 1 1 -68.69038,0 34.345188,25.253813 0 1 1 68.69038,0 z"
-       transform="matrix(0.94328854,0.48095109,-0.40880844,0.80179528,197.05372,-44.385167)" />
+       transform="matrix(0.94328854,0.48095109,-0.40880844,0.80179528,197.05372,-44.385167)"
+       inkscape:export-filename="/home/philipp/code/gruppe26/graphics/bomb1.png"
+       inkscape:export-xdpi="9.1416006"
+       inkscape:export-ydpi="9.1416006" />
     <path
        style="fill:#0d0d0d;fill-rule:evenodd;stroke:none;fill-opacity:1"
        d="M 141.46875 434 C 138.16904 444.0524 136.375 454.79807 136.375 465.96875 C 136.375 522.03688 181.36476 567.5 236.875 567.5 C 246.05459 567.5 254.95747 566.23462 263.40625 563.90625 C 217.55796 546.55867 148.65194 508.35257 141.46875 434 z "
-       id="path3811" />
+       id="path3811"
+       inkscape:export-filename="/home/philipp/code/gruppe26/graphics/bomb1.png"
+       inkscape:export-xdpi="9.1416006"
+       inkscape:export-ydpi="9.1416006" />
     <path
        id="path3857"
        d="M 269.09375 359.8125 C 263.55318 359.74924 259.21504 362.57217 258.0625 366.71875 C 251.23179 365.23836 244.14354 364.4375 236.875 364.4375 C 181.36476 364.4375 136.375 409.90062 136.375 465.96875 C 136.375 522.03688 181.36476 567.5 236.875 567.5 C 292.38524 567.5 337.40625 522.03688 337.40625 465.96875 C 337.40625 426.83787 315.45695 392.88413 283.34375 375.9375 C 283.97167 374.70407 284.29258 373.31564 284.21875 371.8125 C 283.92832 365.89967 277.75132 360.55865 270.4375 359.875 C 269.98039 359.83227 269.53714 359.81756 269.09375 359.8125 z "
-       style="fill:none;fill-rule:evenodd;stroke:#000000;fill-opacity:1;stroke-opacity:1;filter:url(#filter3859)" />
+       style="fill:none;fill-rule:evenodd;stroke:#000000;fill-opacity:1;stroke-opacity:1;filter:url(#filter3859)"
+       inkscape:export-filename="/home/philipp/code/gruppe26/graphics/bomb1.png"
+       inkscape:export-xdpi="9.1416006"
+       inkscape:export-ydpi="9.1416006" />
     <rect
        style="fill:none;stroke:none;stroke-width:1;stroke-opacity:1"
        id="rect3948"
@@ -216,7 +242,8 @@
        height="492.2551"
        x="61.272259"
        y="127.0472"
-       inkscape:export-xdpi="9.1340818"
-       inkscape:export-ydpi="9.1340818" />
+       inkscape:export-xdpi="9.1416006"
+       inkscape:export-ydpi="9.1416006"
+       inkscape:export-filename="/home/philipp/code/gruppe26/graphics/bomb1.png" />
   </g>
 </svg>
