@@ -6,7 +6,7 @@ import java.util.List;
 import bomberman.game.character.BomberHuman;
 import bomberman.game.objects.Bomb;
 import bomberman.game.objects.Exit;
-import bomberman.gui.Gui;
+import bomberman.gui.GameGui;
 
 public class Game {
 
@@ -19,7 +19,7 @@ public class Game {
 	private final List<Bomb> bombs = new ArrayList<Bomb>();
 	// let's see if we can use this interface for something productive
 	private final List<Character> enemies = new ArrayList<Character>();
-	private final Gui gui;
+	private final GameGui gui;
 	private final Controls controls;
 	private final ExplosionAreaCalculator eac;
 
@@ -33,7 +33,7 @@ public class Game {
 				EXPLOSION_RADIUS, TILESIZE);
 		this.exit = new Exit(21, 10, TILESIZE);
 
-		this.gui = new Gui(board.getField(), TILESIZE, bombs, bman, exit, eac);
+		this.gui = new GameGui(board.getField(), TILESIZE, bombs, bman, exit, eac);
 		this.controls = new Controls(board, TILESIZE, bombs);
 
 	}
@@ -76,20 +76,22 @@ public class Game {
 		for (Integer integer : exploded) {
 			final Bomb b = bombs.get(integer - count);
 			tryToKillStuff(b);
-			if (!b.isCurrentlyExploding())
+			if (!b.isCurrentlyExploding()) {
 				bombs.remove(integer - count);
+			}
 			count++;
 		}
 	}
 
-	private void tryToKillStuff(Bomb b) {
+	private void tryToKillStuff(final Bomb b) {
 		// right now, there's only bomberman. as soon as enemies are
 		// implemented, we should add a list of Characters or something like
 		// that. we will probably need that interface at this point.
 		for (Bomb bomb : bombs) {
 			if (bomb != b && !bomb.isCurrentlyExploding()) {
-				if (eac.isInExplosionArea(b, bomb))
+				if (eac.isInExplosionArea(b, bomb)) {
 					bomb.goBomf();
+				}
 			}
 		}
 
