@@ -33,8 +33,10 @@ public class BombTest {
 		assertFalse(track.isStillThere());
 		assertEquals(track.getTimer(), 0);
 
+		// position did not change
 		assertEquals(track.getPosX(), 5);
 		assertEquals(track.getPosY(), 10);
+		assertEquals(track.getMaxTimer(), 5);
 	}
 
 	@Test
@@ -68,4 +70,33 @@ public class BombTest {
 		new Bomb(2, 2, -1);
 	}
 
+	@Test
+	public void testIsCurrentlyExploding() {
+		final Bomb track = new Bomb(0, 0, 1);
+		assertFalse(track.isCurrentlyExploding());
+		track.tick();
+		assertTrue(track.isCurrentlyExploding());
+
+		while (track.getTimer() >= -48)
+			track.tick();
+		assertEquals(track.getTimer(), -49);
+		assertTrue(track.isCurrentlyExploding());
+		track.tick();
+		assertFalse(track.isCurrentlyExploding());
+
+	}
+
+	@Test
+	public void testGoBomfChangesNothing() {
+		final Bomb track = new Bomb(0, 0, 10);
+		track.goBomf();
+		assertEquals(track.getTimer(), 10);
+	}
+
+	@Test
+	public void testGoBomfChangesTimer() {
+		final Bomb track = new Bomb(0, 0, 100);
+		track.goBomf();
+		assertEquals(track.getTimer(), 20);
+	}
 }
