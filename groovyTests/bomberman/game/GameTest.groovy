@@ -26,8 +26,6 @@ class GameTest extends Specification {
 
 	def "the game object is constructed properly"() {
 		expect:
-		g.board.getHeight() == 15;
-		g.board.getWidth() == 31;
 		g.alive == true;
 		g.won == false;
 		assertNotNull(g.eac)
