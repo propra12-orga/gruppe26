@@ -8,13 +8,11 @@ public class ExplosionAreaCalculator {
 	final private int[][] field;
 	final private int height;
 	final private int width;
-	final private int RADIUS;
 	final private int TILESIZE;
+	final private int RADIUS = 5;
 
-	public ExplosionAreaCalculator(final int[][] field, final int RADIUS,
-			final int TILESIZE) {
+	public ExplosionAreaCalculator(final int[][] field, final int TILESIZE) {
 		this.field = field;
-		this.RADIUS = RADIUS;
 		this.width = field[0].length;
 		this.height = field.length;
 		this.TILESIZE = TILESIZE;

@@ -10,9 +10,6 @@ import bomberman.gui.GameGui;
 
 public class Game {
 
-	private final int EXPLOSION_RADIUS = 5; // in tiles at the moment
-	private final int TILESIZE = 50;
-
 	private final Board board;
 	private final BomberHuman bman;
 	private final Exit exit;
@@ -26,16 +23,14 @@ public class Game {
 	private boolean alive = true;
 	private boolean won = false;
 
-	public Game(final int height, final int width) {
-		board = new Board(height, width);
+	public Game(final Board board, final Controls controls, final Exit exit,
+			final ExplosionAreaCalculator eac, final GameGui gui) {
+		this.board = board;
 		this.bman = new BomberHuman(true, 10, 10);
-		this.eac = new ExplosionAreaCalculator(board.getField(),
-				EXPLOSION_RADIUS, TILESIZE);
-		this.exit = new Exit(21, 10, TILESIZE);
-
-		this.gui = new GameGui(board.getField(), TILESIZE, bombs, bman, exit, eac);
-		this.controls = new Controls(board, TILESIZE, bombs);
-
+		this.exit = exit;
+		this.eac = eac;
+		this.gui = gui;
+		this.controls = controls;
 	}
 
 	public void start() {
@@ -49,10 +44,10 @@ public class Game {
 	private void loop() {
 		while (alive && !won) {
 			checkWin();
-			controls.doSomethingWithInput(bman);
+			controls.doSomethingWithInput(bman, bombs);
 			manageBombs();
 
-			gui.draw();
+			gui.draw(bombs, bman, exit);
 		}
 	}
 

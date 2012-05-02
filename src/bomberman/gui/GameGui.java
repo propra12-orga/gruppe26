@@ -14,21 +14,14 @@ public class GameGui {
 	private final int[][] field;
 	private final int width;
 	private final int height;
-	private final BomberHuman bman;
-	private final Exit exit;
-	private final List<Bomb> bombs;
 	private final ExplosionAreaCalculator eac;
 
-	public GameGui(final int[][] field, final int TILESIZE, final List<Bomb> bombs,
-			final BomberHuman bman, final Exit exit,
+	public GameGui(final int[][] field, final int TILESIZE,
 			final ExplosionAreaCalculator eac) {
 		this.field = field;
 		this.TILESIZE = TILESIZE;
 		this.width = field[0].length;
 		this.height = field.length;
-		this.bman = bman;
-		this.exit = exit;
-		this.bombs = bombs;
 		this.eac = eac;
 	}
 
@@ -49,13 +42,13 @@ public class GameGui {
 		}
 	}
 
-	public void drawBomber() {
+	public void drawBomber(final BomberHuman bman) {
 		// StdDraw.circle(bman.getPosX(), bman.getPosY(), 5);
 		StdDraw.picture(bman.getPosX(), bman.getPosY(),
 				"graphics/bomberman.png");
 	}
 
-	public void drawBombs() {
+	public void drawBombs(final List<Bomb> bombs) {
 		for (Bomb b : bombs) {
 			if (b.isCurrentlyExploding()) {
 				drawExplosion(b);
@@ -128,11 +121,12 @@ public class GameGui {
 		StdDraw.setYscale(0, height * TILESIZE);
 	}
 
-	public void draw() {
+	public void draw(final List<Bomb> bombs, final BomberHuman bman,
+			final Exit exit) {
 		drawWalls();
-		drawExit();
-		drawBomber();
-		drawBombs();
+		drawExit(exit);
+		drawBomber(bman);
+		drawBombs(bombs);
 		StdDraw.show();
 	}
 
@@ -148,7 +142,7 @@ public class GameGui {
 		}
 	}
 
-	private void drawExit() {
+	private void drawExit(final Exit exit) {
 		StdDraw.setPenColor(StdDraw.GREEN);
 		StdDraw.filledSquare(exit.getArrayPosX() * TILESIZE + TILESIZE / 2,
 				exit.getArrayPosY() * TILESIZE + TILESIZE / 2, TILESIZE / 2);

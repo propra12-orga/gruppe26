@@ -10,7 +10,6 @@ public class Controls {
 
 	private final int[][] field;
 	private final int TILESIZE;
-	private final List<Bomb> bombs;
 	private final int height;
 	private final int width;
 
@@ -18,11 +17,9 @@ public class Controls {
 	private final int COLLISIONBOX = 0;
 	private final int BOMBTICKS = 300;
 
-	public Controls(final Board board, final int TILESIZE,
-			final List<Bomb> bombs) {
+	public Controls(final Board board, final int TILESIZE) {
 		this.field = board.getField();
 		this.TILESIZE = TILESIZE;
-		this.bombs = bombs;
 		this.height = board.getHeight();
 		this.width = board.getWidth();
 	}
@@ -83,7 +80,8 @@ public class Controls {
 		return pos / TILESIZE;
 	}
 
-	public void doSomethingWithInput(final BomberHuman bman) {
+	public void doSomethingWithInput(final BomberHuman bman,
+			final List<Bomb> bombs) {
 
 		if (StdDraw.hasNextKeyTyped()) {
 			final char c = StdDraw.nextKeyTyped();
@@ -118,12 +116,12 @@ public class Controls {
 							- (bman.getPosX() % TILESIZE));
 				break;
 			case 'e':
-				dropBomb(bman);
+				dropBomb(bman, bombs);
 			}
 		}
 	}
 
-	private void dropBomb(BomberHuman bman) {
+	private void dropBomb(final BomberHuman bman, final List<Bomb> bombs) {
 		final int posX = bman.getPosX();
 		final int posY = bman.getPosY();
 		final Bomb b = new Bomb(posX, posY, BOMBTICKS);
