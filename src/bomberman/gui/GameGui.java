@@ -8,7 +8,7 @@ import bomberman.game.character.BomberHuman;
 import bomberman.game.objects.Bomb;
 import bomberman.game.objects.Exit;
 
-public class Gui {
+public class GameGui {
 
 	private final int TILESIZE;
 	private final int[][] field;
@@ -19,7 +19,7 @@ public class Gui {
 	private final List<Bomb> bombs;
 	private final ExplosionAreaCalculator eac;
 
-	public Gui(final int[][] field, final int TILESIZE, final List<Bomb> bombs,
+	public GameGui(final int[][] field, final int TILESIZE, final List<Bomb> bombs,
 			final BomberHuman bman, final Exit exit,
 			final ExplosionAreaCalculator eac) {
 		this.field = field;
