@@ -37,7 +37,6 @@ public class Bomb {
 
 	public void goBomf() {
 		timer = (timer > 20) ? 20 : timer;
-
 	}
 
 	public void tick() {
@@ -55,6 +54,6 @@ public class Bomb {
 	}
 
 	public boolean isCurrentlyExploding() {
-		return (timer <= 0 && timer > -50);
+		return (timer > -50 && timer <= 0);
 	}
 }
