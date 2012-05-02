@@ -10,7 +10,9 @@ import bomberman.gui.GameGui;
 
 public class Game {
 
-	private final Board board;
+	// it's not in use for now...
+	// private final Board board;
+
 	private final BomberHuman bman;
 	private final Exit exit;
 	private final List<Bomb> bombs = new ArrayList<Bomb>();
@@ -25,7 +27,7 @@ public class Game {
 
 	public Game(final Board board, final Controls controls, final Exit exit,
 			final ExplosionAreaCalculator eac, final GameGui gui) {
-		this.board = board;
+		// this.board = board;
 		this.bman = new BomberHuman(true, 10, 10);
 		this.exit = exit;
 		this.eac = eac;
