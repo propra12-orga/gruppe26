@@ -8,6 +8,15 @@ import bomberman.game.objects.Bomb;
 import bomberman.game.objects.Exit;
 import bomberman.gui.GameGui;
 
+/**
+ * Game Object After constructing a Game object, it requires to be started
+ * separately. Once started, it should not terminate until either you win or
+ * lose. Only one Game at a time should be active, so don't use it in threads,
+ * else the GUI will probably get messed up.
+ * 
+ * @author philipp
+ * 
+ */
 public class Game {
 
 	// it's not in use for now...
@@ -25,7 +34,16 @@ public class Game {
 	private boolean alive = true;
 	private boolean won = false;
 
-	public Game(final Board board, final Controls controls, final Exit exit,
+	/**
+	 * Associates a Game with controls, an Exit, an EAC and a GUI. It will also
+	 * create a BomberHuman that is controlled by the player.
+	 * 
+	 * @param controls
+	 * @param exit
+	 * @param eac
+	 * @param gui
+	 */
+	public Game(final Controls controls, final Exit exit,
 			final ExplosionAreaCalculator eac, final GameGui gui) {
 		// this.board = board;
 		this.bman = new BomberHuman(true, 10, 10);
@@ -35,6 +53,9 @@ public class Game {
 		this.controls = controls;
 	}
 
+	/**
+	 * Starts the Game loop.
+	 */
 	public void start() {
 		gui.initialize();
 		// DEBUG mode
