@@ -9,10 +9,10 @@ import bomberman.game.objects.Exit;
 import bomberman.gui.GameGui;
 
 /**
- * Game Object After constructing a Game object, it requires to be started
- * separately. Once started, it should not terminate until either you win or
- * lose. Only one Game at a time should be active, so don't use it in threads,
- * else the GUI will probably get messed up.
+ * Game Object After constructing a Game object, it requires to be started via
+ * {@link #start()} separately. Once started, it should not terminate until
+ * either you win or lose. Only one Game at a time should be active, so don't
+ * use it in threads, else the GUI will probably get messed up.
  * 
  * @author philipp
  * 
