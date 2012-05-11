@@ -25,7 +25,7 @@ class GameTest extends Specification {
 		def c = mock(Controls.class)
 		def gui = mock(GameGui.class)
 
-		g = new Game(b, c, exit, eac, gui)
+		g = new Game(c, exit, eac, gui)
 	}
 
 	def "the game object is constructed properly"() {
