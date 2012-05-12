@@ -23,13 +23,13 @@ public class MenuGui {
 	public static void main(String args[]) {
 		// Game in progress?
 		boolean game_stopped = false;
-		
+
 		StdDraw.setXscale(0, 1000);
 		StdDraw.setYscale(0, 1000);
 
 		while (game_stopped == false) {
 			StdDraw.clear();
-			//Maus ueber Button "New Game?"
+			// Maus ueber Button "New Game?"
 			if (isMouseOverNewGame()) {
 				StdDraw.setPenColor(StdDraw.BOOK_RED);
 				StdDraw.text(text_x_newgame, text_y_newgame, "New Game?");
@@ -40,13 +40,13 @@ public class MenuGui {
 				StdDraw.text(text_x_exit, text_y_exit, "Exit");
 			}
 			StdDraw.show();
-			if((isMouseOverNewGame() == true) && (StdDraw.mousePressed()== true)) {
-				//let's go dummy for now...
+			if ((isMouseOverNewGame() == true)
+					&& (StdDraw.mousePressed() == true)) {
+				// let's go dummy for now...
 				final Game g = new Game(null, null, null, null);
 				g.start();
-				
-			}
-			else if(isMouseOverExit()){
+
+			} else if (isMouseOverExit()) {
 				StdDraw.setPenColor(StdDraw.BOOK_RED);
 				StdDraw.text(text_x_exit, text_y_exit, "Exit");
 				StdDraw.setPenColor(StdDraw.BLACK);
@@ -55,8 +55,8 @@ public class MenuGui {
 				StdDraw.text(text_x_exit, text_y_exit, "Exit");
 				StdDraw.text(text_x_newgame, text_y_newgame, "New Game?");
 			}
-			if(isMouseOverExit() && StdDraw.mousePressed()){
-	//%TODO%: close Window on Exit.			
+			if (isMouseOverExit() && StdDraw.mousePressed()) {
+				// %TODO%: close Window on Exit.
 			}
 		}
 	}
@@ -67,9 +67,9 @@ public class MenuGui {
 				&& (StdDraw.mouseY() <= text_y_newgame + newgame_size_Y)
 				&& (StdDraw.mouseY() >= text_y_newgame - newgame_size_Y);
 	}
-	
+
 	public static boolean isMouseOverExit() {
-		return(StdDraw.mouseX() <= text_x_exit + exit_size_X)
+		return (StdDraw.mouseX() <= text_x_exit + exit_size_X)
 				&& (StdDraw.mouseX() >= text_x_exit - exit_size_X)
 				&& (StdDraw.mouseY() <= text_y_exit + exit_size_Y)
 				&& (StdDraw.mouseY() >= text_y_exit - exit_size_Y);
