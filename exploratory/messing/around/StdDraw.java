@@ -1183,6 +1183,10 @@ public final class StdDraw implements ActionListener, MouseListener,
 		}
 	}
 
+	public static void resetMousePressedStatus() {
+		mousePressed = false;
+	}
+
 	/**
 	 * What is the x-coordinate of the mouse?
 	 * 

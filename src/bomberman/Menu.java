@@ -6,12 +6,25 @@ import bomberman.game.ExplosionAreaCalculator;
 import bomberman.game.Game;
 import bomberman.game.objects.Exit;
 import bomberman.gui.GameGui;
+import bomberman.gui.MenuGui;
 
 public class Menu {
+
 	public void startGame() {
-		final Game g = setupGame();
-		g.start();
-		System.out.println("Game over.");
+
+		while (true) {
+			final MenuGui mg = new MenuGui();
+			Boolean b = Boolean.FALSE;
+			while (b == Boolean.FALSE) {
+				b = mg.gameStarted();
+			}
+			if (b == null)
+				System.exit(0);
+
+			final Game g = setupGame();
+			g.start();
+		}
+
 	}
 
 	public Game setupGame() {
