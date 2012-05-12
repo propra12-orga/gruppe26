@@ -1184,7 +1184,9 @@ public final class StdDraw implements ActionListener, MouseListener,
 			return mousePressed;
 		}
 	}
-
+/**
+ * resets the status of mousePressed to false
+ */
 	public static void resetMousePressedStatus() {
 		mousePressed = false;
 	}
