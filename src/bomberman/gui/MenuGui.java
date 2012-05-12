@@ -1,6 +1,5 @@
 package bomberman.gui;
 
-import messing.around.StdDraw;
 
 public class MenuGui {
 

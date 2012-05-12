@@ -2,7 +2,6 @@ package bomberman.gui;
 
 import java.util.List;
 
-import messing.around.StdDraw;
 import bomberman.game.ExplosionAreaCalculator;
 import bomberman.game.character.BomberHuman;
 import bomberman.game.objects.Bomb;

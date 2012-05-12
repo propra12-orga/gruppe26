@@ -2,9 +2,9 @@ package bomberman.game;
 
 import java.util.List;
 
-import messing.around.StdDraw;
 import bomberman.game.character.BomberHuman;
 import bomberman.game.objects.Bomb;
+import bomberman.gui.StdDraw;
 
 public class Controls {
 

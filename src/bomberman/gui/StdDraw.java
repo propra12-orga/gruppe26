@@ -1,4 +1,4 @@
-package messing.around;
+package bomberman.gui;
 
 /*************************************************************************
  *  Compilation:  javac StdDraw.java
@@ -73,7 +73,7 @@ import javax.swing.KeyStroke;
  * Robert Sedgewick and Kevin Wayne.
  */
 
-// not vanilla StdDraw, but not as heavily modified as the other one
+/* MODIFIED STANDARD DRAW CLASS */
 public final class StdDraw implements ActionListener, MouseListener,
 		MouseMotionListener, KeyListener {
 
