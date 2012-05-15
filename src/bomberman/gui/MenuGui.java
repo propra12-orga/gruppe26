@@ -9,9 +9,6 @@ package bomberman.gui;
  * @author Jan
  */
 public class MenuGui {
-
-
-	// I know, I'm lazy but I can not remember Numbers, just Varnames.
 	final private double exit_size_X = 50;
 	final private double exit_size_Y = 20;
 	final private double newgame_size_X = 70;
