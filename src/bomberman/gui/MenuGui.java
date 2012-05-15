@@ -9,6 +9,18 @@ package bomberman.gui;
  * @author Jan
  */
 public class MenuGui {
+	
+	/**
+	 * Useless Comments my ass...
+	 * Variables:
+	 * 
+	 * size of exit text (x and y)
+	 * size of "Newgame?"-text
+	 * 
+	 * Positions of the texts
+	 * 
+	 * I know I'm lazy but I just can renember var-names, no values...
+	 */
 	final private double exit_size_X = 50;
 	final private double exit_size_Y = 20;
 	final private double newgame_size_X = 70;
