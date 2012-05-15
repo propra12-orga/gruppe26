@@ -22,6 +22,9 @@ public class MenuGui {
 	final private double text_x_exit = 500;
 	final private double text_y_exit = 300;
 
+	/**
+	 * Set up the GUI
+	 */
 	public MenuGui() {
 		StdDraw.setCanvasSize(512, 512); // magic standard constants
 		StdDraw.setXscale(0, 1000);
@@ -33,7 +36,7 @@ public class MenuGui {
 	/**
 	 * Draws the Menu with texts "New Game?" and "Exit"
 	 * Starts a new game or closes the window
-     *
+     * 
 	 * @return true or false, null
 	 */
 	public Boolean gameStarted() {
