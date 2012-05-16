@@ -75,7 +75,7 @@ public class MenuGui {
 	/**
 	 * Hover effect for "New Game?" text
 	 */
-	public void mouseOverNewGameActions() {
+	private void mouseOverNewGameActions() {
 		StdDraw.setPenColor(StdDraw.BOOK_RED);
 		StdDraw.text(text_x_newgame, text_y_newgame, "New Game?");
 		StdDraw.setPenColor(StdDraw.BLACK);
@@ -86,7 +86,7 @@ public class MenuGui {
 	 * Hover effect for "Exit" text
 	 * 
 	 */
-	public void mouseOverExitActions() {
+	private void mouseOverExitActions() {
 		StdDraw.setPenColor(StdDraw.BOOK_RED);
 		StdDraw.text(text_x_exit, text_y_exit, "Exit");
 		StdDraw.setPenColor(StdDraw.BLACK);
@@ -97,7 +97,7 @@ public class MenuGui {
 	 *
 	 * @return true or false
 	 */
-	public boolean isMouseOverNewGame() {
+	private boolean isMouseOverNewGame() {
 		return (StdDraw.mouseX() <= text_x_newgame + newgame_size_X)
 				&& (StdDraw.mouseX() >= text_x_newgame - newgame_size_X)
 				&& (StdDraw.mouseY() <= text_y_newgame + newgame_size_Y)
@@ -109,7 +109,7 @@ public class MenuGui {
 	 *
 	 * @return true or false
 	 */
-	public boolean isMouseOverExit() {
+	private boolean isMouseOverExit() {
 		return (StdDraw.mouseX() <= text_x_exit + exit_size_X)
 				&& (StdDraw.mouseX() >= text_x_exit - exit_size_X)
 				&& (StdDraw.mouseY() <= text_y_exit + exit_size_Y)
