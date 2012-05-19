@@ -162,6 +162,7 @@ public final class StdDraw implements ActionListener, MouseListener,
 
 	// keyboard state
 	private static LinkedList<Character> keysTyped = new LinkedList<Character>();
+	private static boolean[] typedKeys = new boolean[100];
 
 	// not instantiable
 	private StdDraw() {
@@ -1317,6 +1318,8 @@ public final class StdDraw implements ActionListener, MouseListener,
 	 */
 	@Override
 	public void keyPressed(KeyEvent e) {
+		if (!typedKeys[e.getKeyCode()])
+			typedKeys[e.getKeyCode()] = true;
 	}
 
 	/**
@@ -1324,6 +1327,7 @@ public final class StdDraw implements ActionListener, MouseListener,
 	 */
 	@Override
 	public void keyReleased(KeyEvent e) {
+		typedKeys[e.getKeyCode()] = false;
 	}
 
 	/**
@@ -1350,6 +1354,18 @@ public final class StdDraw implements ActionListener, MouseListener,
 		StdDraw.text(0.2, 0.5, "black text");
 		StdDraw.setPenColor(StdDraw.WHITE);
 		StdDraw.text(0.8, 0.8, "white text");
+		/*
+		 * while (true) { Object[] arr = keysTyped.toArray();
+		 * System.out.println(arr.length);
+		 * 
+		 * for (Object obj : arr) { System.out.println(obj); } }
+		 */
+		while (true) {
+			for (int i = 0; i < typedKeys.length; i++) {
+				if (typedKeys[i])
+					System.out.println(i);
+			}
+		}
 	}
 
 }
