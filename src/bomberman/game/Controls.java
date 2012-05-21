@@ -16,6 +16,8 @@ public class Controls {
 	// private final int COLLISIONBOX = 10;
 	private final int COLLISIONBOX = 0;
 	private final int BOMBTICKS = 300;
+	private final int BOMBTHRESH = 100;
+	private int ticksSinceLastBomb = 0;
 
 	public Controls(final Board board, final int TILESIZE) {
 		this.field = board.getField();
@@ -114,10 +116,14 @@ public class Controls {
 				bman.moveHorizontally(TILESIZE - 1 - COLLISIONBOX
 						- (bman.getPosX() % TILESIZE));
 		}
+		// if (StdDraw.hasNextKeyTyped() && StdDraw.nextKeyTyped() == 'e')
 		if (StdDraw.typedKeys[Settings.P1_BOMB])
-			dropBomb(bman, bombs);
-		// }
+			if (ticksSinceLastBomb < 0) {
+				dropBomb(bman, bombs);
+				ticksSinceLastBomb = BOMBTHRESH;
+			}
 
+		ticksSinceLastBomb--;
 	}
 
 	private void dropBomb(final BomberHuman bman, final List<Bomb> bombs) {
