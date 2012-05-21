@@ -13,7 +13,7 @@ public class ControlsTest {
 		final Controls c = new Controls(new Board(3, 3), 50);
 		final BomberHuman b = new BomberHuman(true, 0, 0);
 
-		assertEquals(b.getSpeed(), 4);
+		assertEquals(b.getSpeed(), 1);
 
 		assertFalse(c.canMoveThere('s', b));
 		assertFalse(c.canMoveThere('a', b));
@@ -29,7 +29,7 @@ public class ControlsTest {
 		// do we really test this method?
 		assertEquals(b.getPosX(), 4);
 		assertEquals(b.getPosY(), 5);
-		assertEquals(b.getSpeed(), 4);
+		assertEquals(b.getSpeed(), 1);
 
 		assertTrue(c.canMoveThere('s', b));
 		assertTrue(c.canMoveThere('a', b));
@@ -44,6 +44,7 @@ public class ControlsTest {
 
 		assertEquals(b.getPosX(), 3);
 		assertEquals(b.getPosY(), 3);
+		b.boostSpeed(3);
 		assertEquals(b.getSpeed(), 4);
 
 		assertFalse(c.canMoveThere('s', b));
@@ -59,6 +60,7 @@ public class ControlsTest {
 
 		assertEquals(b.getPosX(), 149);
 		assertEquals(b.getPosY(), 149);
+		b.boostSpeed(3);
 		assertEquals(b.getSpeed(), 4);
 
 		assertTrue(c.canMoveThere('s', b));
@@ -74,6 +76,7 @@ public class ControlsTest {
 
 		assertEquals(b.getPosX(), 50);
 		assertEquals(b.getPosY(), 49);
+		b.boostSpeed(3);
 		assertEquals(b.getSpeed(), 4);
 
 		assertTrue(c.canMoveThere('s', b));
@@ -89,6 +92,7 @@ public class ControlsTest {
 
 		assertEquals(b.getPosX(), 70);
 		assertEquals(b.getPosY(), 149);
+		b.boostSpeed(3);
 		assertEquals(b.getSpeed(), 4);
 
 		assertTrue(c.canMoveThere('s', b));
@@ -104,6 +108,7 @@ public class ControlsTest {
 
 		assertEquals(b.getPosX(), 70);
 		assertEquals(b.getPosY(), 150);
+		b.boostSpeed(3);
 		assertEquals(b.getSpeed(), 4);
 
 		assertTrue(c.canMoveThere('s', b));
@@ -119,6 +124,7 @@ public class ControlsTest {
 
 		assertEquals(b.getPosX(), 70);
 		assertEquals(b.getPosY(), 100);
+		b.boostSpeed(3);
 		assertEquals(b.getSpeed(), 4);
 
 		assertFalse(c.canMoveThere('s', b));
