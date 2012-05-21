@@ -4,7 +4,7 @@ public class BomberHuman {
 	private final boolean human;
 	private int posX;
 	private int posY;
-	private int speed = 4;
+	private int speed = 1;
 
 	public BomberHuman(final boolean human, final int posX, final int posY) {
 		if (posX < 0 || posY < 0)

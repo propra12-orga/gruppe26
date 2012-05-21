@@ -59,7 +59,7 @@ public class Game {
 	public void start() {
 		gui.initialize();
 		// DEBUG mode
-		bman.boostSpeed(10);
+		// bman.boostSpeed(10);
 
 		loop();
 	}

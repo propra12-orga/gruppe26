@@ -162,6 +162,7 @@ public final class StdDraw implements ActionListener, MouseListener,
 
 	// keyboard state
 	private static LinkedList<Character> keysTyped = new LinkedList<Character>();
+	public static boolean[] typedKeys = new boolean[200];
 
 	// not instantiable
 	private StdDraw() {
@@ -1184,9 +1185,10 @@ public final class StdDraw implements ActionListener, MouseListener,
 			return mousePressed;
 		}
 	}
-/**
- * resets the status of mousePressed to false
- */
+
+	/**
+	 * resets the status of mousePressed to false
+	 */
 	public static void resetMousePressedStatus() {
 		mousePressed = false;
 	}
@@ -1319,6 +1321,8 @@ public final class StdDraw implements ActionListener, MouseListener,
 	 */
 	@Override
 	public void keyPressed(KeyEvent e) {
+		if (!typedKeys[e.getKeyCode()])
+			typedKeys[e.getKeyCode()] = true;
 	}
 
 	/**
@@ -1326,6 +1330,7 @@ public final class StdDraw implements ActionListener, MouseListener,
 	 */
 	@Override
 	public void keyReleased(KeyEvent e) {
+		typedKeys[e.getKeyCode()] = false;
 	}
 
 	/**

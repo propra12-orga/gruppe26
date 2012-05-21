@@ -83,42 +83,41 @@ public class Controls {
 	public void doSomethingWithInput(final BomberHuman bman,
 			final List<Bomb> bombs) {
 
-		if (StdDraw.hasNextKeyTyped()) {
-			final char c = StdDraw.nextKeyTyped();
+		// if (StdDraw.hasNextKeyTyped()) {
+		// final char c = StdDraw.nextKeyTyped();
 
-			switch (c) {
-			case 'w':
-				if (canMoveThere('w', bman))
-					bman.moveUp();
-				else
-					bman.moveVertically(TILESIZE - 1 - COLLISIONBOX
-							- (bman.getPosY() % TILESIZE));
-				break;
-			case 's':
-				if (canMoveThere('s', bman))
-					bman.moveDown();
-				else
-					bman.moveVertically(COLLISIONBOX
-							- (bman.getPosY() % TILESIZE));
-				break;
-			case 'a':
-				if (canMoveThere('a', bman))
-					bman.moveLeft();
-				else
-					bman.moveHorizontally(COLLISIONBOX
-							- (bman.getPosX() % TILESIZE));
-				break;
-			case 'd':
-				if (canMoveThere('d', bman))
-					bman.moveRight();
-				else
-					bman.moveHorizontally(TILESIZE - 1 - COLLISIONBOX
-							- (bman.getPosX() % TILESIZE));
-				break;
-			case 'e':
-				dropBomb(bman, bombs);
-			}
+		// switch (c) {
+		if (StdDraw.typedKeys[Settings.P1_UP]) {
+			if (canMoveThere('w', bman))
+				bman.moveUp();
+			else
+				bman.moveVertically(TILESIZE - 1 - COLLISIONBOX
+						- (bman.getPosY() % TILESIZE));
 		}
+		if (StdDraw.typedKeys[Settings.P1_DOWN]) {
+			if (canMoveThere('s', bman))
+				bman.moveDown();
+			else
+				bman.moveVertically(COLLISIONBOX - (bman.getPosY() % TILESIZE));
+		}
+		if (StdDraw.typedKeys[Settings.P1_LEFT]) {
+			if (canMoveThere('a', bman))
+				bman.moveLeft();
+			else
+				bman.moveHorizontally(COLLISIONBOX
+						- (bman.getPosX() % TILESIZE));
+		}
+		if (StdDraw.typedKeys[Settings.P1_RIGHT]) {
+			if (canMoveThere('d', bman))
+				bman.moveRight();
+			else
+				bman.moveHorizontally(TILESIZE - 1 - COLLISIONBOX
+						- (bman.getPosX() % TILESIZE));
+		}
+		if (StdDraw.typedKeys[Settings.P1_BOMB])
+			dropBomb(bman, bombs);
+		// }
+
 	}
 
 	private void dropBomb(final BomberHuman bman, final List<Bomb> bombs) {
