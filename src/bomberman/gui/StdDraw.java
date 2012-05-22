@@ -1321,8 +1321,9 @@ public final class StdDraw implements ActionListener, MouseListener,
 	 */
 	@Override
 	public void keyPressed(KeyEvent e) {
-		if (!typedKeys[e.getKeyCode()])
-			typedKeys[e.getKeyCode()] = true;
+		int keyCode = e.getKeyCode();
+		if (keyCode < 200 && !typedKeys[keyCode])
+			typedKeys[keyCode] = true;
 	}
 
 	/**
@@ -1330,7 +1331,9 @@ public final class StdDraw implements ActionListener, MouseListener,
 	 */
 	@Override
 	public void keyReleased(KeyEvent e) {
-		typedKeys[e.getKeyCode()] = false;
+		int keyCode = e.getKeyCode();
+		if (keyCode < 200)
+			typedKeys[keyCode] = false;
 	}
 
 	/**
