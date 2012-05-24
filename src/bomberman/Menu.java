@@ -30,7 +30,7 @@ public class Menu {
 	public Game setupGame() {
 		final int TILESIZE = 50;
 
-		final Board b = new Board(15, 30);
+		final Board b = new Board(10, 10);
 		final ExplosionAreaCalculator eac = new ExplosionAreaCalculator(
 				b.getField(), TILESIZE);
 		final GameGui gui = new GameGui(b.getField(), TILESIZE, eac);
