@@ -36,11 +36,21 @@ public class Board {
 	 * The core of every wall is unwalkable...
 	 */
 	private void initializeCollisions() {
+		for (int i = 0; i < height; i++) {
+			for (int j = 0; j < width; j++) {
+				if (i == 0 && j == 0 || i == 0 && j == 1 || i == 1 && j == 0)
+					continue;
+				
+				if(Math.random() < 0.2)
+					field[i][j] = 2;
+			}
+		}
+		
 		for (int i = 1; i < height; i += 2) {
 			for (int j = 1; j < width; j += 2) {
 				field[i][j] = 1;
 			}
-		}
+		}		
 	}
 /**
  * get height of field

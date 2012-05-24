@@ -1,5 +1,8 @@
 package bomberman.game;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import bomberman.game.character.BomberHuman;
 import bomberman.game.objects.Bomb;
 
@@ -99,6 +102,35 @@ public class ExplosionAreaCalculator {
 			i--;
 		}
 		return i;
+	}
+	
+	public void affectedWalls(final Bomb b) {
+		final List<Wall> walls = new ArrayList<Wall>();
+		final int bombX = getArrayPos(b.getPosX());
+		final int bombY = getArrayPos(b.getPosY());		
+		
+		
+		final int leftBoundsOfExplosion = getLeftBoundsOfExplosion(bombX, bombY) - 1;
+		if (leftBoundsOfExplosion >= 0 && bombX - leftBoundsOfExplosion <= RADIUS)
+			walls.add(new Wall(leftBoundsOfExplosion, bombY));
+
+		final int rightBoundsOfExplosion = getRightBoundsOfExplosion(bombX, bombY) + 1;
+		if (rightBoundsOfExplosion < width && rightBoundsOfExplosion - bombX <= RADIUS)
+			walls.add(new Wall(rightBoundsOfExplosion, bombY));
+
+		final int upperBoundsOfExplosion = getUpperBoundsOfExplosion(bombX, bombY) + 1;
+		if (upperBoundsOfExplosion < height && upperBoundsOfExplosion - bombY <= RADIUS)
+			walls.add(new Wall(upperBoundsOfExplosion, bombY));
+
+		final int lowerBoundsOfExplosion = getLowerBoundsOfExplosion(bombX, bombY) - 1;
+		if (lowerBoundsOfExplosion >= 0 && bombX - lowerBoundsOfExplosion <= RADIUS)
+			walls.add(new Wall(lowerBoundsOfExplosion, bombY));
+
+		for (Wall wall : walls) {
+			if (field[wall.getY()][wall.getX()] == 2)
+				field[wall.getY()][wall.getX()] = 0;
+		}
+		
 	}
 
 	// TODO: copied from Controls.java; maybe we could refactor again?

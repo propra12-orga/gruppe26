@@ -28,9 +28,15 @@ public class GameGui {
 		StdDraw.clear();
 		for (int i = 0; i < width; i++) {
 			for (int j = 0; j < height; j++) {
-				if (field[j][i] != 0)
+				if (field[j][i] == 1)
 					StdDraw.filledSquare(i * TILESIZE + TILESIZE / 2, j
 							* TILESIZE + TILESIZE / 2, TILESIZE / 2);
+				else if (field[j][i] == 2) {
+					StdDraw.setPenColor(StdDraw.PINK);
+					StdDraw.filledSquare(i * TILESIZE + TILESIZE / 2, j
+							* TILESIZE + TILESIZE / 2, TILESIZE / 2);
+					StdDraw.setPenColor(StdDraw.BLACK);
+				}
 				else {
 					StdDraw.setPenColor(StdDraw.LIGHT_GRAY);
 					StdDraw.filledSquare(i * TILESIZE + TILESIZE / 2, j

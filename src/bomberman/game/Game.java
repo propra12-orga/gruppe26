@@ -105,14 +105,14 @@ public class Game {
 		// right now, there's only bomberman. as soon as enemies are
 		// implemented, we should add a list of Characters or something like
 		// that. we will probably need that interface at this point.
-		for (Bomb bomb : bombs) {
+		for (Bomb bomb : bombs) {			
 			if (bomb != b && !bomb.isCurrentlyExploding()) {
 				if (eac.isInExplosionArea(b, bomb)) {
 					bomb.goBomf();
 				}
 			}
 		}
-
+		
 		if (eac.isInExplosionArea(b, bman)) {
 			alive = false;
 			gui.lost();
