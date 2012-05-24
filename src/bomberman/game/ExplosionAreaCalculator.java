@@ -128,10 +128,10 @@ public class ExplosionAreaCalculator {
 				&& bombX - lowerBoundsOfExplosion <= RADIUS)
 			walls.add(new Wall(bombX, lowerBoundsOfExplosion));
 
-		for (Wall wall : walls)
+		for (Wall wall : walls) {
 			if (field[wall.getY()][wall.getX()] == 2)
 				field[wall.getY()][wall.getX()] = 0;
-
+		}
 	}
 
 	// TODO: copied from Controls.java; maybe we could refactor again?

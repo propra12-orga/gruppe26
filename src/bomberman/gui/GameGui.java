@@ -36,8 +36,7 @@ public class GameGui {
 					StdDraw.filledSquare(i * TILESIZE + TILESIZE / 2, j
 							* TILESIZE + TILESIZE / 2, TILESIZE / 2);
 					StdDraw.setPenColor(StdDraw.BLACK);
-				}
-				else {
+				} else {
 					StdDraw.setPenColor(StdDraw.LIGHT_GRAY);
 					StdDraw.filledSquare(i * TILESIZE + TILESIZE / 2, j
 							* TILESIZE + TILESIZE / 2, TILESIZE / 2);
@@ -72,11 +71,26 @@ public class GameGui {
 		final int arrPosX = eac.getArrayPos(posX);
 		final int arrPosY = eac.getArrayPos(posY);
 
-		final int leftBound = eac.getLeftBoundsOfExplosion(arrPosX, arrPosY);
-		final int rightBound = eac.getRightBoundsOfExplosion(arrPosX, arrPosY);
-		final int upperBound = eac.getUpperBoundsOfExplosion(arrPosX, arrPosY);
-		final int lowerBound = eac.getLowerBoundsOfExplosion(arrPosX, arrPosY);
+		final int leftBound;
+		final int rightBound;
+		final int upperBound;
+		final int lowerBound;
 
+		if (b.getTimer() == 0) {
+			leftBound = eac.getLeftBoundsOfExplosion(arrPosX, arrPosY);
+			rightBound = eac.getRightBoundsOfExplosion(arrPosX, arrPosY);
+			upperBound = eac.getUpperBoundsOfExplosion(arrPosX, arrPosY);
+			lowerBound = eac.getLowerBoundsOfExplosion(arrPosX, arrPosY);
+
+			b.saveExplosionBorders(leftBound, rightBound, upperBound,
+					lowerBound);
+		} else {
+			leftBound = b.getExplosionBorderLeft();
+			rightBound = b.getExplosionBorderRight();
+			upperBound = b.getExplosionBorderTop();
+			lowerBound = b.getExplosionBorderBottom();
+
+		}
 		StdDraw.setPenColor(StdDraw.RED);
 
 		// TODO: calculating too much here, a whole rectangle. but this is a lot

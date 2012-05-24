@@ -94,7 +94,7 @@ public class Game {
 			final Bomb b = bombs.get(integer - count);
 			tryToKillStuff(b);
 
-			if (b.getTimer() == 0)
+			if (b.getTimer() == -1)
 				eac.affectedWalls(b);
 
 			if (!b.isCurrentlyExploding())

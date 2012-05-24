@@ -10,6 +10,27 @@ public class Bomb {
 	private int timer;
 	private boolean exists = true;
 
+	private int explosionBorderLeft;
+	private int explosionBorderRight;
+	private int explosionBorderTop;
+	private int explosionBorderBottom;
+
+	public int getExplosionBorderBottom() {
+		return explosionBorderBottom;
+	}
+
+	public int getExplosionBorderLeft() {
+		return explosionBorderLeft;
+	}
+
+	public int getExplosionBorderRight() {
+		return explosionBorderRight;
+	}
+
+	public int getExplosionBorderTop() {
+		return explosionBorderTop;
+	}
+
 	public Bomb(final int posX, final int posY, final int timer) {
 		if (timer <= 0 || posX < 0 || posY < 0)
 			throw new IllegalArgumentException("setting detonator failed");
@@ -17,6 +38,14 @@ public class Bomb {
 		this.posY = posY;
 		this.timer = timer;
 		this.maxTimer = timer;
+	}
+
+	public void saveExplosionBorders(final int left, final int right,
+			final int top, final int bottom) {
+		explosionBorderLeft = left;
+		explosionBorderRight = right;
+		explosionBorderTop = top;
+		explosionBorderBottom = bottom;
 	}
 
 	public int getMaxTimer() {
