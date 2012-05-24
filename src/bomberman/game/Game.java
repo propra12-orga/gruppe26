@@ -83,9 +83,8 @@ public class Game {
 			b.tick();
 			final boolean exists = b.isStillThere();
 
-			if (!exists) {
+			if (!exists)
 				exploded.add(count);
-			}
 			count++;
 		}
 
@@ -94,9 +93,12 @@ public class Game {
 		for (Integer integer : exploded) {
 			final Bomb b = bombs.get(integer - count);
 			tryToKillStuff(b);
-			if (!b.isCurrentlyExploding()) {
+
+			if (b.getTimer() == 0)
+				eac.affectedWalls(b);
+
+			if (!b.isCurrentlyExploding())
 				bombs.remove(integer - count);
-			}
 			count++;
 		}
 	}
@@ -105,14 +107,11 @@ public class Game {
 		// right now, there's only bomberman. as soon as enemies are
 		// implemented, we should add a list of Characters or something like
 		// that. we will probably need that interface at this point.
-		for (Bomb bomb : bombs) {			
-			if (bomb != b && !bomb.isCurrentlyExploding()) {
-				if (eac.isInExplosionArea(b, bomb)) {
+		for (Bomb bomb : bombs)
+			if (bomb != b && !bomb.isCurrentlyExploding())
+				if (eac.isInExplosionArea(b, bomb))
 					bomb.goBomf();
-				}
-			}
-		}
-		
+
 		if (eac.isInExplosionArea(b, bman)) {
 			alive = false;
 			gui.lost();

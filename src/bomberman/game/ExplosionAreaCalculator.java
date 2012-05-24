@@ -74,63 +74,64 @@ public class ExplosionAreaCalculator {
 
 	public int getLeftBoundsOfExplosion(final int posX, final int posY) {
 		int i = posX;
-		while (field[posY][i] == 0 && i > 0 && i + RADIUS > posX) {
+		while (field[posY][i] == 0 && i > 0 && i + RADIUS > posX)
 			i--;
-		}
 		return i;
 	}
 
 	public int getRightBoundsOfExplosion(final int posX, final int posY) {
 		int i = posX;
-		while (field[posY][i] == 0 && i < width - 1 && i < posX + RADIUS) {
+		while (field[posY][i] == 0 && i < width - 1 && i < posX + RADIUS)
 			i++;
-		}
 		return i;
 	}
 
 	public int getUpperBoundsOfExplosion(final int posX, final int posY) {
 		int i = posY;
-		while (field[i][posX] == 0 && i < height - 1 && i < posY + RADIUS) {
+		while (field[i][posX] == 0 && i < height - 1 && i < posY + RADIUS)
 			i++;
-		}
 		return i;
 	}
 
 	public int getLowerBoundsOfExplosion(final int posX, final int posY) {
 		int i = posY;
-		while (field[i][posX] == 0 && i > 0 && i + RADIUS > posY) {
+		while (field[i][posX] == 0 && i > 0 && i + RADIUS > posY)
 			i--;
-		}
 		return i;
 	}
-	
+
 	public void affectedWalls(final Bomb b) {
 		final List<Wall> walls = new ArrayList<Wall>();
 		final int bombX = getArrayPos(b.getPosX());
-		final int bombY = getArrayPos(b.getPosY());		
-		
-		
-		final int leftBoundsOfExplosion = getLeftBoundsOfExplosion(bombX, bombY) - 1;
-		if (leftBoundsOfExplosion >= 0 && bombX - leftBoundsOfExplosion <= RADIUS)
+		final int bombY = getArrayPos(b.getPosY());
+
+		final int leftBoundsOfExplosion = getLeftBoundsOfExplosion(bombX, bombY);
+		if (leftBoundsOfExplosion >= 0
+				&& bombX - leftBoundsOfExplosion <= RADIUS)
 			walls.add(new Wall(leftBoundsOfExplosion, bombY));
 
-		final int rightBoundsOfExplosion = getRightBoundsOfExplosion(bombX, bombY) + 1;
-		if (rightBoundsOfExplosion < width && rightBoundsOfExplosion - bombX <= RADIUS)
+		final int rightBoundsOfExplosion = getRightBoundsOfExplosion(bombX,
+				bombY);
+		if (rightBoundsOfExplosion < width
+				&& rightBoundsOfExplosion - bombX <= RADIUS)
 			walls.add(new Wall(rightBoundsOfExplosion, bombY));
 
-		final int upperBoundsOfExplosion = getUpperBoundsOfExplosion(bombX, bombY) + 1;
-		if (upperBoundsOfExplosion < height && upperBoundsOfExplosion - bombY <= RADIUS)
-			walls.add(new Wall(upperBoundsOfExplosion, bombY));
+		final int upperBoundsOfExplosion = getUpperBoundsOfExplosion(bombX,
+				bombY);
+		if (upperBoundsOfExplosion < height
+				&& upperBoundsOfExplosion - bombY <= RADIUS)
+			walls.add(new Wall(bombX, upperBoundsOfExplosion));
 
-		final int lowerBoundsOfExplosion = getLowerBoundsOfExplosion(bombX, bombY) - 1;
-		if (lowerBoundsOfExplosion >= 0 && bombX - lowerBoundsOfExplosion <= RADIUS)
-			walls.add(new Wall(lowerBoundsOfExplosion, bombY));
+		final int lowerBoundsOfExplosion = getLowerBoundsOfExplosion(bombX,
+				bombY);
+		if (lowerBoundsOfExplosion >= 0
+				&& bombX - lowerBoundsOfExplosion <= RADIUS)
+			walls.add(new Wall(bombX, lowerBoundsOfExplosion));
 
-		for (Wall wall : walls) {
+		for (Wall wall : walls)
 			if (field[wall.getY()][wall.getX()] == 2)
 				field[wall.getY()][wall.getX()] = 0;
-		}
-		
+
 	}
 
 	// TODO: copied from Controls.java; maybe we could refactor again?
