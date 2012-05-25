@@ -2,10 +2,12 @@ package bomberman.game;
 
 import static org.junit.Assert.*;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import bomberman.game.character.BomberHuman;
 
+@Ignore
 public class ControlsTest {
 
 	@Test
