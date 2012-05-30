@@ -17,8 +17,6 @@ public class Controls {
 	private final int height;
 	private final int width;
 
-	// private final int COLLISIONBOX = 10;
-	private final int COLLISIONBOX = 0;
 	private final int BOMBTICKS = 300;
 	private final int BOMBTHRESH = 100;
 	private int ticksSinceLastBomb = 0;
@@ -38,43 +36,55 @@ public class Controls {
 
 		final int posX = b.getPosX();
 		final int posY = b.getPosY();
+		final int eps = b.getSpeed();
 		final int arrayPosXP = getArrayPos(posX+10);
 		final int arrayPosYP = getArrayPos(posY+5);
 		final int arrayPosXN = getArrayPos(posX-10);
 		final int arrayPosYN = getArrayPos(posY-5);
+		final int arrayPosXP_EPS = getArrayPos(posX + 10 + eps);
+		final int arrayPosYP_EPS = getArrayPos(posY + 5 + eps);
+		final int arrayPosXN_EPS = getArrayPos(posX - 10 - eps);
+		final int arrayPosYN_EPS = getArrayPos(posY - 5 - eps);
 		if (arrayPosXN < 0 || arrayPosYN < 0 || arrayPosXP >= width || arrayPosYP >= height)
 			return false;
 		
-		final int speed = b.getSpeed();
-		System.out.println(posX + " " + posY);
-		// FIXME: okay, that's dirty here. refactor me.
 		switch (direction) {
 		case 'w':
-			if (arrayPosXN < 0 || arrayPosYN < 0 || arrayPosXP >= width || arrayPosYP >= height) break;
-			if((field[arrayPosYP][arrayPosXN]==0)&&(field[arrayPosYP][arrayPosXP]==0)){
+			if (arrayPosXN < 0 || arrayPosXP >= width
+					|| arrayPosYP_EPS >= height)
+				break;
+			if ((field[arrayPosYP_EPS][arrayPosXN] == 0)
+					&& (field[arrayPosYP_EPS][arrayPosXP] == 0)) {
 				return true;
 			}
 			break;
 		case 's':
-			if (arrayPosXN < 0 || arrayPosYN < 0 || arrayPosXP >= width || arrayPosYP >= height) break;
-			if ((field[arrayPosYN][arrayPosXN]==0)&&(field[arrayPosYN][arrayPosXP]==0)){
+			if (arrayPosXN < 0 || arrayPosYN_EPS < 0 || arrayPosXP >= width)
+				break;
+			if ((field[arrayPosYN_EPS][arrayPosXN] == 0)
+					&& (field[arrayPosYN_EPS][arrayPosXP] == 0)) {
 				return true;
 			}
 			break;
 		case 'a':
-			if (arrayPosXN < 0 || arrayPosYN < 0 || arrayPosXP >= width || arrayPosYP >= height) break;
-			if((field[arrayPosYP][arrayPosXN]==0)&&(field[arrayPosYN][arrayPosXN]==0)){
+			if (arrayPosXN_EPS < 0 || arrayPosYN < 0 || arrayPosYP >= height)
+				break;
+			if ((field[arrayPosYP][arrayPosXN_EPS] == 0)
+					&& (field[arrayPosYN][arrayPosXN_EPS] == 0)) {
 				return true;
 			}
 			break;
 		case 'd':
-			if (arrayPosXN < 0 || arrayPosYN < 0 || arrayPosXP >= width || arrayPosYP >= height) break;
-			if((field[arrayPosYP][arrayPosXP]==0)&&(field[arrayPosYN][arrayPosXP]==0)){
+			if (arrayPosYN < 0 || arrayPosXP_EPS >= width
+					|| arrayPosYP >= height)
+				break;
+			if ((field[arrayPosYP][arrayPosXP_EPS] == 0)
+					&& (field[arrayPosYN][arrayPosXP_EPS] == 0)) {
 				return true;
 			}
 			break;
 		}
-		
+
 		return false;
 	}
 
