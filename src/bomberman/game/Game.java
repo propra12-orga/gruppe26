@@ -46,7 +46,7 @@ public class Game {
 	public Game(final Controls controls, final Exit exit,
 			final ExplosionAreaCalculator eac, final GameGui gui) {
 		// this.board = board;
-		this.bman = new BomberHuman(true, 10, 10);
+		this.bman = new BomberHuman(true, 25, 25);
 		this.exit = exit;
 		this.eac = eac;
 		this.gui = gui;

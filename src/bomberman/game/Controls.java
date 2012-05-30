@@ -6,6 +6,10 @@ import bomberman.game.character.BomberHuman;
 import bomberman.game.objects.Bomb;
 import bomberman.gui.StdDraw;
 
+/**
+ * @author Jan
+ *
+ */
 public class Controls {
 
 	private final int[][] field;
@@ -34,37 +38,43 @@ public class Controls {
 
 		final int posX = b.getPosX();
 		final int posY = b.getPosY();
-		final int arrayPosX = getArrayPos(posX);
-		final int arrayPosY = getArrayPos(posY);
+		final int arrayPosXP = getArrayPos(posX+10);
+		final int arrayPosYP = getArrayPos(posY+5);
+		final int arrayPosXN = getArrayPos(posX-10);
+		final int arrayPosYN = getArrayPos(posY-5);
+		if (arrayPosXN < 0 || arrayPosYN < 0 || arrayPosXP >= width || arrayPosYP >= height)
+			return false;
+		
 		final int speed = b.getSpeed();
-
+		System.out.println(posX + " " + posY);
 		// FIXME: okay, that's dirty here. refactor me.
 		switch (direction) {
 		case 'w':
-			final int newArrayPosY = getArrayPos(posY + speed + COLLISIONBOX);
-			if (newArrayPosY < height)
-				if (field[newArrayPosY][arrayPosX] == 0)
-					return true;
+			if (arrayPosXN < 0 || arrayPosYN < 0 || arrayPosXP >= width || arrayPosYP >= height) break;
+			if((field[arrayPosYP][arrayPosXN]==0)&&(field[arrayPosYP][arrayPosXP]==0)){
+				return true;
+			}
 			break;
 		case 's':
-			final int newArrayPosY2 = getArrayPos(posY - speed - COLLISIONBOX);
-			if (newArrayPosY2 >= 0)
-				if (field[newArrayPosY2][arrayPosX] == 0)
-					return true;
+			if (arrayPosXN < 0 || arrayPosYN < 0 || arrayPosXP >= width || arrayPosYP >= height) break;
+			if ((field[arrayPosYN][arrayPosXN]==0)&&(field[arrayPosYN][arrayPosXP]==0)){
+				return true;
+			}
 			break;
 		case 'a':
-			final int newArrayPosX = getArrayPos(posX - speed - COLLISIONBOX);
-			if (newArrayPosX >= 0)
-				if (field[arrayPosY][newArrayPosX] == 0)
-					return true;
+			if (arrayPosXN < 0 || arrayPosYN < 0 || arrayPosXP >= width || arrayPosYP >= height) break;
+			if((field[arrayPosYP][arrayPosXN]==0)&&(field[arrayPosYN][arrayPosXN]==0)){
+				return true;
+			}
 			break;
 		case 'd':
-			final int newArrayPosX2 = getArrayPos(posX + speed + COLLISIONBOX);
-			if (newArrayPosX2 < width)
-				if (field[arrayPosY][newArrayPosX2] == 0)
-					return true;
+			if (arrayPosXN < 0 || arrayPosYN < 0 || arrayPosXP >= width || arrayPosYP >= height) break;
+			if((field[arrayPosYP][arrayPosXP]==0)&&(field[arrayPosYN][arrayPosXP]==0)){
+				return true;
+			}
 			break;
 		}
+		
 		return false;
 	}
 
@@ -92,29 +102,29 @@ public class Controls {
 		if (StdDraw.typedKeys[Settings.P1_UP]) {
 			if (canMoveThere('w', bman))
 				bman.moveUp();
-			else
-				bman.moveVertically(TILESIZE - 1 - COLLISIONBOX
-						- (bman.getPosY() % TILESIZE));
+//			else
+//				bman.moveVertically(TILESIZE - 1 - COLLISIONBOX
+//						- (bman.getPosY() % TILESIZE));
 		}
 		if (StdDraw.typedKeys[Settings.P1_DOWN]) {
 			if (canMoveThere('s', bman))
 				bman.moveDown();
-			else
-				bman.moveVertically(COLLISIONBOX - (bman.getPosY() % TILESIZE));
+//			else
+//				bman.moveVertically(COLLISIONBOX - (bman.getPosY() % TILESIZE));
 		}
 		if (StdDraw.typedKeys[Settings.P1_LEFT]) {
 			if (canMoveThere('a', bman))
 				bman.moveLeft();
-			else
-				bman.moveHorizontally(COLLISIONBOX
-						- (bman.getPosX() % TILESIZE));
+//			else
+//				bman.moveHorizontally(COLLISIONBOX
+//						- (bman.getPosX() % TILESIZE));
 		}
 		if (StdDraw.typedKeys[Settings.P1_RIGHT]) {
 			if (canMoveThere('d', bman))
 				bman.moveRight();
-			else
-				bman.moveHorizontally(TILESIZE - 1 - COLLISIONBOX
-						- (bman.getPosX() % TILESIZE));
+//			else
+//				bman.moveHorizontally(TILESIZE - 1 - COLLISIONBOX
+//						- (bman.getPosX() % TILESIZE));
 		}
 		// if (StdDraw.hasNextKeyTyped() && StdDraw.nextKeyTyped() == 'e')
 		if (StdDraw.typedKeys[Settings.P1_BOMB])
