@@ -34,6 +34,8 @@ public class Game {
 	private boolean alive = true;
 	private boolean won = false;
 
+	private long lastTickAt = System.currentTimeMillis();
+
 	/**
 	 * Associates a Game with controls, an Exit, an EAC and a GUI. It will also
 	 * create a BomberHuman that is controlled by the player.
@@ -66,11 +68,20 @@ public class Game {
 
 	private void loop() {
 		while (alive && !won) {
+			final long diff = System.currentTimeMillis() - lastTickAt;
+			if (diff < 5) {
+				try {
+					Thread.sleep(5 - diff);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
 			checkWin();
 			controls.doSomethingWithInput(bman, bombs);
 			manageBombs();
-
 			gui.draw(bombs, bman, exit);
+			lastTickAt = System.currentTimeMillis();
 		}
 	}
 
