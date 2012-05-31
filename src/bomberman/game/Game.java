@@ -61,7 +61,7 @@ public class Game {
 	public void start() {
 		gui.initialize();
 		// DEBUG mode
-		// bman.boostSpeed(10);
+		bman.boostSpeed(2);
 
 		loop();
 	}
@@ -103,10 +103,10 @@ public class Game {
 
 		for (Integer integer : exploded) {
 			final Bomb b = bombs.get(integer - count);
-			tryToKillStuff(b);
-
-			if (b.getTimer() == -1)
+			if (b.getTimer() == -1) {
+				tryToKillStuff(b);
 				eac.affectedWalls(b);
+			}
 
 			if (!b.isCurrentlyExploding())
 				bombs.remove(integer - count);
