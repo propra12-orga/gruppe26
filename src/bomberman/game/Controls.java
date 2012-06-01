@@ -8,7 +8,7 @@ import bomberman.gui.StdDraw;
 
 /**
  * @author Jan
- *
+ * 
  */
 public class Controls {
 
@@ -37,17 +37,18 @@ public class Controls {
 		final int posX = b.getPosX();
 		final int posY = b.getPosY();
 		final int eps = b.getSpeed();
-		final int arrayPosXP = getArrayPos(posX+10);
-		final int arrayPosYP = getArrayPos(posY+5);
-		final int arrayPosXN = getArrayPos(posX-10);
-		final int arrayPosYN = getArrayPos(posY-5);
+		final int arrayPosXP = getArrayPos(posX + 10);
+		final int arrayPosYP = getArrayPos(posY + 5);
+		final int arrayPosXN = getArrayPos(posX - 10);
+		final int arrayPosYN = getArrayPos(posY - 5);
 		final int arrayPosXP_EPS = getArrayPos(posX + 10 + eps);
 		final int arrayPosYP_EPS = getArrayPos(posY + 5 + eps);
 		final int arrayPosXN_EPS = getArrayPos(posX - 10 - eps);
 		final int arrayPosYN_EPS = getArrayPos(posY - 5 - eps);
-		if (arrayPosXN < 0 || arrayPosYN < 0 || arrayPosXP >= width || arrayPosYP >= height)
+		if (arrayPosXN < 0 || arrayPosYN < 0 || arrayPosXP >= width
+				|| arrayPosYP >= height)
 			return false;
-		
+
 		switch (direction) {
 		case 'w':
 			if (arrayPosXN < 0 || arrayPosXP >= width
@@ -126,6 +127,12 @@ public class Controls {
 				dropBomb(bman, bombs);
 				ticksSinceLastBomb = BOMBTHRESH;
 			}
+		if (StdDraw.typedKeys[Settings.P1_PAUSE]) {
+			StdDraw.typedKeys[Settings.P1_PAUSE] = false;
+			while (!StdDraw.typedKeys[Settings.P1_PAUSE]) {
+			}
+			StdDraw.typedKeys[Settings.P1_PAUSE] = false;
+		}
 
 		ticksSinceLastBomb--;
 	}

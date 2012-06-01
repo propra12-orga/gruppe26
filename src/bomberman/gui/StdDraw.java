@@ -162,7 +162,7 @@ public final class StdDraw implements ActionListener, MouseListener,
 
 	// keyboard state
 	private static LinkedList<Character> keysTyped = new LinkedList<Character>();
-	public static boolean[] typedKeys = new boolean[200];
+	public static volatile boolean[] typedKeys = new boolean[200];
 
 	// not instantiable
 	private StdDraw() {
