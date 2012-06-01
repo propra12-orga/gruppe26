@@ -25,7 +25,6 @@ public class GameGui {
 	}
 
 	public void drawWalls() {
-		StdDraw.clear();
 		for (int i = 0; i < width; i++) {
 			for (int j = 0; j < height; j++) {
 				if (field[j][i] == 1)
@@ -36,7 +35,16 @@ public class GameGui {
 					StdDraw.filledSquare(i * TILESIZE + TILESIZE / 2, j
 							* TILESIZE + TILESIZE / 2, TILESIZE / 2);
 					StdDraw.setPenColor(StdDraw.BLACK);
-				} else {
+				}
+			}
+		}
+	}
+
+	public void drawFloor() {
+		StdDraw.clear();
+		for (int i = 0; i < width; i++) {
+			for (int j = 0; j < height; j++) {
+				if (field[j][i] == 0) {
 					StdDraw.setPenColor(StdDraw.LIGHT_GRAY);
 					StdDraw.filledSquare(i * TILESIZE + TILESIZE / 2, j
 							* TILESIZE + TILESIZE / 2, TILESIZE / 2);
@@ -47,7 +55,6 @@ public class GameGui {
 	}
 
 	public void drawBomber(final BomberHuman bman) {
-		// StdDraw.circle(bman.getPosX(), bman.getPosY(), 5);
 		StdDraw.picture(bman.getPosX(), bman.getPosY(),
 				"graphics/bomberman.png");
 	}
@@ -142,8 +149,9 @@ public class GameGui {
 
 	public void draw(final List<Bomb> bombs, final BomberHuman bman,
 			final Exit exit) {
-		drawWalls();
+		drawFloor();
 		drawExit(exit);
+		drawWalls();
 		drawBomber(bman);
 		drawBombs(bombs);
 		StdDraw.show();
