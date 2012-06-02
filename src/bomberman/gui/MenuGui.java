@@ -26,12 +26,12 @@ public class MenuGui {
 	final private double text_x_newgame = 500;
 	final private double text_y_newgame = 400;
 	final private double text_x_exit = 500;
-	final private double text_y_exit = 300;
+	final private double text_y_exit = 200;
 
 	final private double controls_size_X = 60;
 	final private double controls_size_Y = 20;
 	final private double text_x_controls = 500;
-	final private double text_y_controls = 200;
+	final private double text_y_controls = 300;
 
 	/**
 	 * Set up the GUI
