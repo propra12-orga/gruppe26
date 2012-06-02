@@ -447,7 +447,7 @@ public final class StdDraw implements ActionListener, MouseListener,
 	public static void line(double x0, double y0, double x1, double y1) {
 		offscreen.draw(new Line2D.Double(scaleX(x0), scaleY(y0), scaleX(x1),
 				scaleY(y1)));
-		draw();
+		// draw();
 	}
 
 	/**
@@ -670,7 +670,7 @@ public final class StdDraw implements ActionListener, MouseListener,
 		else
 			offscreen.draw(new Rectangle2D.Double(xs - ws / 2, ys - hs / 2, ws,
 					hs));
-		draw();
+		// draw();
 	}
 
 	/**
@@ -729,7 +729,7 @@ public final class StdDraw implements ActionListener, MouseListener,
 		else
 			offscreen.draw(new Rectangle2D.Double(xs - ws / 2, ys - hs / 2, ws,
 					hs));
-		draw();
+		// draw();
 	}
 
 	/**
