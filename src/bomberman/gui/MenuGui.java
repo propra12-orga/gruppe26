@@ -103,7 +103,10 @@ public class MenuGui {
 		StdDraw.text(text_x_newgame, text_y_newgame, "New Game?");
 		StdDraw.text(text_x_controls, text_y_controls, "Controls");
 	}
-
+	/**
+	 * Hover effect for "Controls" text
+	 * 
+	 */
 	private void mouseOverControlsActions() {
 		StdDraw.setPenColor(StdDraw.BOOK_RED);
 		StdDraw.text(text_x_controls, text_y_controls, "Controls");
@@ -135,7 +138,11 @@ public class MenuGui {
 				&& (StdDraw.mouseY() <= text_y_exit + exit_size_Y)
 				&& (StdDraw.mouseY() >= text_y_exit - exit_size_Y);
 	}
-
+	/**
+	 * Checks if the mouse is over the "controls" text
+	 * 
+	 * @return true or false
+	 */
 	private boolean isMouseOverControls() {
 		return (StdDraw.mouseX() <= text_x_controls + controls_size_X)
 				&& (StdDraw.mouseX() >= text_x_controls - controls_size_X)
@@ -148,6 +155,9 @@ public class MenuGui {
 	private final double text_x_back = 500;
 	private final double text_y_back = 100;
 
+	/**
+	 * Displays "Controls" menu item
+	 */
 	private void showControls() {
 		StdDraw.resetMousePressedStatus();
 
@@ -170,27 +180,41 @@ public class MenuGui {
 		}
 	}
 
+	/**
+	 *Draws key outlines for displaying controls 
+	 */
 	private void drawKeyOutlines() {
 		StdDraw.square(400, 700, 40);
 		StdDraw.square(500, 700, 40);
 		StdDraw.square(600, 700, 40);
 		StdDraw.square(500, 800, 40);
+		StdDraw.square(300, 800, 40);
 		StdDraw.rectangle(500, 500, 300, 40);
 	}
-
+	/**
+	 * Draws arrows and labels for the key outlines
+	 * 
+	 */
+	//FIXME: Windows does not display fancy arrow symbols correctly
 	private void drawAwesomeArrowsAndLabels() {
 		StdDraw.text(320, 700, "left");
-		StdDraw.text(400, 700, "←");
+		StdDraw.text(400, 700, "â†�");
 		StdDraw.text(500, 620, "down");
-		StdDraw.text(500, 700, "↓");
+		StdDraw.text(500, 700, "â†“");
 		StdDraw.text(700, 700, "right");
-		StdDraw.text(600, 700, "→");
+		StdDraw.text(600, 700, "â†’");
 		StdDraw.text(500, 870, "up");
-		StdDraw.text(500, 800, "̣↑");
+		StdDraw.text(310, 870, "pause");
+		StdDraw.text(300, 800, "p");
+		StdDraw.text(500, 800, "Ì£â†‘");
 		StdDraw.text(500, 500, "spacebar");
 		StdDraw.text(500, 420, "plant bomb");
 	}
 
+	/**
+	 * Works like isMouseOverControls()
+	 * @return true or false
+	 */
 	private boolean mouseOverBack() {
 		return (StdDraw.mouseX() <= text_x_back + back_size_X)
 				&& (StdDraw.mouseX() >= text_x_back - back_size_X)

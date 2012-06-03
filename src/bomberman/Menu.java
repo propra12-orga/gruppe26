@@ -10,6 +10,9 @@ import bomberman.gui.MenuGui;
 
 public class Menu {
 
+	/**
+	 * Starts the game.
+	 */
 	public void startGame() {
 
 		while (true) {
@@ -27,6 +30,12 @@ public class Menu {
 
 	}
 
+	/**
+	 * Setup Game:
+	 * initializes a new board with (currently) fixed parameters
+	 * also sets up game-logic (i.e Explosion Calculator, Controls and GUI)
+	 * @return game Object
+	 */
 	public Game setupGame() {
 		final int TILESIZE = 50;
 
