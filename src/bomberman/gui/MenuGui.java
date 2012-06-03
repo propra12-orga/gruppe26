@@ -198,15 +198,15 @@ public class MenuGui {
 	//FIXME: Windows does not display fancy arrow symbols correctly
 	private void drawAwesomeArrowsAndLabels() {
 		StdDraw.text(320, 700, "left");
-		StdDraw.text(400, 700, "â†�");
+		StdDraw.text(400, 700, "←");
 		StdDraw.text(500, 620, "down");
-		StdDraw.text(500, 700, "â†“");
+		StdDraw.text(500, 700, "↓");
 		StdDraw.text(700, 700, "right");
-		StdDraw.text(600, 700, "â†’");
+		StdDraw.text(600, 700, "→");
 		StdDraw.text(500, 870, "up");
 		StdDraw.text(310, 870, "pause");
 		StdDraw.text(300, 800, "p");
-		StdDraw.text(500, 800, "Ì£â†‘");
+		StdDraw.text(500, 800, "↑");
 		StdDraw.text(500, 500, "spacebar");
 		StdDraw.text(500, 420, "plant bomb");
 	}
