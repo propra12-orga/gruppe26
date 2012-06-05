@@ -11,7 +11,7 @@ public class BomberHuman {
 	private int posY;
 	private int speed = 1;
 	private Network nw;
-	private String move = "mv 0 0";
+	private String move = "mv 25 75";
 	private String bomb = "bomb 0";
 
 	public BomberHuman(final boolean human, final int posX, final int posY) {

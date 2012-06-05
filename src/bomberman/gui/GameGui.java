@@ -27,10 +27,10 @@ public class GameGui {
 	public void drawWalls() {
 		for (int i = 0; i < width; i++) {
 			for (int j = 0; j < height; j++) {
-				if (field[j][i] == 1)
+				if (field[j][i] == 1) {
 					StdDraw.filledSquare(i * TILESIZE + TILESIZE / 2, j
 							* TILESIZE + TILESIZE / 2, TILESIZE / 2);
-				else if (field[j][i] == 2) {
+				} else if (field[j][i] == 2) {
 					StdDraw.setPenColor(StdDraw.PINK);
 					StdDraw.filledSquare(i * TILESIZE + TILESIZE / 2, j
 							* TILESIZE + TILESIZE / 2, TILESIZE / 2);
@@ -72,7 +72,7 @@ public class GameGui {
 		}
 	}
 
-	public void drawExplosion(Bomb b) {
+	public void drawExplosion(final Bomb b) {
 		final int posX = b.getPosX();
 		final int posY = b.getPosY();
 		final int arrPosX = eac.getArrayPos(posX);
@@ -104,35 +104,37 @@ public class GameGui {
 		// shorter.
 		for (int i = leftBound; i <= rightBound; i++) {
 			if (eac.isInExplosionArea(b, i, arrPosY)) {
-				if (i == leftBound)
+				if (i == leftBound) {
 					StdDraw.picture(i * TILESIZE + TILESIZE / 2, arrPosY
 							* TILESIZE + TILESIZE / 2,
 							"graphics/explosion/explosion_edge_l.png");
-				else if (i == rightBound)
+				} else if (i == rightBound) {
 					StdDraw.picture(i * TILESIZE + TILESIZE / 2, arrPosY
 							* TILESIZE + TILESIZE / 2,
 							"graphics/explosion/explosion_edge_r.png");
-				else
+				} else {
 					StdDraw.picture(i * TILESIZE + TILESIZE / 2, arrPosY
 							* TILESIZE + TILESIZE / 2,
 							"graphics/explosion/explosion_hori.png");
+				}
 			}
 		}
 
 		for (int j = lowerBound; j <= upperBound; j++) {
 			if (eac.isInExplosionArea(b, arrPosX, j)) {
-				if (j == lowerBound)
+				if (j == lowerBound) {
 					StdDraw.picture(arrPosX * TILESIZE + TILESIZE / 2, j
 							* TILESIZE + TILESIZE / 2,
 							"graphics/explosion/explosion_edge_b.png");
-				else if (j == upperBound)
+				} else if (j == upperBound) {
 					StdDraw.picture(arrPosX * TILESIZE + TILESIZE / 2, j
 							* TILESIZE + TILESIZE / 2,
 							"graphics/explosion/explosion_edge_t.png");
-				else
+				} else {
 					StdDraw.picture(arrPosX * TILESIZE + TILESIZE / 2, j
 							* TILESIZE + TILESIZE / 2,
 							"graphics/explosion/explosion_vert.png");
+				}
 			}
 		}
 		// StdDraw.filledSquare(i * TILESIZE + TILESIZE / 2, j
@@ -147,12 +149,15 @@ public class GameGui {
 		StdDraw.setYscale(0, height * TILESIZE);
 	}
 
-	public void draw(final List<Bomb> bombs, final BomberHuman bman,
+	public void draw(final List<Bomb> bombs, final List<BomberHuman> bmans,
 			final Exit exit) {
 		drawFloor();
 		drawExit(exit);
 		drawWalls();
-		drawBomber(bman);
+		for (BomberHuman bomberHuman : bmans) {
+			drawBomber(bomberHuman);
+		}
+
 		drawBombs(bombs);
 		StdDraw.show();
 	}

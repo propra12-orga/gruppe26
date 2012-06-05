@@ -78,7 +78,7 @@ public class Server implements Reader {
 						Settings.TIMERCONSTANT));
 			}
 		}
-		System.out.println(line);
+		// System.out.println(line);
 	}
 
 	@Override

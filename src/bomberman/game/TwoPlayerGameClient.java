@@ -9,7 +9,7 @@ import bomberman.gui.GameGui;
 
 public class TwoPlayerGameClient extends Game {
 
-	private final BomberHuman other;
+	// private final BomberHuman other;
 	Network nw;
 
 	public TwoPlayerGameClient(final Controls controls, final Exit exit,
@@ -17,7 +17,7 @@ public class TwoPlayerGameClient extends Game {
 			throws UnknownHostException, IOException {
 		super(controls, exit, eac, gui);
 		nw = new Network(false);
-		this.other = new BomberHuman(25, 25, nw, false);
+		bman.add(new BomberHuman(25, 75, nw, false));
 	}
 
 	@Override
@@ -33,9 +33,9 @@ public class TwoPlayerGameClient extends Game {
 				}
 			}
 			checkWin();
-			nw.write(bman);
-			other.getNetworkMovement(bombs);
-			controls.doSomethingWithInput(bman, bombs);
+			nw.write(bman.get(0));
+			bman.get(1).getNetworkMovement(bombs);
+			controls.doSomethingWithInput(bman.get(0), bombs);
 
 			manageBombs();
 			gui.draw(bombs, bman, exit);

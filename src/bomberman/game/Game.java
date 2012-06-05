@@ -22,7 +22,7 @@ public class Game {
 	// it's not in use for now...
 	// private final Board board;
 
-	protected final BomberHuman bman;
+	protected final List<BomberHuman> bman = new ArrayList<BomberHuman>();
 	protected final Exit exit;
 	protected final List<Bomb> bombs = new ArrayList<Bomb>();
 	// let's see if we can use this interface for something productive
@@ -48,7 +48,7 @@ public class Game {
 	public Game(final Controls controls, final Exit exit,
 			final ExplosionAreaCalculator eac, final GameGui gui) {
 		// this.board = board;
-		this.bman = new BomberHuman(true, 25, 25);
+		bman.add(new BomberHuman(true, 25, 25));
 		this.exit = exit;
 		this.eac = eac;
 		this.gui = gui;
@@ -61,7 +61,7 @@ public class Game {
 	public void start() {
 		gui.initialize();
 		// DEBUG mode
-		bman.boostSpeed(2);
+		// bman.boostSpeed(2);
 
 		loop();
 	}
@@ -78,7 +78,7 @@ public class Game {
 				}
 			}
 			checkWin();
-			controls.doSomethingWithInput(bman, bombs);
+			controls.doSomethingWithInput(bman.get(0), bombs);
 			manageBombs();
 			gui.draw(bombs, bman, exit);
 			lastTickAt = System.currentTimeMillis();
@@ -126,7 +126,7 @@ public class Game {
 					bomb.goBomf();
 				}
 
-		if (eac.isInExplosionArea(b, bman)) {
+		if (eac.isInExplosionArea(b, bman.get(0))) {
 			alive = false;
 			gui.lost();
 		}
@@ -136,10 +136,10 @@ public class Game {
 		if (!enemies.isEmpty())
 			return;
 
-		if (bman.getPosX() < exit.getPosX() + 20
-				&& bman.getPosX() > exit.getPosX() - 20
-				&& bman.getPosY() < exit.getPosY() + 20
-				&& bman.getPosY() > exit.getPosY() - 20) {
+		if (bman.get(0).getPosX() < exit.getPosX() + 20
+				&& bman.get(0).getPosX() > exit.getPosX() - 20
+				&& bman.get(0).getPosY() < exit.getPosY() + 20
+				&& bman.get(0).getPosY() > exit.getPosY() - 20) {
 			gui.won();
 			won = true;
 		}

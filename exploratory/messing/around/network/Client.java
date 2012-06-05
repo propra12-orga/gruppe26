@@ -86,7 +86,7 @@ public class Client implements Reader {
 			}
 
 		}
-		System.out.println(line);
+		// System.out.println(line);
 	}
 
 	@Override
