@@ -1,5 +1,8 @@
 package bomberman;
 
+import java.io.IOException;
+import java.net.UnknownHostException;
+
 import bomberman.game.Board;
 import bomberman.game.Controls;
 import bomberman.game.ExplosionAreaCalculator;
@@ -12,8 +15,11 @@ public class Menu {
 
 	/**
 	 * Starts the game.
+	 * 
+	 * @throws IOException
+	 * @throws UnknownHostException
 	 */
-	public void startGame() {
+	public void startGame() throws UnknownHostException, IOException {
 
 		while (true) {
 			final MenuGui mg = new MenuGui();
@@ -21,8 +27,9 @@ public class Menu {
 			while (b == Boolean.FALSE) {
 				b = mg.gameStarted();
 			}
-			if (b == null)
+			if (b == null) {
 				System.exit(0);
+			}
 
 			final Game g = setupGame();
 			g.start();
@@ -31,9 +38,9 @@ public class Menu {
 	}
 
 	/**
-	 * Setup Game:
-	 * initializes a new board with (currently) fixed parameters
+	 * Setup Game: initializes a new board with (currently) fixed parameters
 	 * also sets up game-logic (i.e Explosion Calculator, Controls and GUI)
+	 * 
 	 * @return game Object
 	 */
 	public Game setupGame() {

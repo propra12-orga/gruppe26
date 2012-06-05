@@ -22,19 +22,19 @@ public class Game {
 	// it's not in use for now...
 	// private final Board board;
 
-	private final BomberHuman bman;
-	private final Exit exit;
-	private final List<Bomb> bombs = new ArrayList<Bomb>();
+	protected final BomberHuman bman;
+	protected final Exit exit;
+	protected final List<Bomb> bombs = new ArrayList<Bomb>();
 	// let's see if we can use this interface for something productive
 	private final List<Character> enemies = new ArrayList<Character>();
-	private final GameGui gui;
-	private final Controls controls;
+	protected final GameGui gui;
+	protected final Controls controls;
 	private final ExplosionAreaCalculator eac;
 
-	private boolean alive = true;
-	private boolean won = false;
+	protected boolean alive = true;
+	protected boolean won = false;
 
-	private long lastTickAt = System.currentTimeMillis();
+	protected long lastTickAt = System.currentTimeMillis();
 
 	/**
 	 * Associates a Game with controls, an Exit, an EAC and a GUI. It will also
@@ -66,7 +66,7 @@ public class Game {
 		loop();
 	}
 
-	private void loop() {
+	protected void loop() {
 		while (alive && !won) {
 			final long diff = System.currentTimeMillis() - lastTickAt;
 			if (diff < 5) {
@@ -85,7 +85,7 @@ public class Game {
 		}
 	}
 
-	private void manageBombs() {
+	protected void manageBombs() {
 		final List<Integer> exploded = new ArrayList<Integer>();
 
 		int count = 0;
@@ -94,8 +94,9 @@ public class Game {
 			b.tick();
 			final boolean exists = b.isStillThere();
 
-			if (!exists)
+			if (!exists) {
 				exploded.add(count);
+			}
 			count++;
 		}
 
@@ -108,8 +109,9 @@ public class Game {
 				eac.affectedWalls(b);
 			}
 
-			if (!b.isCurrentlyExploding())
+			if (!b.isCurrentlyExploding()) {
 				bombs.remove(integer - count);
+			}
 			count++;
 		}
 	}
@@ -120,8 +122,9 @@ public class Game {
 		// that. we will probably need that interface at this point.
 		for (Bomb bomb : bombs)
 			if (bomb != b && !bomb.isCurrentlyExploding())
-				if (eac.isInExplosionArea(b, bomb))
+				if (eac.isInExplosionArea(b, bomb)) {
 					bomb.goBomf();
+				}
 
 		if (eac.isInExplosionArea(b, bman)) {
 			alive = false;
@@ -129,7 +132,7 @@ public class Game {
 		}
 	}
 
-	private void checkWin() {
+	protected void checkWin() {
 		if (!enemies.isEmpty())
 			return;
 

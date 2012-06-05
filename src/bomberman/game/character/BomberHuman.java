@@ -1,10 +1,18 @@
 package bomberman.game.character;
 
+import java.util.List;
+
+import bomberman.game.Network;
+import bomberman.game.objects.Bomb;
+
 public class BomberHuman {
 	private final boolean human;
 	private int posX;
 	private int posY;
 	private int speed = 1;
+	private Network nw;
+	private String move = "mv 0 0";
+	private String bomb = "bomb 0";
 
 	public BomberHuman(final boolean human, final int posX, final int posY) {
 		if (posX < 0 || posY < 0)
@@ -15,8 +23,34 @@ public class BomberHuman {
 		this.posY = posY;
 	}
 
+	public BomberHuman(final int posX, final int posY, final Network nw,
+			final boolean server) {
+		this.posX = posX;
+		this.posY = posY;
+		this.nw = nw;
+		this.human = true;
+	}
+
+	public void addMove() {
+		move = "mv " + posX + " " + posY;
+	}
+
+	public void addBombStatus(final boolean bombDrop) {
+		if (bombDrop) {
+			bomb = "bomb 1";
+		} else {
+			bomb = "bomb 0";
+		}
+	}
+
 	public int getSpeed() {
 		return speed;
+	}
+
+	public void getNetworkMovement(final List<Bomb> bombs) {
+		if (nw == null)
+			return;
+		nw.read(this, bombs);
 	}
 
 	public void boostSpeed(final int offset) {
@@ -61,4 +95,21 @@ public class BomberHuman {
 	public boolean isHuman() {
 		return human;
 	}
+
+	public String getMove() {
+		return move;
+	}
+
+	public String getBomb() {
+		return bomb;
+	}
+
+	public void setPosX(final int posX) {
+		this.posX = posX;
+	}
+
+	public void setPosY(final int posY) {
+		this.posY = posY;
+	}
+
 }
