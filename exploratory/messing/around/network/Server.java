@@ -60,22 +60,25 @@ public class Server implements Reader {
 
 	@Override
 	public void read(final BomberHuman bman, final List<Bomb> bombs) {
-		if (!in.hasNext())
-			return;
+		while (!in.hasNext()) {
 
-		final String line = in.nextLine();
-		if (line.startsWith("mv")) {
-			String[] split = line.split(" ");
-			int posX = Integer.parseInt(split[1]);
-			int posY = Integer.parseInt(split[2]);
-			bman.setPosX(posX);
-			bman.setPosY(posY);
-		} else if (line.startsWith("bomb")) {
-			String[] split = line.split(" ");
-			int flag = Integer.parseInt(split[1]);
-			if (flag == 1) {
-				bombs.add(new Bomb(bman.getPosX(), bman.getPosY(),
-						Settings.TIMERCONSTANT));
+		}
+
+		for (int i = 0; i < 2; i++) {
+			final String line = in.nextLine();
+			if (line.startsWith("mv")) {
+				String[] split = line.split(" ");
+				int posX = Integer.parseInt(split[1]);
+				int posY = Integer.parseInt(split[2]);
+				bman.setPosX(posX);
+				bman.setPosY(posY);
+			} else if (line.startsWith("bomb")) {
+				String[] split = line.split(" ");
+				int flag = Integer.parseInt(split[1]);
+				if (flag == 1) {
+					bombs.add(new Bomb(bman.getPosX(), bman.getPosY(),
+							Settings.TIMERCONSTANT));
+				}
 			}
 		}
 		// System.out.println(line);
