@@ -193,9 +193,16 @@ public final class StdDraw implements ActionListener, MouseListener,
 
 	// init
 	private static void init() {
-		if (frame != null)
+		if (frame != null) {
+			int x = frame.getLocation().x;
+			int y = frame.getLocation().y;
+			frame.removeAll();
 			frame.setVisible(false);
-		frame = new JFrame();
+			frame = new JFrame();
+			frame.setLocation(x, y);
+		} else {
+			frame = new JFrame();
+		}
 		offscreenImage = new BufferedImage(width, height,
 				BufferedImage.TYPE_INT_ARGB);
 		onscreenImage = new BufferedImage(width, height,
