@@ -61,7 +61,7 @@ public class Game {
 	public void start() {
 		gui.initialize();
 		// DEBUG mode
-		// bman.boostSpeed(2);
+		bman.get(0).boostSpeed(2);
 
 		loop();
 	}
@@ -111,8 +111,8 @@ public class Game {
 
 			if (!b.isCurrentlyExploding()) {
 				bombs.remove(integer - count);
+				count++;
 			}
-			count++;
 		}
 	}
 
