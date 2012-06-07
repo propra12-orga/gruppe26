@@ -1,6 +1,12 @@
 package bomberman.game;
 
+/**
+ * Controller-Settings
+ */
 public class Settings {
+	/*
+	 * These seriously should be self-explanatory
+	 */
 	public static int P1_UP = 38;
 	public static int P1_DOWN = 40;
 	public static int P1_LEFT = 37;

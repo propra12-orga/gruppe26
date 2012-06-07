@@ -13,11 +13,16 @@ import bomberman.gui.StdDraw;
  */
 public class Controls {
 
+	// Wie immer Variabeln:
+	// spielfelarray
+	// zellengroesse
+	// hoehe des Spielfelds
+	// breite des Spielfelds
 	private final int[][] field;
 	private final int TILESIZE;
 	private final int height;
 	private final int width;
-
+	// Ausserdem: Bombeneinstellungen.
 	private final int BOMBTICKS = Settings.TIMERCONSTANT;
 	private final int BOMBTHRESH = 100;
 	private int ticksSinceLastBomb = 0;
@@ -26,7 +31,9 @@ public class Controls {
 	 * Gets the field with height*width and tilesize
 	 * 
 	 * @param board
+	 *            - gameboard
 	 * @param TILESIZE
+	 *            - size of boardtiles
 	 */
 	public Controls(final Board board, final int TILESIZE) {
 		this.field = board.getField();
@@ -39,8 +46,9 @@ public class Controls {
 	 * Checks if Bomferman, "b", can move in direction, "direction"
 	 * 
 	 * @param direction
-	 *            (w a s d)
+	 *            - (w a s d)
 	 * @param b
+	 *            - Bomb
 	 * @return true or false
 	 */
 	public boolean canMoveThere(final char direction, final BomberHuman b) {
@@ -133,6 +141,7 @@ public class Controls {
 	 * Converts the position of Bomferman into array-coordinates...
 	 * 
 	 * @param pos
+	 *            - position to be converted
 	 * @return
 	 */
 	public int getArrayPos(final int pos) {
@@ -145,7 +154,9 @@ public class Controls {
 	 * Listens to keyboard-inputs and lets Bomfermans act accordingly
 	 * 
 	 * @param bman
+	 *            - Bomferman to be controlled
 	 * @param bombs
+	 *            - Bombs
 	 */
 	public void doSomethingWithInput(final BomberHuman bman,
 			final List<Bomb> bombs) {
@@ -197,7 +208,9 @@ public class Controls {
 	 * Create or Add Bombs to Field
 	 * 
 	 * @param bman
+	 *            - Owner of the Bombs
 	 * @param bombs
+	 *            - Bombs
 	 */
 	private void dropBomb(final BomberHuman bman, final List<Bomb> bombs) {
 		final int posX = bman.getPosX();

@@ -73,7 +73,6 @@ public class Game {
 				try {
 					Thread.sleep(5 - diff);
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
@@ -101,14 +100,15 @@ public class Game {
 		}
 
 		count = 0;
-
+		// Fuer jede explodierende Bombe:
+		// try to kill stuff!!!
 		for (Integer integer : exploded) {
 			final Bomb b = bombs.get(integer - count);
 			if (b.getTimer() == -1) {
 				tryToKillStuff(b);
 				eac.affectedWalls(b);
 			}
-
+			// remove exploding bomb from Bomblist
 			if (!b.isCurrentlyExploding()) {
 				bombs.remove(integer - count);
 				count++;
@@ -116,8 +116,15 @@ public class Game {
 		}
 	}
 
+	/**
+	 * Try to kill stuff, checks if a bomferman is in explosionarea if yes: KILL
+	 * IT!!!
+	 * 
+	 * @param b
+	 *            - bomb which tries to kill stuff
+	 */
 	private void tryToKillStuff(final Bomb b) {
-		// right now, there's only bomberman. as soon as enemies are
+		// right now, there's only bomferman. as soon as enemies are
 		// implemented, we should add a list of Characters or something like
 		// that. we will probably need that interface at this point.
 		for (Bomb bomb : bombs)
@@ -125,8 +132,9 @@ public class Game {
 				if (eac.isInExplosionArea(b, bomb)) {
 					bomb.goBomf();
 				}
-
+		// bomferman in explosion area of bomb?
 		if (eac.isInExplosionArea(b, bman.get(0))) {
+			// KILL IT!
 			alive = false;
 			gui.lost();
 		}
