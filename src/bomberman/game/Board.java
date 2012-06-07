@@ -45,6 +45,7 @@ public class Board {
 	/**
 	 * Collisions: Bomberman can not pass walls Currently sets non walkable
 	 * cells with 1: The core of every wall is unwalkable...
+	 * cells with 2: Destructible wall!
 	 */
 	private void initializeCollisions() {
 		for (int i = 0; i < height; i++) {
