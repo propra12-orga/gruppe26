@@ -14,7 +14,7 @@ public class Board {
 	 * @param width
 	 *            width of the board.
 	 * 
-	 *            (both in pixel)
+	 *            (both in tiles)
 	 */
 
 	public Board(final int[][] arr) {
@@ -23,6 +23,11 @@ public class Board {
 		this.field = arr;
 	}
 
+	/**
+	 * 
+	 * @param height height of board(tiles)
+	 * @param width width of board(tiles)
+	 */
 	public Board(final int height, final int width) {
 		if (height < 2 || width < 2)
 			throw new IllegalArgumentException();
@@ -62,7 +67,7 @@ public class Board {
 	/**
 	 * get height of field
 	 * 
-	 * @return height in px(int)
+	 * @return height in tiles(int)
 	 */
 	public int getHeight() {
 		return height;
@@ -71,7 +76,7 @@ public class Board {
 	/**
 	 * get width of field
 	 * 
-	 * @return width in px (int)
+	 * @return width in tiles (int)
 	 */
 	public int getWidth() {
 		return width;
