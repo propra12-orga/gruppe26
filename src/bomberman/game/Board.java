@@ -1,5 +1,9 @@
 package bomberman.game;
 
+/**
+ * 
+ *
+ */
 public class Board {
 
 	final private int height;

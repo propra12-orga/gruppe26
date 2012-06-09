@@ -1,4 +1,4 @@
-package bomberman.gui;
+﻿package bomberman.gui;
 
 import java.io.IOException;
 import java.net.UnknownHostException;
@@ -22,7 +22,7 @@ public class MenuGui {
 
 	/**
 	 * Useless Comments my ass... Variables:
-	 * 
+	 * ↑
 	 * size of exit text (x and y) size of "Newgame?"-text
 	 * 
 	 * Positions of the texts
@@ -285,14 +285,22 @@ public class MenuGui {
 				&& (StdDraw.mouseY() >= text_y_back - back_size_Y);
 
 	}
-
+	/**
+	 * Works like isMouseOverControls()
+	 * 
+	 * @return true or false
+	 */
 	private boolean isMouseOverServer() {
 		return (StdDraw.mouseX() <= text_x_server + server_size_X)
 				&& (StdDraw.mouseX() >= text_x_server - server_size_X)
 				&& (StdDraw.mouseY() <= text_y_server + server_size_Y)
 				&& (StdDraw.mouseY() >= text_y_server - server_size_Y);
 	}
-
+	/**
+	 * Works like isMouseOverControls()
+	 * 
+	 * @return true or false
+	 */
 	private boolean isMouseOverClient() {
 		return (StdDraw.mouseX() <= text_x_client + client_size_X)
 				&& (StdDraw.mouseX() >= text_x_client - client_size_X)
