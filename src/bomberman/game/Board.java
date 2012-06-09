@@ -25,8 +25,10 @@ public class Board {
 
 	/**
 	 * 
-	 * @param height height of board(tiles)
-	 * @param width width of board(tiles)
+	 * @param height
+	 *            - height of board(tiles)
+	 * @param width
+	 *            - width of board(tiles)
 	 */
 	public Board(final int height, final int width) {
 		if (height < 2 || width < 2)
@@ -43,9 +45,9 @@ public class Board {
 	}
 
 	/**
-	 * Collisions: Bomberman can not pass walls Currently sets non walkable
-	 * cells with 1: The core of every wall is unwalkable...
-	 * cells with 2: Destructible wall!
+	 * Collisions: Bomberman can not pass walls Currently sets non walkable -
+	 * cells with 1: The core of every wall is unwalkable... Cells with 2:
+	 * Destructible wall!(still unwalkable)
 	 */
 	private void initializeCollisions() {
 		for (int i = 0; i < height; i++) {

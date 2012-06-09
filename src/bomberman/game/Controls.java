@@ -7,22 +7,38 @@ import bomberman.game.objects.Bomb;
 import bomberman.gui.StdDraw;
 
 /**
- * @author Jan
+ * Controls
+ * 
  * 
  * 
  */
 public class Controls {
 
 	// Wie immer Variabeln:
-	// spielfelarray
+	// spielfeldarray
 	// zellengroesse
 	// hoehe des Spielfelds
 	// breite des Spielfelds
+	/**
+	 * Gameboard-array(int)
+	 */
 	private final int[][] field;
+	/**
+	 * Size of Tiles (int)
+	 */
 	private final int TILESIZE;
+	/**
+	 * height of field (int)
+	 */
 	private final int height;
+	/**
+	 * width of field (int)
+	 */
 	private final int width;
 	// Ausserdem: Bombeneinstellungen.
+	/**
+	 * Ticks until Bomb goes bomf (int)
+	 */
 	private final int BOMBTICKS = Settings.TIMERCONSTANT;
 	private final int BOMBTHRESH = 100;
 	private int ticksSinceLastBomb = 0;
@@ -142,7 +158,7 @@ public class Controls {
 	 * 
 	 * @param pos
 	 *            - position to be converted
-	 * @return
+	 * @return (int) converted position
 	 */
 	public int getArrayPos(final int pos) {
 		if (pos < 0)

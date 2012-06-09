@@ -12,6 +12,20 @@ public class TwoPlayerGameServer extends Game {
 	// private final BomberHuman other;
 	Network nw;
 
+	/**
+	 * Server(Host) for the Networkmultiplayer
+	 * 
+	 * @param controls
+	 *            - controls of player
+	 * @param exit
+	 *            - the exit
+	 * @param eac
+	 *            - ExplosionAreaCalculator
+	 * @param gui
+	 *            - Graphical User Interface
+	 * @throws UnknownHostException
+	 * @throws IOException
+	 */
 	public TwoPlayerGameServer(final Controls controls, final Exit exit,
 			final ExplosionAreaCalculator eac, final GameGui gui)
 			throws UnknownHostException, IOException {

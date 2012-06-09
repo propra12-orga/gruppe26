@@ -94,7 +94,7 @@ public class FileReader {
 		final int exitX = Integer.parseInt(file.get(2).split(" ")[1]);
 		final int exitY = Integer.parseInt(file.get(2).split(" ")[2]);
 
-		// Feld: Listenl√§nge - 4, da Spielfeld erst sp√§ter beginnt
+		// Feld: Listenl‰nge - 4, da Spielfeld erst sp‰ter beginnt
 		final int[][] field = new int[file.size() - 4][dimM];
 		String[] split;
 
