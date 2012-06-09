@@ -73,12 +73,13 @@ public class MenuGui {
 	 * @throws IOException
 	 * @throws UnknownHostException
 	 */
+
 	public Boolean gameStarted() throws UnknownHostException, IOException {
 		StdDraw.resetMousePressedStatus();
 		// Game in progress?
 
 		StdDraw.clear();
-		// Maus ueber Button "New Game?"
+		// Maus ueber Button ?
 		if (isMouseOverNewGame()) {
 			mouseOverNewGameActions();
 		} else if (isMouseOverExit()) {
@@ -90,6 +91,7 @@ public class MenuGui {
 		} else if (isMouseOverServer()) {
 			mouseOverServerActions();
 		} else {
+			// Draw the Menubuttons
 			StdDraw.text(text_x_controls, text_y_controls, "Controls");
 			StdDraw.text(text_x_newgame, text_y_newgame, "New Game?");
 			StdDraw.text(text_x_exit, text_y_exit, "Exit");
@@ -257,7 +259,6 @@ public class MenuGui {
 	 * Draws arrows and labels for the key outlines
 	 * 
 	 */
-	// FIXME: Windows does not display fancy arrow symbols correctly
 	private void drawAwesomeArrowsAndLabels() {
 		StdDraw.text(320, 700, "left");
 		StdDraw.text(400, 700, "←");
@@ -308,6 +309,9 @@ public class MenuGui {
 				&& (StdDraw.mouseY() >= text_y_client - client_size_Y);
 	}
 
+	/**
+	 * Fancy Hovereffect
+	 */
 	private void mouseOverClientActions() {
 		StdDraw.setPenColor(StdDraw.BOOK_RED);
 		StdDraw.text(text_x_client, text_y_client, "Client");
@@ -318,6 +322,9 @@ public class MenuGui {
 		StdDraw.text(text_x_controls, text_y_controls, "Controls");
 	}
 
+	/**
+	 * Fancy Hovereffect
+	 */
 	private void mouseOverServerActions() {
 		StdDraw.setPenColor(StdDraw.BOOK_RED);
 		StdDraw.text(text_x_server, text_y_server, "Server");
