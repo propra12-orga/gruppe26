@@ -212,6 +212,11 @@ public class Controls {
 
 		if (StdDraw.typedKeys[Settings.P1_PAUSE]) {
 			StdDraw.typedKeys[Settings.P1_PAUSE] = false;
+			StdDraw.setPenColor(StdDraw.YELLOW);
+			StdDraw.text(TILESIZE * width / 2, TILESIZE * height / 2,
+					"GAME PAUSED");
+			StdDraw.show();
+			StdDraw.setPenColor(StdDraw.BLACK);
 			while (!StdDraw.typedKeys[Settings.P1_PAUSE]) {
 			}
 			StdDraw.typedKeys[Settings.P1_PAUSE] = false;
