@@ -58,14 +58,16 @@ public class Server implements Reader {
 		PrintWriter out = new PrintWriter(client.getOutputStream());
 		this.out = out;
 		out.println(level);
+		out.println("poison");
 		out.flush();
 
 		while (!in.hasNext()) {
 
 		}
-		String tmp;
-		if ((tmp = in.nextLine()) != "ack")
-			System.out.println(tmp);
+		String tmp = in.nextLine();
+		if (!tmp.equals("ack"))
+			System.out
+					.println("network debug print - answer to level was not as expected");
 
 	}
 

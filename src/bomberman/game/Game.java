@@ -63,13 +63,11 @@ public class Game {
 		bman.add(new BomberHuman(true, 25, 25));
 	}
 
-	@Deprecated
 	protected Game() {
 		this.gui = null;
 		this.exit = null;
 		this.eac = null;
 		this.controls = null;
-		// TODO Auto-generated constructor stub
 	}
 
 	/**

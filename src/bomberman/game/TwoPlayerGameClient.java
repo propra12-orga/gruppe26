@@ -4,22 +4,11 @@ import java.io.IOException;
 import java.net.UnknownHostException;
 
 import bomberman.game.character.BomberHuman;
-import bomberman.game.objects.Exit;
 import bomberman.gui.GameGui;
 
 public class TwoPlayerGameClient extends Game {
 
-	// private final BomberHuman other;
 	Network nw;
-
-	@Deprecated
-	private TwoPlayerGameClient(final Controls controls, final Exit exit,
-			final ExplosionAreaCalculator eac, final GameGui gui, final Board b)
-			throws UnknownHostException, IOException {
-		super(controls, exit, eac, gui, b);
-		nw = new Network(false, null);
-		bman.add(new BomberHuman(25, 75, nw, false));
-	}
 
 	public TwoPlayerGameClient() throws UnknownHostException, IOException {
 		super();
@@ -32,6 +21,7 @@ public class TwoPlayerGameClient extends Game {
 		this.eac = new ExplosionAreaCalculator(field, TILESIZE);
 		this.gui = new GameGui(field, TILESIZE, eac);
 		this.controls = new Controls(new Board(field), TILESIZE);
+		bman.add(new BomberHuman(25, 25, nw, false));
 	}
 
 	@Override

@@ -118,10 +118,6 @@ public class MenuGui {
 			Game g = new TwoPlayerGameServer(controls, exit, eac, gui, b);
 			g.start();
 		} else if (isMouseOverClient() && StdDraw.mousePressed()) {
-			final int TILESIZE = Settings.TILESIZE;
-
-			final Board b = new Board(10, 10);
-			// Game g = new TwoPlayerGameClient(controls, exit, eac, gui, b);
 			Game g = new TwoPlayerGameClient();
 			g.start();
 		}

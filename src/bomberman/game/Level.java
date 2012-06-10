@@ -36,13 +36,13 @@ public class Level {
 		StringBuffer sb = new StringBuffer();
 		sb.append("# bomferman level file\nspawn 0 0\nexit "
 				+ ex.getArrayPosX() + " " + ex.getArrayPosY() + "\nboard\n");
-		for (int i = 0; i < board.length; i++) {
+		for (int i = board.length - 1; i >= 0; i--) {
 			for (int j = 0; j < board[0].length; j++) {
 				sb.append(board[i][j]);
 				if (j != board[0].length - 1)
 					sb.append(" ");
 			}
-			if (i != board.length)
+			if (i != 0)
 				sb.append("\n");
 		}
 		return sb.toString();

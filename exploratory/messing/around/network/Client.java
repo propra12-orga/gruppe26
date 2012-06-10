@@ -106,9 +106,18 @@ public class Client implements Reader {
 	@Override
 	public Level readLevel() {
 		List<String> list = new ArrayList<String>();
-		while (!in.hasNext()) {
-			list.add(in.nextLine());
+		while (!in.hasNextLine()) {
+
 		}
+		String tmp = null;
+		while (!"poison".equals(tmp)) {
+			if (in.hasNext()) {
+				tmp = in.nextLine();
+				if (!"poison".equals(tmp))
+					list.add(tmp);
+			}
+		}
+		// }
 		out.println("ack");
 		out.flush();
 		FileReader fr = new FileReader(list);
