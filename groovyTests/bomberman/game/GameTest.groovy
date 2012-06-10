@@ -4,11 +4,12 @@ import bomberman.game.objects.Bomb
 import bomberman.game.objects.Exit
 import bomberman.gui.GameGui
 
+import spock.lang.Ignore;
 import spock.lang.Specification
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
-
+@Ignore
 class GameTest extends Specification {
 
 	def Game g
