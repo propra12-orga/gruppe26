@@ -94,7 +94,7 @@ public class FileReader {
 		final int exitX = Integer.parseInt(file.get(2).split(" ")[1]);
 		final int exitY = Integer.parseInt(file.get(2).split(" ")[2]);
 
-		// Feld: Listenlänge - 4, da Spielfeld erst später beginnt
+		// Feld: Listenlaenge - 4, da Spielfeld erst spaeter beginnt
 		final int[][] field = new int[file.size() - 4][dimM];
 		String[] split;
 
@@ -179,6 +179,15 @@ public class FileReader {
 				}
 			}
 		}
+
+		// Ausgang darf nicht unter Typ-1 Block liegen (unzerstoerbar)
+		final int exitx = Integer.parseInt(arr[1]);
+		final int exity = Integer.parseInt(arr[2]);
+
+		final String line = file.get(file.size() - exity - 1);
+		final String[] tmp = line.split(" ");
+		final int walltype = Integer.parseInt(tmp[exitx]);
+		assertHelper(walltype != 1);
 	}
 
 	private void assertHelper(final boolean in) throws InvalidFormatException {
