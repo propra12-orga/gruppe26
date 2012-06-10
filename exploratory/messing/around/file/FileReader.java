@@ -49,6 +49,10 @@ public class FileReader {
 		fr.playReadLevel();
 	}
 
+	public FileReader(List<String> in) {
+		file = in;
+	}
+
 	/**
 	 * Konstruktor nur für LevelTest
 	 * 

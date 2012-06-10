@@ -4,9 +4,12 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import messing.around.file.FileReader;
+import bomberman.game.Level;
 import bomberman.game.Settings;
 import bomberman.game.character.BomberHuman;
 import bomberman.game.objects.Bomb;
@@ -98,6 +101,17 @@ public class Client implements Reader {
 			out.println(split[i]);
 		}
 		out.flush();
+	}
 
+	@Override
+	public Level readLevel() {
+		List<String> list = new ArrayList<String>();
+		while (!in.hasNext()) {
+			list.add(in.nextLine());
+		}
+		out.println("ack");
+		out.flush();
+		FileReader fr = new FileReader(list);
+		return fr.parse();
 	}
 }

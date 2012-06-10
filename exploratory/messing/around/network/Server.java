@@ -7,6 +7,7 @@ import java.net.Socket;
 import java.util.List;
 import java.util.Scanner;
 
+import bomberman.game.Level;
 import bomberman.game.Settings;
 import bomberman.game.character.BomberHuman;
 import bomberman.game.objects.Bomb;
@@ -47,7 +48,7 @@ public class Server implements Reader {
 	final Scanner in;
 	final PrintWriter out;
 
-	public Server() throws IOException {
+	public Server(final String level) throws IOException {
 		ServerSocket server = new ServerSocket(9001);
 
 		Socket client = server.accept();
@@ -56,6 +57,16 @@ public class Server implements Reader {
 		this.in = in;
 		PrintWriter out = new PrintWriter(client.getOutputStream());
 		this.out = out;
+		out.println(level);
+		out.flush();
+
+		while (!in.hasNext()) {
+
+		}
+		String tmp;
+		if ((tmp = in.nextLine()) != "ack")
+			System.out.println(tmp);
+
 	}
 
 	@Override
@@ -92,5 +103,11 @@ public class Server implements Reader {
 		}
 		out.flush();
 
+	}
+
+	@Override
+	@Deprecated
+	public Level readLevel() {
+		return null;
 	}
 }

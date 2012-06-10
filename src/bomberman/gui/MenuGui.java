@@ -115,18 +115,14 @@ public class MenuGui {
 			final GameGui gui = new GameGui(b.getField(), TILESIZE, eac);
 			final Exit exit = new Exit(21, 10, TILESIZE);
 			final Controls controls = new Controls(b, TILESIZE);
-			Game g = new TwoPlayerGameServer(controls, exit, eac, gui);
+			Game g = new TwoPlayerGameServer(controls, exit, eac, gui, b);
 			g.start();
 		} else if (isMouseOverClient() && StdDraw.mousePressed()) {
 			final int TILESIZE = Settings.TILESIZE;
 
 			final Board b = new Board(10, 10);
-			final ExplosionAreaCalculator eac = new ExplosionAreaCalculator(
-					b.getField(), TILESIZE);
-			final GameGui gui = new GameGui(b.getField(), TILESIZE, eac);
-			final Exit exit = new Exit(21, 10, TILESIZE);
-			final Controls controls = new Controls(b, TILESIZE);
-			Game g = new TwoPlayerGameClient(controls, exit, eac, gui);
+			// Game g = new TwoPlayerGameClient(controls, exit, eac, gui, b);
+			Game g = new TwoPlayerGameClient();
 			g.start();
 		}
 

@@ -27,7 +27,8 @@ public class Level {
 		final ExplosionAreaCalculator eac = new ExplosionAreaCalculator(board,
 				TILESIZE);
 
-		return new Game(c, ex, eac, new GameGui(board, TILESIZE, eac));
+		return new Game(c, ex, eac, new GameGui(board, TILESIZE, eac),
+				new Board(board));
 	}
 
 	@Override

@@ -53,7 +53,7 @@ public class Menu {
 		final Exit exit = new Exit(21, 10, TILESIZE);
 		final Controls controls = new Controls(b, TILESIZE);
 
-		final Game g = new Game(controls, exit, eac, gui);
+		final Game g = new Game(controls, exit, eac, gui, b);
 
 		return g;
 	}

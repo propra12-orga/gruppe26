@@ -23,13 +23,13 @@ public class Game {
 	// private final Board board;
 
 	protected final List<BomberHuman> bman = new ArrayList<BomberHuman>();
-	protected final Exit exit;
+	protected Exit exit;
 	protected final List<Bomb> bombs = new ArrayList<Bomb>();
 	// let's see if we can use this interface for something productive
 	private final List<Character> enemies = new ArrayList<Character>();
-	protected final GameGui gui;
-	protected final Controls controls;
-	private final ExplosionAreaCalculator eac;
+	protected GameGui gui;
+	protected Controls controls;
+	protected ExplosionAreaCalculator eac;
 
 	protected boolean alive = true;
 	protected boolean won = false;
@@ -46,13 +46,30 @@ public class Game {
 	 * @param gui
 	 */
 	public Game(final Controls controls, final Exit exit,
-			final ExplosionAreaCalculator eac, final GameGui gui) {
+			final ExplosionAreaCalculator eac, final GameGui gui, final Board b) {
 		// this.board = board;
 		bman.add(new BomberHuman(true, 25, 25));
 		this.exit = exit;
 		this.eac = eac;
 		this.gui = gui;
 		this.controls = controls;
+	}
+
+	protected Game(Level l, Controls c, ExplosionAreaCalculator eac, GameGui gui) {
+		this.controls = c;
+		this.eac = eac;
+		this.gui = gui;
+		this.exit = l.getEx();
+		bman.add(new BomberHuman(true, 25, 25));
+	}
+
+	@Deprecated
+	protected Game() {
+		this.gui = null;
+		this.exit = null;
+		this.eac = null;
+		this.controls = null;
+		// TODO Auto-generated constructor stub
 	}
 
 	/**

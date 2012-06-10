@@ -23,11 +23,11 @@ public class Network {
 	 * @throws UnknownHostException
 	 * @throws IOException
 	 */
-	public Network(final boolean server) throws UnknownHostException,
-			IOException {
+	public Network(final boolean server, final String level)
+			throws UnknownHostException, IOException {
 		if (server) {
 			try {
-				r = new Server();
+				r = new Server(level);
 			} catch (IOException e) {
 				r = null;
 			}
@@ -59,5 +59,9 @@ public class Network {
 	 */
 	public void write(final BomberHuman bman) {
 		r.write(bman.getMove() + "\n" + bman.getBomb());
+	}
+
+	public Level readLevel() {
+		return r.readLevel();
 	}
 }

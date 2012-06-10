@@ -12,12 +12,26 @@ public class TwoPlayerGameClient extends Game {
 	// private final BomberHuman other;
 	Network nw;
 
-	public TwoPlayerGameClient(final Controls controls, final Exit exit,
-			final ExplosionAreaCalculator eac, final GameGui gui)
+	@Deprecated
+	private TwoPlayerGameClient(final Controls controls, final Exit exit,
+			final ExplosionAreaCalculator eac, final GameGui gui, final Board b)
 			throws UnknownHostException, IOException {
-		super(controls, exit, eac, gui);
-		nw = new Network(false);
+		super(controls, exit, eac, gui, b);
+		nw = new Network(false, null);
 		bman.add(new BomberHuman(25, 75, nw, false));
+	}
+
+	public TwoPlayerGameClient() throws UnknownHostException, IOException {
+		super();
+		nw = new Network(false, null);
+		bman.add(new BomberHuman(25, 75, nw, false));
+		final int TILESIZE = Settings.TILESIZE;
+		final Level l = nw.readLevel();
+		final int[][] field = l.getBoard();
+		this.exit = l.getEx();
+		this.eac = new ExplosionAreaCalculator(field, TILESIZE);
+		this.gui = new GameGui(field, TILESIZE, eac);
+		this.controls = new Controls(new Board(field), TILESIZE);
 	}
 
 	@Override

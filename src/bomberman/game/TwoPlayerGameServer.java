@@ -26,12 +26,20 @@ public class TwoPlayerGameServer extends Game {
 	 * @throws UnknownHostException
 	 * @throws IOException
 	 */
+
 	public TwoPlayerGameServer(final Controls controls, final Exit exit,
-			final ExplosionAreaCalculator eac, final GameGui gui)
+			final ExplosionAreaCalculator eac, final GameGui gui, final Board b)
 			throws UnknownHostException, IOException {
-		super(controls, exit, eac, gui);
-		nw = new Network(true);
+		super(controls, exit, eac, gui, b);
+		final Level l = new Level(b.getField(), exit);
+		nw = new Network(true, l.toString());
 		bman.add(new BomberHuman(25, 25, nw, true));
+	}
+
+	@Deprecated
+	public TwoPlayerGameServer(final Level l, final Controls c,
+			final ExplosionAreaCalculator eac, final GameGui gui) {
+		super(l, c, eac, gui);
 	}
 
 	@Override
