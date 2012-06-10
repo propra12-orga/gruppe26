@@ -185,9 +185,18 @@ public class FileReader {
 		final int exity = Integer.parseInt(arr[2]);
 
 		final String line = file.get(file.size() - exity - 1);
-		final String[] tmp = line.split(" ");
+		String[] tmp = line.split(" ");
 		final int walltype = Integer.parseInt(tmp[exitx]);
 		assertHelper(walltype != 1);
+
+		// spawn 0 0 is not blocked
+		final String lastLine = file.get(file.size() - 1);
+		tmp = lastLine.split(" ");
+		assertHelper(Integer.parseInt(tmp[0]) == 0);
+		assertHelper(Integer.parseInt(tmp[1]) == 0);
+		tmp = file.get(file.size() - 2).split(" ");
+		assertHelper(Integer.parseInt(tmp[0]) == 0);
+
 	}
 
 	private void assertHelper(final boolean in) throws InvalidFormatException {
