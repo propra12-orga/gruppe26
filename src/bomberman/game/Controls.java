@@ -9,8 +9,9 @@ import bomberman.gui.StdDraw;
 /**
  * Controls
  * 
+ * Obviously does anything regards controlling Bomferman
  * 
- * 
+ * Collisions, movement, pausing the game
  */
 public class Controls {
 
