@@ -129,7 +129,7 @@ public class Bomb {
 	/**
 	 * let the bomb explode
 	 */
-	public void explode() {
+	private void explode() {
 		exists = false;
 	}
 
