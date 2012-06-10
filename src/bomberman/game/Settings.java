@@ -15,4 +15,5 @@ public class Settings {
 	public static int P1_PAUSE = 80;
 
 	final public static int TIMERCONSTANT = 300;
+	final public static int TILESIZE = 50;
 }

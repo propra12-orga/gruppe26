@@ -7,6 +7,7 @@ import bomberman.game.Board;
 import bomberman.game.Controls;
 import bomberman.game.ExplosionAreaCalculator;
 import bomberman.game.Game;
+import bomberman.game.Settings;
 import bomberman.game.TwoPlayerGameClient;
 import bomberman.game.TwoPlayerGameServer;
 import bomberman.game.objects.Exit;
@@ -106,7 +107,7 @@ public class MenuGui {
 		else if (isMouseOverControls() && StdDraw.mousePressed()) {
 			showControls();
 		} else if (isMouseOverServer() && StdDraw.mousePressed()) {
-			final int TILESIZE = 50;
+			final int TILESIZE = Settings.TILESIZE;
 
 			final Board b = new Board(10, 10);
 			final ExplosionAreaCalculator eac = new ExplosionAreaCalculator(
@@ -117,7 +118,7 @@ public class MenuGui {
 			Game g = new TwoPlayerGameServer(controls, exit, eac, gui);
 			g.start();
 		} else if (isMouseOverClient() && StdDraw.mousePressed()) {
-			final int TILESIZE = 50;
+			final int TILESIZE = Settings.TILESIZE;
 
 			final Board b = new Board(10, 10);
 			final ExplosionAreaCalculator eac = new ExplosionAreaCalculator(
@@ -286,6 +287,7 @@ public class MenuGui {
 				&& (StdDraw.mouseY() >= text_y_back - back_size_Y);
 
 	}
+
 	/**
 	 * Works like isMouseOverControls()
 	 * 
@@ -297,6 +299,7 @@ public class MenuGui {
 				&& (StdDraw.mouseY() <= text_y_server + server_size_Y)
 				&& (StdDraw.mouseY() >= text_y_server - server_size_Y);
 	}
+
 	/**
 	 * Works like isMouseOverControls()
 	 * 

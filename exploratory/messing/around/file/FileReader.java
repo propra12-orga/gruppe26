@@ -8,12 +8,10 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
-import bomberman.game.Board;
-import bomberman.game.Controls;
-import bomberman.game.ExplosionAreaCalculator;
 import bomberman.game.Game;
+import bomberman.game.Level;
+import bomberman.game.Settings;
 import bomberman.game.objects.Exit;
-import bomberman.gui.GameGui;
 
 import com.sun.media.sound.InvalidFormatException;
 
@@ -52,10 +50,27 @@ public class FileReader {
 	}
 
 	/**
+	 * Konstruktor nur für LevelTest
+	 * 
+	 * @param in
+	 *            String, den Level.toString() erzeugt
+	 */
+	@SuppressWarnings("unused")
+	private FileReader(String in) {
+		file = stringToList(in);
+		try {
+			checkValid();
+		} catch (InvalidFormatException e) {
+			this.valid = false;
+		}
+	}
+
+	/**
 	 * Konstruiert ein FileReader Objekt. Versucht von
 	 * "exploratory/messing/around/file/level.txt" zu lesen. Wenn die Datei
 	 * existiert, wird der Inhalt automatisch validiert.
 	 */
+
 	public FileReader() {
 		List<String> file;
 		try {
@@ -81,11 +96,12 @@ public class FileReader {
 			System.out.println("INVALID level file");
 			return;
 		}
-		final Game g = parse();
+		final Level l = parse();
+		final Game g = l.createGameFromLevel();
 		g.start();
 	}
 
-	private Game parse() {
+	public Level parse() {
 		// Breite des Spielfeldes
 		final int dimM = file.get(4).split(" ").length;
 		final int len = file.size();
@@ -107,14 +123,10 @@ public class FileReader {
 		}
 
 		// alles zusammenbauen
-		final Board b = new Board(field);
-		final int TILESIZE = 50;
-		final Controls c = new Controls(b, TILESIZE);
-		final Exit e = new Exit(exitX, exitY, TILESIZE);
-		final ExplosionAreaCalculator eac = new ExplosionAreaCalculator(field,
-				TILESIZE);
+		final Exit e = new Exit(exitX, exitY, Settings.TILESIZE);
+		final Level l = new Level(field, e);
 
-		return new Game(c, e, eac, new GameGui(field, TILESIZE, eac));
+		return l;
 	}
 
 	private List<String> readFile() throws IOException {
@@ -202,6 +214,16 @@ public class FileReader {
 	private void assertHelper(final boolean in) throws InvalidFormatException {
 		if (!in)
 			throw new InvalidFormatException();
+	}
+
+	public List<String> stringToList(final String in) {
+		String[] arr = in.split("\n");
+		List<String> list = new ArrayList<String>();
+		for (int i = 0; i < arr.length; i++) {
+			list.add(arr[i]);
+		}
+
+		return list;
 	}
 
 	@Override
