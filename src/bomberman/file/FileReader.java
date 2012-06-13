@@ -15,24 +15,26 @@ import bomberman.game.objects.Exit;
 
 import com.sun.media.sound.InvalidFormatException;
 
-/*
- *  accepted file format:
- *  
- *  # bomferman level file
- *  spawn 0 0 // 0 0 is the only allowed value atm
- *  exit x y
- *  board
- *  i i i i i i ... i 
- *  i i i i i i ... i
- *  i i i i i i ... i
- *  .
- *  .					// this has to be an n x m matrix
- *  .					// i : {0, 1, 2}
- *  i i i i i i ... i
- *  
- */
-
 /**
+ * Class to read a level from a file, evaluate the validity of a level, parse a
+ * valid level file and play parsed level in single player mode.
+ * 
+ * accepted file format:
+ * 
+ * <pre>
+ * # bomferman level file
+ * spawn 0 0 // 0 0 is the only allowed value atm
+ * exit x y
+ * board
+ * i i i i i i ... i
+ * i i i i i i ... i
+ * i i i i i i ... i
+ * .
+ * . this has to be an n x m matrix
+ * . i : {0, 1, 2}
+ * i i i i i i ... i
+ * </pre>
+ * 
  * @author jessica
  * @author philipp
  * 
@@ -40,15 +42,32 @@ import com.sun.media.sound.InvalidFormatException;
 
 public class FileReader {
 
+	/**
+	 * List that contains the to-be evaluated/parsed level file.
+	 */
 	private final List<String> file;
 	private boolean valid = true;
 
+	/**
+	 * Only way right now to play a level from a file.
+	 * 
+	 * @param args
+	 *            ignored
+	 */
 	public static void main(String args[]) {
 		FileReader fr = new FileReader();
 
 		fr.playReadLevel();
 	}
 
+	/**
+	 * Reads a file that is saved in a List of Strings already. Used by network
+	 * level communication. Requires a valid level file. Notice that no
+	 * guarantees about the valid flag are made.
+	 * 
+	 * @param in
+	 *            StringList (valid level file)
+	 */
 	public FileReader(List<String> in) {
 		file = in;
 	}
@@ -95,6 +114,9 @@ public class FileReader {
 		}
 	}
 
+	/**
+	 * Creates and starts a Game if read level file is valid.
+	 */
 	public void playReadLevel() {
 		if (!valid) {
 			System.out.println("INVALID level file");
@@ -105,6 +127,14 @@ public class FileReader {
 		g.start();
 	}
 
+	/**
+	 * Parses a valid read file. No guarantees are made if parse() is called on
+	 * an invalid level file.
+	 * 
+	 * @return
+	 *         Level object
+	 * 
+	 */
 	public Level parse() {
 		// Breite des Spielfeldes
 		final int dimM = file.get(4).split(" ").length;
@@ -133,6 +163,15 @@ public class FileReader {
 		return l;
 	}
 
+	/**
+	 * Reads the content of a file (at the moment
+	 * src/bomberman/file/level.txt").
+	 * 
+	 * @return
+	 *         StringList, if file exists
+	 * @throws IOException
+	 *             if file does not exist
+	 */
 	private List<String> readFile() throws IOException {
 		final List<String> list = new ArrayList<String>();
 		FileInputStream fstream = new FileInputStream(
@@ -152,6 +191,12 @@ public class FileReader {
 		return list;
 	}
 
+	/**
+	 * Checks validity of a given level saved in the file field.
+	 * 
+	 * @throws InvalidFormatException
+	 *             if level format is not valid.
+	 */
 	private void checkValid() throws InvalidFormatException {
 		assertHelper(file.size() > 4);
 		assertHelper(file.get(0).equals("# bomferman level file"));
@@ -215,11 +260,27 @@ public class FileReader {
 
 	}
 
+	/**
+	 * Asserts the validity of an expression.
+	 * 
+	 * @param in
+	 *            expression
+	 * @throws InvalidFormatException
+	 *             if expression is false
+	 */
 	private void assertHelper(final boolean in) throws InvalidFormatException {
 		if (!in)
 			throw new InvalidFormatException();
 	}
 
+	/**
+	 * Creates a List of Strings split on '\n'.
+	 * 
+	 * @param in
+	 *            String containing a level.
+	 * @return
+	 *         StringList split on new lines.
+	 */
 	public List<String> stringToList(final String in) {
 		String[] arr = in.split("\n");
 		List<String> list = new ArrayList<String>();

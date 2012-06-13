@@ -14,41 +14,21 @@ import bomberman.game.Settings;
 import bomberman.game.character.BomberHuman;
 import bomberman.game.objects.Bomb;
 
+/**
+ * das ist ein Client, der das Netzwerkprotokoll einhält.
+ * 
+ * @author jessica
+ * 
+ */
 public class Client implements Reader {
-	public static void main(final String[] args) {
-		final Socket socket;
+	private Scanner in;
+	private PrintWriter out;
 
-		try {
-			socket = new Socket("localhost", 9001);
-
-			final Scanner in = new Scanner(socket.getInputStream());
-			final PrintWriter writeOut = new PrintWriter(
-					socket.getOutputStream());
-
-			for (int i = 0; i < 2; i++) {
-				writeOut.println("hello");
-				writeOut.flush();
-
-				System.out.println(in.nextLine());
-
-			}
-
-			Thread.sleep(20000);
-			writeOut.println("still there?");
-			writeOut.flush();
-
-			System.out.println(in.nextLine());
-
-			socket.close();
-		} catch (Exception e) {
-
-		}
-
-	}
-
-	Scanner in;
-	PrintWriter out;
-
+	/**
+	 * Konstruktor, der versucht, mit localhost:9001 zu verbinden.
+	 * ohne jegliche Garantien bzgl. Funktionalität.
+	 * 
+	 */
 	public Client() {
 		final Socket socket;
 		try {
@@ -57,13 +37,11 @@ public class Client implements Reader {
 			this.in = new Scanner(socket.getInputStream());
 			this.out = new PrintWriter(socket.getOutputStream());
 		} catch (UnknownHostException e) {
-			System.out.println("1");
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+			System.out.println(e.getMessage());
 		} catch (IOException e) {
-			System.out.println("2");
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 
 	}
@@ -103,6 +81,14 @@ public class Client implements Reader {
 		out.flush();
 	}
 
+	/**
+	 * Implementierung, die das (vom Server geschriebene) Level aus dem Netzwerk
+	 * einliest.
+	 * 
+	 * @return
+	 *         Level Objekt, das das Level enthält
+	 * @see bomberman.game.network.Reader#readLevel()
+	 */
 	@Override
 	public Level readLevel() {
 		List<String> list = new ArrayList<String>();
@@ -117,7 +103,7 @@ public class Client implements Reader {
 					list.add(tmp);
 			}
 		}
-		// }
+
 		out.println("ack");
 		out.flush();
 		FileReader fr = new FileReader(list);
