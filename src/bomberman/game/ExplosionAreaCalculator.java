@@ -150,7 +150,7 @@ public class ExplosionAreaCalculator {
 	 *            - xposition of bomb
 	 * @param posY
 	 *            - ypositon of bomb
-	 * @return[int] last tile where the explosion has effect (above bomb)
+	 * @return [int] last tile where the explosion has effect (above bomb)
 	 */
 	public int getUpperBoundsOfExplosion(final int posX, final int posY) {
 		int i = posY;

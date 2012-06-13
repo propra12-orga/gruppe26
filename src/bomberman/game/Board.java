@@ -11,16 +11,11 @@ public class Board {
 	final private int[][] field;
 
 	/**
-	 * Draw the board, initialize collisions
+	 * Constructs a Board out of a given integer array
 	 * 
-	 * @param height
-	 *            height of the board.
-	 * @param width
-	 *            width of the board.
-	 * 
-	 *            (both in tiles)
+	 * @param arr
+	 *            two-dimensional int array containing collisions
 	 */
-
 	public Board(final int[][] arr) {
 		this.height = arr.length;
 		this.width = arr[0].length;

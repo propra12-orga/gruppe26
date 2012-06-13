@@ -1,4 +1,4 @@
-﻿package bomberman.gui;
+package bomberman.gui;
 
 import java.io.IOException;
 import java.net.UnknownHostException;
@@ -74,13 +74,12 @@ public class MenuGui {
 	 * @throws IOException
 	 * @throws UnknownHostException
 	 */
-
 	public Boolean gameStarted() throws UnknownHostException, IOException {
 		StdDraw.resetMousePressedStatus();
 		// Game in progress?
 
 		StdDraw.clear();
-		// Maus ueber Button ?
+		// Maus ueber Button "New Game?"
 		if (isMouseOverNewGame()) {
 			mouseOverNewGameActions();
 		} else if (isMouseOverExit()) {
@@ -92,7 +91,6 @@ public class MenuGui {
 		} else if (isMouseOverServer()) {
 			mouseOverServerActions();
 		} else {
-			// Draw the Menubuttons
 			StdDraw.text(text_x_controls, text_y_controls, "Controls");
 			StdDraw.text(text_x_newgame, text_y_newgame, "New Game?");
 			StdDraw.text(text_x_exit, text_y_exit, "Exit");
@@ -118,6 +116,7 @@ public class MenuGui {
 			Game g = new TwoPlayerGameServer(controls, exit, eac, gui, b);
 			g.start();
 		} else if (isMouseOverClient() && StdDraw.mousePressed()) {
+
 			Game g = new TwoPlayerGameClient();
 			g.start();
 		}
@@ -252,6 +251,7 @@ public class MenuGui {
 	 * Draws arrows and labels for the key outlines
 	 * 
 	 */
+	// FIXME: Windows does not display fancy arrow symbols correctly
 	private void drawAwesomeArrowsAndLabels() {
 		StdDraw.text(320, 700, "left");
 		StdDraw.text(400, 700, "←");
@@ -305,7 +305,7 @@ public class MenuGui {
 	}
 
 	/**
-	 * Fancy Hovereffect
+	 * Hover effect
 	 */
 	private void mouseOverClientActions() {
 		StdDraw.setPenColor(StdDraw.BOOK_RED);
@@ -318,7 +318,7 @@ public class MenuGui {
 	}
 
 	/**
-	 * Fancy Hovereffect
+	 * Hover effect
 	 */
 	private void mouseOverServerActions() {
 		StdDraw.setPenColor(StdDraw.BOOK_RED);
