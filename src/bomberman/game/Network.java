@@ -4,10 +4,10 @@ import java.io.IOException;
 import java.net.UnknownHostException;
 import java.util.List;
 
-import messing.around.network.Client;
-import messing.around.network.Reader;
-import messing.around.network.Server;
 import bomberman.game.character.BomberHuman;
+import bomberman.game.network.Client;
+import bomberman.game.network.Reader;
+import bomberman.game.network.Server;
 import bomberman.game.objects.Bomb;
 
 /**

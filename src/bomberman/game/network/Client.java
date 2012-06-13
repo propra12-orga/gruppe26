@@ -1,4 +1,4 @@
-package messing.around.network;
+package bomberman.game.network;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import messing.around.file.FileReader;
+import bomberman.file.FileReader;
 import bomberman.game.Level;
 import bomberman.game.Settings;
 import bomberman.game.character.BomberHuman;

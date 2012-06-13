@@ -1,4 +1,4 @@
-package messing.around.network;
+package bomberman.game.network;
 
 import java.util.List;
 

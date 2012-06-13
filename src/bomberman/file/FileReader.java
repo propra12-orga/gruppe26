@@ -1,4 +1,4 @@
-package messing.around.file;
+package bomberman.file;
 
 import java.io.BufferedReader;
 import java.io.DataInputStream;
@@ -136,7 +136,7 @@ public class FileReader {
 	private List<String> readFile() throws IOException {
 		final List<String> list = new ArrayList<String>();
 		FileInputStream fstream = new FileInputStream(
-				"exploratory/messing/around/file/level.txt");
+				"src/bomberman/file/level.txt");
 
 		// magic java reading stuff
 		final DataInputStream in = new DataInputStream(fstream);
