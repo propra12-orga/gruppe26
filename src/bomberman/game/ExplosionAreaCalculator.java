@@ -27,6 +27,8 @@ public class ExplosionAreaCalculator {
 	final private int RADIUS = 5;
 
 	/**
+	 * Constructor of the ExplosionAreaCalculator:
+	 * 
 	 * @param field
 	 *            - fieldarray with walls
 	 * @param TILESIZE

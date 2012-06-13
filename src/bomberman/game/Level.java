@@ -3,23 +3,43 @@ package bomberman.game;
 import bomberman.game.objects.Exit;
 import bomberman.gui.GameGui;
 
+/**
+ * 
+ *
+ */
 public class Level {
 	final int[][] board;
 	final Exit ex;
 
+	/**
+	 * @param board
+	 * @param ex
+	 */
 	public Level(final int[][] board, final Exit ex) {
 		this.board = board;
 		this.ex = ex;
 	}
 
+	/**
+	 * @return
+	 */
 	public int[][] getBoard() {
 		return board;
 	}
 
+	/**
+	 * @return
+	 */
 	public Exit getEx() {
 		return ex;
 	}
 
+	/**
+	 * Create new Game from Level
+	 * 
+	 * @return Game-Object constructed through the level-file, a new
+	 *         Board-Object
+	 */
 	public Game createGameFromLevel() {
 		final Board b = new Board(board);
 		final int TILESIZE = Settings.TILESIZE;
@@ -30,6 +50,7 @@ public class Level {
 		return new Game(c, ex, eac, new GameGui(board, TILESIZE, eac),
 				new Board(board));
 	}
+
 
 	@Override
 	public String toString() {
