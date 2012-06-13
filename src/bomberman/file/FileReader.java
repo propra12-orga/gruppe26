@@ -13,8 +13,6 @@ import bomberman.game.Level;
 import bomberman.game.Settings;
 import bomberman.game.objects.Exit;
 
-import com.sun.media.sound.InvalidFormatException;
-
 /**
  * Class to read a level from a file, evaluate the validity of a level, parse a
  * valid level file and play parsed level in single player mode.
@@ -83,7 +81,7 @@ public class FileReader {
 		file = stringToList(in);
 		try {
 			checkValid();
-		} catch (InvalidFormatException e) {
+		} catch (IllegalArgumentException e) {
 			this.valid = false;
 		}
 	}
@@ -108,7 +106,7 @@ public class FileReader {
 		if (file != null) {
 			try {
 				checkValid();
-			} catch (InvalidFormatException e) {
+			} catch (IllegalArgumentException e) {
 				this.valid = false;
 			}
 		}
@@ -131,8 +129,7 @@ public class FileReader {
 	 * Parses a valid read file. No guarantees are made if parse() is called on
 	 * an invalid level file.
 	 * 
-	 * @return
-	 *         Level object
+	 * @return Level object
 	 * 
 	 */
 	public Level parse() {
@@ -167,8 +164,7 @@ public class FileReader {
 	 * Reads the content of a file (at the moment
 	 * src/bomberman/file/level.txt").
 	 * 
-	 * @return
-	 *         StringList, if file exists
+	 * @return StringList, if file exists
 	 * @throws IOException
 	 *             if file does not exist
 	 */
@@ -194,10 +190,10 @@ public class FileReader {
 	/**
 	 * Checks validity of a given level saved in the file field.
 	 * 
-	 * @throws InvalidFormatException
+	 * @throws IllegalArgumentException
 	 *             if level format is not valid.
 	 */
-	private void checkValid() throws InvalidFormatException {
+	private void checkValid() {
 		assertHelper(file.size() > 4);
 		assertHelper(file.get(0).equals("# bomferman level file"));
 		assertHelper(file.get(1).equals("spawn 0 0"));
@@ -208,9 +204,9 @@ public class FileReader {
 
 		try {
 			if (Integer.parseInt(arr[1]) < 0 || Integer.parseInt(arr[2]) < 0)
-				throw new InvalidFormatException();
+				throw new IllegalArgumentException();
 		} catch (Exception e) {
-			throw new InvalidFormatException();
+			throw new IllegalArgumentException();
 		}
 
 		assertHelper(file.get(3).equals("board"));
@@ -236,7 +232,7 @@ public class FileReader {
 					assertHelper(m <= 2);
 
 				} catch (Exception e) {
-					throw new InvalidFormatException();
+					throw new IllegalArgumentException();
 				}
 			}
 		}
@@ -265,12 +261,12 @@ public class FileReader {
 	 * 
 	 * @param in
 	 *            expression
-	 * @throws InvalidFormatException
+	 * @throws IllegalArgumentException
 	 *             if expression is false
 	 */
-	private void assertHelper(final boolean in) throws InvalidFormatException {
+	private void assertHelper(final boolean in) throws IllegalArgumentException {
 		if (!in)
-			throw new InvalidFormatException();
+			throw new IllegalArgumentException();
 	}
 
 	/**
@@ -278,8 +274,7 @@ public class FileReader {
 	 * 
 	 * @param in
 	 *            String containing a level.
-	 * @return
-	 *         StringList split on new lines.
+	 * @return StringList split on new lines.
 	 */
 	public List<String> stringToList(final String in) {
 		String[] arr = in.split("\n");
