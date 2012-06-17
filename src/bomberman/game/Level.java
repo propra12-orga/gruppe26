@@ -5,15 +5,20 @@ import bomberman.gui.GameGui;
 
 /**
  * 
- *
+ * Level class can construct a new level out of a bomferman levelfile
+ * 
  */
 public class Level {
 	final int[][] board;
 	final Exit ex;
 
 	/**
+	 * Constructor for a level
+	 * 
 	 * @param board
+	 *            - board of the level
 	 * @param ex
+	 *            - exit f the level
 	 */
 	public Level(final int[][] board, final Exit ex) {
 		this.board = board;
@@ -21,14 +26,18 @@ public class Level {
 	}
 
 	/**
-	 * @return
+	 * gets a board-object of the new level
+	 * 
+	 * @return board object
 	 */
 	public int[][] getBoard() {
 		return board;
 	}
 
 	/**
-	 * @return
+	 * get exit of the constructed level
+	 * 
+	 * @return exit of level
 	 */
 	public Exit getEx() {
 		return ex;

@@ -1,8 +1,11 @@
 package bomberman.game;
 
 /**
+ * Boardclass
  * 
- *
+ * contains constructors for creating a board out of an array or two int values
+ * (i.e height an width)
+ * 
  */
 public class Board {
 
@@ -23,6 +26,7 @@ public class Board {
 	}
 
 	/**
+	 * Constructs a board out of given height and width
 	 * 
 	 * @param height
 	 *            - height of board(tiles)

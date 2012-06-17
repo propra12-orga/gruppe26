@@ -11,7 +11,7 @@ import bomberman.game.network.Server;
 import bomberman.game.objects.Bomb;
 
 /**
- * Fancy Networkstuff
+ * 
  * 
  */
 public class Network {

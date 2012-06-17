@@ -27,7 +27,7 @@ public class ExplosionAreaCalculator {
 	final private int RADIUS = 5;
 
 	/**
-	 * Constructor of the ExplosionAreaCalculator:
+	 * 
 	 * 
 	 * @param field
 	 *            - fieldarray with walls
@@ -78,12 +78,14 @@ public class ExplosionAreaCalculator {
 	}
 
 	/**
+	 * Checks whether X,Y is in Explosionarea
+	 * 
 	 * @param b
 	 *            - exploding bomb
 	 * @param X
-	 *            - X-Coordinate of the bomb
+	 *            - X-Coordinate to check
 	 * @param Y
-	 *            - Y-Coordinate of the bomb
+	 *            - Y-Coordinate to check
 	 * @return true or false
 	 */
 	public boolean isInExplosionArea(Bomb b, final int X, final int Y) {
@@ -120,6 +122,8 @@ public class ExplosionAreaCalculator {
 	}
 
 	/**
+	 * Gets left bounds of explosion of bomb at posx posy
+	 * 
 	 * @param posX
 	 *            - xposition of bomb
 	 * @param posY
@@ -134,6 +138,8 @@ public class ExplosionAreaCalculator {
 	}
 
 	/**
+	 * Gets right bounds of explosion of bomb at posx posy
+	 * 
 	 * @param posX
 	 *            - xposition of bomb
 	 * @param posY
@@ -148,6 +154,8 @@ public class ExplosionAreaCalculator {
 	}
 
 	/**
+	 * Gets upper bounds of explosion of bomb at posx posy
+	 * 
 	 * @param posX
 	 *            - xposition of bomb
 	 * @param posY
@@ -162,6 +170,8 @@ public class ExplosionAreaCalculator {
 	}
 
 	/**
+	 * Gets lower bounds of explosion of bomb at posx posy
+	 * 
 	 * @param posX
 	 *            - xposition of bomb
 	 * @param posY
