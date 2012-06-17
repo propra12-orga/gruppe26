@@ -6,10 +6,20 @@ import java.net.UnknownHostException;
 import bomberman.game.character.BomberHuman;
 import bomberman.gui.GameGui;
 
+/**
+ * 
+ *
+ */
 public class TwoPlayerGameClient extends Game {
 
 	Network nw;
 
+	/**
+	 * Constructs a two-player gameclient
+	 * 
+	 * @throws UnknownHostException
+	 * @throws IOException
+	 */
 	public TwoPlayerGameClient() throws UnknownHostException, IOException {
 		super();
 		nw = new Network(false, null);
@@ -24,6 +34,11 @@ public class TwoPlayerGameClient extends Game {
 		bman.add(new BomberHuman(25, 25, nw, false));
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see bomberman.game.Game#loop()
+	 */
 	@Override
 	protected void loop() {
 		while (alive && !won) {

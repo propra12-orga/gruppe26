@@ -12,6 +12,7 @@ import bomberman.game.objects.Bomb;
 
 /**
  * 
+ * Controls Networkplay
  * 
  */
 public class Network {
@@ -19,6 +20,8 @@ public class Network {
 	Reader r;
 
 	/**
+	 * Constructs Server and Client.
+	 * 
 	 * @param server
 	 * @throws UnknownHostException
 	 * @throws IOException
