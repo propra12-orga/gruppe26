@@ -16,4 +16,9 @@ public class Settings {
 
 	final public static int TIMERCONSTANT = 300;
 	final public static int TILESIZE = 50;
+
+	public final static int collisionRightOffset = 10;
+	public final static int collisionLeftOffset = -10;
+	public final static int collisionTopOffset = 5;
+	public final static int collisionBottomOffset = -5;
 }

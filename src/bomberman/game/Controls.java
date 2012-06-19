@@ -81,17 +81,23 @@ public class Controls {
 		// Checkt anhand von 4 Punkten von Bomferman, ob sich dieser bewegen
 		// kann
 		// 4 Punkte...
-		final int arrayPosXP = getArrayPos(posX + 10);
-		final int arrayPosYP = getArrayPos(posY + 5);
-		final int arrayPosXN = getArrayPos(posX - 10);
-		final int arrayPosYN = getArrayPos(posY - 5);
+
+		final int arrayPosXP = getArrayPos(posX + Settings.collisionRightOffset);
+		final int arrayPosYP = getArrayPos(posY + Settings.collisionTopOffset);
+		final int arrayPosXN = getArrayPos(posX + Settings.collisionLeftOffset);
+		final int arrayPosYN = getArrayPos(posY
+				+ Settings.collisionBottomOffset);
 		// Kollisionssystem: Aufgrund von haesslichen Bugs noch eine kleine
 		// Korrektur
 		// Verhindert, dass unser Bomferman in Ecken stecken bleibt
-		final int arrayPosXP_EPS = getArrayPos(posX + 10 + eps);
-		final int arrayPosYP_EPS = getArrayPos(posY + 5 + eps);
-		final int arrayPosXN_EPS = getArrayPos(posX - 10 - eps);
-		final int arrayPosYN_EPS = getArrayPos(posY - 5 - eps);
+		final int arrayPosXP_EPS = getArrayPos(posX
+				+ Settings.collisionRightOffset + eps);
+		final int arrayPosYP_EPS = getArrayPos(posY
+				+ Settings.collisionTopOffset + eps);
+		final int arrayPosXN_EPS = getArrayPos(posX
+				+ Settings.collisionLeftOffset - eps);
+		final int arrayPosYN_EPS = getArrayPos(posY
+				+ Settings.collisionBottomOffset - eps);
 		// Wenn Bomferman ausserhalb der Grenzen ist: false zurueckgeben
 		if (arrayPosXN < 0 || arrayPosYN < 0 || arrayPosXP >= width
 				|| arrayPosYP >= height)
