@@ -13,38 +13,6 @@ import bomberman.game.character.BomberHuman;
 import bomberman.game.objects.Bomb;
 
 public class Server implements Reader {
-	public static void main(final String[] args) throws IOException {
-		ServerSocket server = new ServerSocket(9001);
-
-		Socket client = server.accept();
-		final Scanner in;
-		try {
-			in = new Scanner(client.getInputStream());
-			PrintWriter out = new PrintWriter(client.getOutputStream());
-
-			while (in.hasNext()) {
-				if (!in.hasNext()) {
-					continue;
-				}
-
-				final String line = in.nextLine();
-				if (line.equals("hello")) {
-					out.println("good day");
-					out.flush();
-					System.out
-							.println("client said hello, I think he likes me");
-				} else {
-					out.println("unknown");
-					out.flush();
-				}
-
-			}
-		} catch (IOException e) {
-
-		}
-
-	}
-
 	final Scanner in;
 	final PrintWriter out;
 
