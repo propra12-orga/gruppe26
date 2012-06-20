@@ -7,6 +7,10 @@ import bomberman.game.character.BomberHuman;
 import bomberman.game.objects.Bomb;
 import bomberman.game.objects.Exit;
 
+/**
+ * @author Jan
+ * 
+ */
 public class GameGui {
 
 	private final int TILESIZE;
@@ -15,6 +19,16 @@ public class GameGui {
 	private final int height;
 	private final ExplosionAreaCalculator eac;
 
+	/**
+	 * Constructor of the GameGUI initializes a given field with given tilesizes
+	 * 
+	 * @param field
+	 *            - [int] fieldarray
+	 * @param TILESIZE
+	 *            - [int] size of tiles
+	 * @param eac
+	 *            - explosionareacalculator
+	 */
 	public GameGui(final int[][] field, final int TILESIZE,
 			final ExplosionAreaCalculator eac) {
 		this.field = field;
@@ -24,6 +38,9 @@ public class GameGui {
 		this.eac = eac;
 	}
 
+	/**
+	 * Draw Walls
+	 */
 	public void drawWalls() {
 		for (int i = 0; i < width; i++) {
 			for (int j = 0; j < height; j++) {
@@ -40,6 +57,9 @@ public class GameGui {
 		}
 	}
 
+	/**
+	 * Draw Floor
+	 */
 	public void drawFloor() {
 		StdDraw.clear();
 		for (int i = 0; i < width; i++) {
@@ -54,11 +74,21 @@ public class GameGui {
 		}
 	}
 
+	/**
+	 * draws Bomferman
+	 * 
+	 * @param bman
+	 */
 	public void drawBomber(final BomberHuman bman) {
 		StdDraw.picture(bman.getPosX(), bman.getPosY(),
 				"graphics/bomberman.png");
 	}
 
+	/**
+	 * draw bombs
+	 * 
+	 * @param bombs
+	 */
 	public void drawBombs(final List<Bomb> bombs) {
 		for (Bomb b : bombs) {
 			if (b.isCurrentlyExploding()) {
@@ -72,6 +102,12 @@ public class GameGui {
 		}
 	}
 
+	/**
+	 * Draw explosions of bomb b
+	 * 
+	 * @param b
+	 *            - bomb
+	 */
 	public void drawExplosion(final Bomb b) {
 		final int posX = b.getPosX();
 		final int posY = b.getPosY();
@@ -143,12 +179,25 @@ public class GameGui {
 		StdDraw.setPenColor(StdDraw.BLACK);
 	}
 
+	/**
+	 * initializes draw-enviroment (i.e sets the scale and canvassize)
+	 */
 	public void initialize() {
 		StdDraw.setCanvasSize(width * TILESIZE, height * TILESIZE);
 		StdDraw.setXscale(0, width * TILESIZE);
 		StdDraw.setYscale(0, height * TILESIZE);
 	}
 
+	/**
+	 * Main draw-method, draw bombs, bomfermans and exit
+	 * 
+	 * @param bombs
+	 *            - list of bombs to be drawn
+	 * @param bmans
+	 *            - list of bomfermans to be drawn
+	 * @param exit
+	 *            - exit to be drawn
+	 */
 	public void draw(final List<Bomb> bombs, final List<BomberHuman> bmans,
 			final Exit exit) {
 		drawFloor();
@@ -162,6 +211,9 @@ public class GameGui {
 		StdDraw.show();
 	}
 
+	/**
+	 * Show "BOMF!" Message at loss
+	 */
 	public void lost() {
 		StdDraw.clear();
 		StdDraw.text(width * TILESIZE / 2, height * TILESIZE / 2, "BOMF!");
@@ -174,6 +226,12 @@ public class GameGui {
 		}
 	}
 
+	/**
+	 * Draws the exit
+	 * 
+	 * @param exit
+	 *            - exit-object containing position and size of it
+	 */
 	private void drawExit(final Exit exit) {
 		StdDraw.setPenColor(StdDraw.GREEN);
 		StdDraw.filledSquare(exit.getArrayPosX() * TILESIZE + TILESIZE / 2,
@@ -181,6 +239,9 @@ public class GameGui {
 		StdDraw.setPenColor(StdDraw.BLACK);
 	}
 
+	/**
+	 * Show "Victory" Message
+	 */
 	public void won() {
 		StdDraw.setPenColor(StdDraw.GREEN);
 		StdDraw.text(width * TILESIZE / 2, height * TILESIZE / 2, "VICTORY");

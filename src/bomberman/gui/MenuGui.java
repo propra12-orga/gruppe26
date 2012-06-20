@@ -21,7 +21,7 @@ import bomberman.game.objects.Exit;
  */
 public class MenuGui {
 
-	/**
+	/*
 	 * Useless Comments my ass... Variables:
 	 * 
 	 * size of exit text (x and y) size of "Newgame?"-text
