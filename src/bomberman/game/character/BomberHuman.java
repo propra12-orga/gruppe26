@@ -21,6 +21,7 @@ public class BomberHuman {
 	private String bomb = "bomb 0";
 
 	/**
+<<<<<<< HEAD
 	 * Konstruktor fuer den Einzelspielermodus.
 	 * 
 	 * @param human
@@ -29,6 +30,16 @@ public class BomberHuman {
 	 *            Startposition auf der X-Achse (> Kollisionsbox nach links).
 	 * @param posY
 	 *            Startposition auf der Y-Achse (> Kollisionsbox nach unten).
+=======
+	 * Constructs the local Bomferman at posX posY (Singleplayer)
+	 * 
+	 * @param human
+	 *            - True: Controlled by Human Bomferman
+	 * @param posX
+	 *            - XPosition of Bomferman
+	 * @param posY
+	 *            - YPosition of Bomferman
+>>>>>>> j to the ava d to the oc
 	 */
 	public BomberHuman(final boolean human, final int posX, final int posY) {
 		if (posX <= Math.abs(Settings.collisionLeftOffset)
@@ -41,12 +52,21 @@ public class BomberHuman {
 	}
 
 	/**
+<<<<<<< HEAD
 	 * Konstruktor fuer den Mehrspielermodus!
 	 * 
 	 * @param posX
 	 *            Startposition auf der X-Achse (> Kollisionsbox nach links).
 	 * @param posY
 	 *            Startposition auf der Y-Achse (> Kollisionsbox nach unten).
+=======
+	 * Constructs the local Bomferman at posX posY (Network-Multiplayer)
+	 * 
+	 * @param posX
+	 *            - XPosition of Bomferman
+	 * @param posY
+	 *            - YPosition of Bomferman
+>>>>>>> j to the ava d to the oc
 	 * @param nw
 	 *            Network Objekt, ueber das Informationen ausgetauscht werden.
 	 * @param server
@@ -86,22 +106,35 @@ public class BomberHuman {
 	}
 
 	/**
+<<<<<<< HEAD
 	 * Bekommt die Geschwindigkeit des Bomferman angegeben.
 	 * 
 	 * @return
 	 *         Gibt die Geschwindigkeit des Bomferman zurueck.
+=======
+	 * get speed of bomferman
+	 * 
+	 * @return [int] speed
+>>>>>>> j to the ava d to the oc
 	 */
 	public int getSpeed() {
 		return speed;
 	}
 
 	/**
+<<<<<<< HEAD
 	 * Liest fuer den Mitspieler die neue Position ein.
 	 * network only
 	 * 
 	 * @param bombs
 	 *            aktualisiert die Liste der Bomben im Spiel, falls eine Bombe
 	 *            vom Gegner gelegt wurde.
+=======
+	 * get Moves of Networkplayer
+	 * 
+	 * @param bombs
+	 *            - list containing the bombs
+>>>>>>> j to the ava d to the oc
 	 */
 
 	public void getNetworkMovement(final List<Bomb> bombs) {
@@ -124,55 +157,83 @@ public class BomberHuman {
 	}
 
 	/**
+<<<<<<< HEAD
 	 * Gibt die x-Koordinate des Bomferman zurueck.
 	 * 
 	 * @return
 	 *         Bomfermans x-Koordinate.
+=======
+	 * @return [int]posX
+>>>>>>> j to the ava d to the oc
 	 */
 	public int getPosX() {
 		return posX;
 	}
 
 	/**
+<<<<<<< HEAD
 	 * Gibt die y-Koordinate des Bomferman zurueck.
 	 * 
 	 * @return
 	 *         Bomfermans y-Koordinate
+=======
+	 * @return [int]posY
+>>>>>>> j to the ava d to the oc
 	 */
 	public int getPosY() {
 		return posY;
 	}
 
 	/**
+<<<<<<< HEAD
 	 * Aendert die x-Koordinate bei Bewegung nach rechts.
+=======
+	 * move right (higher posY by speed)
+>>>>>>> j to the ava d to the oc
 	 */
 	public void moveRight() {
 		posX += speed;
 	}
 
 	/**
+<<<<<<< HEAD
 	 * Aendert die x-Koordinate bei Bewegung nach links.
+=======
+	 * move left(lower posY by speed)
+>>>>>>> j to the ava d to the oc
 	 */
 	public void moveLeft() {
 		posX -= speed;
 	}
 
 	/**
+<<<<<<< HEAD
 	 * Aendert die y-Koordinate bei Bewegung nach oben.
+=======
+	 * move up (higher posY by speed)
+>>>>>>> j to the ava d to the oc
 	 */
 	public void moveUp() {
 		posY += speed;
 	}
 
 	/**
+<<<<<<< HEAD
 	 * Aendert die y-Koordinate bei Bewegung nach unten.
+=======
+	 * move down (lower posY by speed)
+>>>>>>> j to the ava d to the oc
 	 */
 	public void moveDown() {
 		posY -= speed;
 	}
 
 	/**
+<<<<<<< HEAD
 	 * Horizontale Bewegung
+=======
+	 * move other character by offset
+>>>>>>> j to the ava d to the oc
 	 * 
 	 * @param offset
 	 *            Aenderung der x-Koordinate.
@@ -193,10 +254,14 @@ public class BomberHuman {
 	}
 
 	/**
+<<<<<<< HEAD
 	 * wird derzeit nicht gebraucht
 	 * 
 	 * @return
 	 *         human field
+=======
+	 * @return whether Bomferman is controlled by Human (true or false)
+>>>>>>> j to the ava d to the oc
 	 */
 	@Deprecated
 	public boolean isHuman() {
@@ -204,24 +269,32 @@ public class BomberHuman {
 	}
 
 	/**
+<<<<<<< HEAD
 	 * Uebergibt in einen String die neuen x- und y-Koordinaten des eigenen
 	 * Bomfermans.
 	 * network only
 	 * 
 	 * @return
 	 *         Bomfermans Bewegung
+=======
+	 * @return String with moves (to be read through network)
+>>>>>>> j to the ava d to the oc
 	 */
 	public String getMove() {
 		return move;
 	}
 
 	/**
+<<<<<<< HEAD
 	 * Uebergibt in einen String, ob eine Bombe gelegt wurde, oder nicht.
 	 * network only
 	 * 
 	 * @return
 	 *         "bomb 0", wenn keine Bombe gelegt wurde, "bomb 1", wenn eine
 	 *         gelegt wurde.
+=======
+	 * @return String of bombs(to be read through network)
+>>>>>>> j to the ava d to the oc
 	 */
 	public String getBomb() {
 		return bomb;
@@ -232,7 +305,11 @@ public class BomberHuman {
 	 * network only
 	 * 
 	 * @param posX
+<<<<<<< HEAD
 	 *            x-Koordinate des Gegenspielers.
+=======
+	 *            - XPosition of Bomferman
+>>>>>>> j to the ava d to the oc
 	 */
 	public void setPosX(final int posX) {
 		this.posX = posX;
@@ -243,7 +320,11 @@ public class BomberHuman {
 	 * network only
 	 * 
 	 * @param posY
+<<<<<<< HEAD
 	 *            y-Koordinate des Gegenspielers.
+=======
+	 *            - YPosition of Bomferman
+>>>>>>> j to the ava d to the oc
 	 */
 	public void setPosY(final int posY) {
 		this.posY = posY;
