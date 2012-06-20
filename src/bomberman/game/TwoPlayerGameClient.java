@@ -7,8 +7,8 @@ import bomberman.game.character.BomberHuman;
 import bomberman.gui.GameGui;
 
 /**
+ * Two Player GameClient, inherits from {@link #Game}
  * 
- *
  */
 public class TwoPlayerGameClient extends Game {
 
