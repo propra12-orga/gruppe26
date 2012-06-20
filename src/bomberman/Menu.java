@@ -50,7 +50,7 @@ public class Menu {
 		final ExplosionAreaCalculator eac = new ExplosionAreaCalculator(
 				b.getField(), TILESIZE);
 		final GameGui gui = new GameGui(b.getField(), TILESIZE, eac);
-		final Exit exit = new Exit(21, 10, TILESIZE);
+		final Exit exit = new Exit(9, 10, TILESIZE);
 		final Controls controls = new Controls(b, TILESIZE);
 
 		final Game g = new Game(controls, exit, eac, gui, b);

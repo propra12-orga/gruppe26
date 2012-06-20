@@ -45,13 +45,11 @@ public class GameGui {
 		for (int i = 0; i < width; i++) {
 			for (int j = 0; j < height; j++) {
 				if (field[j][i] == 1) {
-					StdDraw.filledSquare(i * TILESIZE + TILESIZE / 2, j
-							* TILESIZE + TILESIZE / 2, TILESIZE / 2);
+					StdDraw.picture(i * TILESIZE + TILESIZE / 2, j * TILESIZE
+							+ TILESIZE / 2, "graphics/solid_wall.png");
 				} else if (field[j][i] == 2) {
-					StdDraw.setPenColor(StdDraw.PINK);
-					StdDraw.filledSquare(i * TILESIZE + TILESIZE / 2, j
-							* TILESIZE + TILESIZE / 2, TILESIZE / 2);
-					StdDraw.setPenColor(StdDraw.BLACK);
+					StdDraw.picture(i * TILESIZE + TILESIZE / 2, j * TILESIZE
+							+ TILESIZE / 2, "graphics/destwall2.png");
 				}
 			}
 		}
@@ -64,12 +62,10 @@ public class GameGui {
 		StdDraw.clear();
 		for (int i = 0; i < width; i++) {
 			for (int j = 0; j < height; j++) {
-				if (field[j][i] == 0) {
-					StdDraw.setPenColor(StdDraw.LIGHT_GRAY);
-					StdDraw.filledSquare(i * TILESIZE + TILESIZE / 2, j
-							* TILESIZE + TILESIZE / 2, TILESIZE / 2);
-					StdDraw.setPenColor(StdDraw.BLACK);
-				}
+				// if (field[j][i] == 0) {
+				StdDraw.picture(i * TILESIZE + TILESIZE / 2, j * TILESIZE
+						+ TILESIZE / 2, "graphics/floor2.png");
+				// }
 			}
 		}
 	}
@@ -79,9 +75,12 @@ public class GameGui {
 	 * 
 	 * @param bman
 	 */
-	public void drawBomber(final BomberHuman bman) {
-		StdDraw.picture(bman.getPosX(), bman.getPosY(),
+	public void drawBomber(final List<BomberHuman> bman) {
+		StdDraw.picture(bman.get(0).getPosX(), bman.get(0).getPosY(),
 				"graphics/bomberman.png");
+		if (bman.size() > 1)
+			StdDraw.picture(bman.get(1).getPosX(), bman.get(1).getPosY(),
+					"graphics/bomferman.png");
 	}
 
 	/**
@@ -203,9 +202,7 @@ public class GameGui {
 		drawFloor();
 		drawExit(exit);
 		drawWalls();
-		for (BomberHuman bomberHuman : bmans) {
-			drawBomber(bomberHuman);
-		}
+		drawBomber(bmans);
 
 		drawBombs(bombs);
 		StdDraw.show();
@@ -233,10 +230,9 @@ public class GameGui {
 	 *            - exit-object containing position and size of it
 	 */
 	private void drawExit(final Exit exit) {
-		StdDraw.setPenColor(StdDraw.GREEN);
-		StdDraw.filledSquare(exit.getArrayPosX() * TILESIZE + TILESIZE / 2,
-				exit.getArrayPosY() * TILESIZE + TILESIZE / 2, TILESIZE / 2);
-		StdDraw.setPenColor(StdDraw.BLACK);
+		StdDraw.picture(exit.getArrayPosX() * TILESIZE + TILESIZE / 2,
+				exit.getArrayPosY() * TILESIZE + TILESIZE / 2,
+				"graphics/exit.png");
 	}
 
 	/**
