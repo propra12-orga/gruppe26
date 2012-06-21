@@ -4,12 +4,10 @@ import bomberman.game.objects.Bomb
 import bomberman.game.objects.Exit
 import bomberman.gui.GameGui
 
-import spock.lang.Ignore;
 import spock.lang.Specification
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
-@Ignore
 class GameTest extends Specification {
 
 	def Game g
@@ -26,7 +24,7 @@ class GameTest extends Specification {
 		def c = mock(Controls.class)
 		def gui = mock(GameGui.class)
 
-		g = new Game(c, exit, eac, gui)
+		g = new Game(c, exit, eac, gui, b)
 	}
 
 	def "the game object is constructed properly"() {
@@ -42,8 +40,6 @@ class GameTest extends Specification {
 
 	def "bombs explode in chain reaction"() {
 		when:
-		// let's move bomberman away first to avoid having a gui
-		g.bman.posX = 500;
 		def a = new Bomb(10, 10, 1)
 		def b = new Bomb(10, 10, 5000)
 		a.tick()
@@ -95,8 +91,8 @@ class GameTest extends Specification {
 
 	def "player is able to win the game"() {
 		when:
-		when(exit.getPosX()).thenReturn(g.bman.getPosX() - 10)
-		when(exit.getPosY()).thenReturn(g.bman.getPosY() - 10)
+		when(exit.getPosX()).thenReturn(g.bman.get(0).getPosX() - 10)
+		when(exit.getPosY()).thenReturn(g.bman.get(0).getPosY() - 10)
 		g.checkWin()
 
 		then:
@@ -105,8 +101,8 @@ class GameTest extends Specification {
 
 	def "player does not win if bman is too far away horizontally"() {
 		when:
-		when(exit.getPosX()).thenReturn(g.bman.getPosX() - 21)
-		when(exit.getPosY()).thenReturn(g.bman.getPosY())
+		when(exit.getPosX()).thenReturn(g.bman.get(0).getPosX() - 21)
+		when(exit.getPosY()).thenReturn(g.bman.get(0).getPosY())
 		g.checkWin()
 
 		then:
@@ -115,8 +111,8 @@ class GameTest extends Specification {
 
 	def "player does not win if bman is too far away horizontally 2"() {
 		when:
-		when(exit.getPosX()).thenReturn(g.bman.getPosX() + 21)
-		when(exit.getPosY()).thenReturn(g.bman.getPosY())
+		when(exit.getPosX()).thenReturn(g.bman.get(0).getPosX() + 21)
+		when(exit.getPosY()).thenReturn(g.bman.get(0).getPosY())
 		g.checkWin()
 
 		then:
@@ -125,8 +121,8 @@ class GameTest extends Specification {
 
 	def "player does not win if bman is too far away vertically"() {
 		when:
-		when(exit.getPosX()).thenReturn(g.bman.getPosX())
-		when(exit.getPosY()).thenReturn(g.bman.getPosY() + 21)
+		when(exit.getPosX()).thenReturn(g.bman.get(0).getPosX())
+		when(exit.getPosY()).thenReturn(g.bman.get(0).getPosY() + 21)
 		g.checkWin()
 
 		then:
@@ -135,8 +131,8 @@ class GameTest extends Specification {
 
 	def "player does not win if bman is too far away vertically 2"() {
 		when:
-		when(exit.getPosX()).thenReturn(g.bman.getPosX())
-		when(exit.getPosY()).thenReturn(g.bman.getPosY() - 21)
+		when(exit.getPosX()).thenReturn(g.bman.get(0).getPosX())
+		when(exit.getPosY()).thenReturn(g.bman.get(0).getPosY() - 21)
 		g.checkWin()
 
 		then:
@@ -145,8 +141,8 @@ class GameTest extends Specification {
 
 	def "player wins if bman stand exactly on exit"() {
 		when:
-		when(exit.getPosX()).thenReturn(g.bman.getPosX())
-		when(exit.getPosY()).thenReturn(g.bman.getPosY())
+		when(exit.getPosX()).thenReturn(g.bman.get(0).getPosX())
+		when(exit.getPosY()).thenReturn(g.bman.get(0).getPosY())
 		g.checkWin()
 
 		then:
@@ -155,8 +151,8 @@ class GameTest extends Specification {
 
 	def "player wins on edge case"() {
 		when:
-		when(exit.getPosX()).thenReturn(g.bman.getPosX() + 19)
-		when(exit.getPosY()).thenReturn(g.bman.getPosY() - 19)
+		when(exit.getPosX()).thenReturn(g.bman.get(0).getPosX() + 19)
+		when(exit.getPosY()).thenReturn(g.bman.get(0).getPosY() - 19)
 		g.checkWin()
 
 		then:
@@ -165,8 +161,8 @@ class GameTest extends Specification {
 
 	def "player does not win on edge case"() {
 		when:
-		when(exit.getPosX()).thenReturn(g.bman.getPosX() + 20)
-		when(exit.getPosY()).thenReturn(g.bman.getPosY() - 19)
+		when(exit.getPosX()).thenReturn(g.bman.get(0).getPosX() + 20)
+		when(exit.getPosY()).thenReturn(g.bman.get(0).getPosY() - 19)
 		g.checkWin()
 
 		then:
@@ -177,8 +173,8 @@ class GameTest extends Specification {
 		when:
 		g.enemies.add(mock(Object.class))
 		g.checkWin()
-		when(exit.getPosX()).thenReturn(g.bman.getPosX())
-		when(exit.getPosY()).thenReturn(g.bman.getPosY())
+		when(exit.getPosX()).thenReturn(g.bman.get(0).getPosX())
+		when(exit.getPosY()).thenReturn(g.bman.get(0).getPosY())
 
 		then:
 		g.enemies.size() == 1
