@@ -55,7 +55,8 @@ public class Game {
 		this.controls = controls;
 	}
 
-	protected Game(Level l, Controls c, ExplosionAreaCalculator eac, GameGui gui) {
+	protected Game(final Level l, final Controls c,
+			final ExplosionAreaCalculator eac, final GameGui gui) {
 		this.controls = c;
 		this.eac = eac;
 		this.gui = gui;

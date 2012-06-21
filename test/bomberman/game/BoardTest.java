@@ -2,7 +2,6 @@ package bomberman.game;
 
 import static org.junit.Assert.*;
 
-import org.junit.Ignore;
 import org.junit.Test;
 
 public class BoardTest {
@@ -21,25 +20,28 @@ public class BoardTest {
 		assertEquals(17, board.getWidth());
 	}
 
-	@Ignore
 	@Test
 	public void testInitializeField() {
+		// Warning: randomization
 		final Board board = new Board(7, 7);
-		int[][] expected = { { 0, 0, 0, 0, 0, 0, 0 }, { 0, 1, 0, 1, 0, 1, 0 },
-				{ 0, 0, 0, 0, 0, 0, 0 }, { 0, 1, 0, 1, 0, 1, 0 },
-				{ 0, 0, 0, 0, 0, 0, 0 }, { 0, 1, 0, 1, 0, 1, 0 },
-				{ 0, 0, 0, 0, 0, 0, 0 } };
-		assertArrayEquals(expected, board.getField());
+		for (int i = 0; i < board.getHeight(); i++) {
+			for (int j = 0; j < board.getWidth(); j++) {
+				if (i % 2 == 1 && j % 2 == 1) {
+					assertTrue(board.getField()[i][j] == 1);
+				} else {
+					assertTrue(board.getField()[i][j] == 0
+							|| board.getField()[i][j] == 2);
+				}
+			}
+		}
+		assertEquals(board.getField()[0][0], 0);
+		assertEquals(board.getField()[1][0], 0);
+		assertEquals(board.getField()[0][1], 0);
 	}
 
-	@Ignore
 	@Test
 	public void testCorrectDimensionsOfBoard() {
 		final Board board = new Board(5, 7);
-		int[][] expected = { { 0, 0, 0, 0, 0, 0, 0 }, { 0, 1, 0, 1, 0, 1, 0 },
-				{ 0, 0, 0, 0, 0, 0, 0 }, { 0, 1, 0, 1, 0, 1, 0 },
-				{ 0, 0, 0, 0, 0, 0, 0 } };
-		assertArrayEquals(expected, board.getField());
 		assertEquals(board.getHeight(), 5);
 		assertEquals(board.getWidth(), 7);
 	}
