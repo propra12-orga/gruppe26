@@ -50,7 +50,7 @@ public class ExplosionAreaCalculator {
 	 *            bomferman-object
 	 * @return true or false
 	 */
-	public boolean isInExplosionArea(Bomb b, BomberHuman bman) {
+	public boolean isInExplosionArea(final Bomb b, final BomberHuman bman) {
 		final int posX = bman.getPosX();
 		final int posY = bman.getPosY();
 		final int arrPosX = getArrayPos(posX);
@@ -68,7 +68,7 @@ public class ExplosionAreaCalculator {
 	 *            - to be exploded bomb
 	 * @return true or false
 	 */
-	public boolean isInExplosionArea(Bomb b, Bomb c) {
+	public boolean isInExplosionArea(final Bomb b, final Bomb c) {
 		final int posX = c.getPosX();
 		final int posY = c.getPosY();
 		final int arrPosX = getArrayPos(posX);
@@ -88,7 +88,7 @@ public class ExplosionAreaCalculator {
 	 *            - Y-Coordinate to check
 	 * @return true or false
 	 */
-	public boolean isInExplosionArea(Bomb b, final int X, final int Y) {
+	public boolean isInExplosionArea(final Bomb b, final int X, final int Y) {
 
 		final int posX = b.getPosX();
 		final int posY = b.getPosY();
@@ -132,8 +132,9 @@ public class ExplosionAreaCalculator {
 	 */
 	public int getLeftBoundsOfExplosion(final int posX, final int posY) {
 		int i = posX;
-		while (field[posY][i] == 0 && i > 0 && i + RADIUS > posX)
+		while (field[posY][i] == 0 && i > 0 && i + RADIUS > posX) {
 			i--;
+		}
 		return i;
 	}
 
@@ -148,8 +149,9 @@ public class ExplosionAreaCalculator {
 	 */
 	public int getRightBoundsOfExplosion(final int posX, final int posY) {
 		int i = posX;
-		while (field[posY][i] == 0 && i < width - 1 && i < posX + RADIUS)
+		while (field[posY][i] == 0 && i < width - 1 && i < posX + RADIUS) {
 			i++;
+		}
 		return i;
 	}
 
@@ -164,8 +166,9 @@ public class ExplosionAreaCalculator {
 	 */
 	public int getUpperBoundsOfExplosion(final int posX, final int posY) {
 		int i = posY;
-		while (field[i][posX] == 0 && i < height - 1 && i < posY + RADIUS)
+		while (field[i][posX] == 0 && i < height - 1 && i < posY + RADIUS) {
 			i++;
+		}
 		return i;
 	}
 
@@ -180,8 +183,9 @@ public class ExplosionAreaCalculator {
 	 */
 	public int getLowerBoundsOfExplosion(final int posX, final int posY) {
 		int i = posY;
-		while (field[i][posX] == 0 && i > 0 && i + RADIUS > posY)
+		while (field[i][posX] == 0 && i > 0 && i + RADIUS > posY) {
 			i--;
+		}
 		return i;
 	}
 
@@ -198,30 +202,35 @@ public class ExplosionAreaCalculator {
 
 		final int leftBoundsOfExplosion = getLeftBoundsOfExplosion(bombX, bombY);
 		if (leftBoundsOfExplosion >= 0
-				&& bombX - leftBoundsOfExplosion <= RADIUS)
+				&& bombX - leftBoundsOfExplosion <= RADIUS) {
 			walls.add(new Wall(leftBoundsOfExplosion, bombY));
+		}
 
 		final int rightBoundsOfExplosion = getRightBoundsOfExplosion(bombX,
 				bombY);
 		if (rightBoundsOfExplosion < width
-				&& rightBoundsOfExplosion - bombX <= RADIUS)
+				&& rightBoundsOfExplosion - bombX <= RADIUS) {
 			walls.add(new Wall(rightBoundsOfExplosion, bombY));
+		}
 
 		final int upperBoundsOfExplosion = getUpperBoundsOfExplosion(bombX,
 				bombY);
 		if (upperBoundsOfExplosion < height
-				&& upperBoundsOfExplosion - bombY <= RADIUS)
+				&& upperBoundsOfExplosion - bombY <= RADIUS) {
 			walls.add(new Wall(bombX, upperBoundsOfExplosion));
+		}
 
 		final int lowerBoundsOfExplosion = getLowerBoundsOfExplosion(bombX,
 				bombY);
 		if (lowerBoundsOfExplosion >= 0
-				&& bombX - lowerBoundsOfExplosion <= RADIUS)
+				&& bombY - lowerBoundsOfExplosion <= RADIUS) {
 			walls.add(new Wall(bombX, lowerBoundsOfExplosion));
+		}
 
 		for (Wall wall : walls) {
-			if (field[wall.getY()][wall.getX()] == 2)
+			if (field[wall.getY()][wall.getX()] == 2) {
 				field[wall.getY()][wall.getX()] = 0;
+			}
 		}
 	}
 
