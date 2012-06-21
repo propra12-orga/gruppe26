@@ -2,18 +2,21 @@ package bomberman.game;
 
 import static org.junit.Assert.*;
 
-import org.junit.Ignore;
 import org.junit.Test;
 
 import bomberman.game.character.BomberHuman;
 
-@Ignore
 public class ControlsTest {
+	final Board board3 = new Board(new int[][] { { 0, 0, 0 }, { 0, 1, 0 },
+			{ 0, 0, 0 } });
+	final Board board5 = new Board(new int[][] { { 0, 0, 0, 0, 0 },
+			{ 0, 1, 0, 1, 0 }, { 0, 0, 0, 0, 0 }, { 0, 1, 0, 1, 0 },
+			{ 0, 0, 0, 0, 0 } });
 
 	@Test
 	public void testCanMoveFromZeroZero() {
-		final Controls c = new Controls(new Board(3, 3), 50);
-		final BomberHuman b = new BomberHuman(true, 0, 0);
+		final Controls c = new Controls(board3, 50);
+		final BomberHuman b = new BomberHuman(true, 10, 5);
 
 		assertEquals(b.getSpeed(), 1);
 
@@ -25,12 +28,12 @@ public class ControlsTest {
 
 	@Test
 	public void testCanMoveFromABitOffset() {
-		final Controls c = new Controls(new Board(3, 3), 50);
-		final BomberHuman b = new BomberHuman(true, 4, 5);
+		final Controls c = new Controls(board3, 50);
+		final BomberHuman b = new BomberHuman(true, 14, 10);
 
 		// do we really test this method?
-		assertEquals(b.getPosX(), 4);
-		assertEquals(b.getPosY(), 5);
+		assertEquals(b.getPosX(), 14);
+		assertEquals(b.getPosY(), 10);
 		assertEquals(b.getSpeed(), 1);
 
 		assertTrue(c.canMoveThere('s', b));
@@ -41,11 +44,11 @@ public class ControlsTest {
 
 	@Test
 	public void testCanMoveFromABitOffset2() {
-		final Controls c = new Controls(new Board(3, 3), 50);
-		final BomberHuman b = new BomberHuman(true, 3, 3);
+		final Controls c = new Controls(board3, 50);
+		final BomberHuman b = new BomberHuman(true, 13, 8);
 
-		assertEquals(b.getPosX(), 3);
-		assertEquals(b.getPosY(), 3);
+		assertEquals(b.getPosX(), 13);
+		assertEquals(b.getPosY(), 8);
 		b.boostSpeed(3);
 		assertEquals(b.getSpeed(), 4);
 
@@ -57,11 +60,11 @@ public class ControlsTest {
 
 	@Test
 	public void testCanMoveInTopRightCorner() {
-		final Controls c = new Controls(new Board(3, 3), 50);
-		final BomberHuman b = new BomberHuman(true, 149, 149);
+		final Controls c = new Controls(board3, 50);
+		final BomberHuman b = new BomberHuman(true, 139, 144);
 
-		assertEquals(b.getPosX(), 149);
-		assertEquals(b.getPosY(), 149);
+		assertEquals(b.getPosX(), 139);
+		assertEquals(b.getPosY(), 144);
 		b.boostSpeed(3);
 		assertEquals(b.getSpeed(), 4);
 
@@ -73,11 +76,11 @@ public class ControlsTest {
 
 	@Test
 	public void testCanMoveAgainstCollision() {
-		final Controls c = new Controls(new Board(3, 3), 50);
-		final BomberHuman b = new BomberHuman(true, 50, 49);
+		final Controls c = new Controls(board3, 50);
+		final BomberHuman b = new BomberHuman(true, 40, 44);
 
-		assertEquals(b.getPosX(), 50);
-		assertEquals(b.getPosY(), 49);
+		assertEquals(b.getPosX(), 40);
+		assertEquals(b.getPosY(), 44);
 		b.boostSpeed(3);
 		assertEquals(b.getSpeed(), 4);
 
@@ -89,11 +92,11 @@ public class ControlsTest {
 
 	@Test
 	public void testCanMoveAgainstCollisionMidField() {
-		final Controls c = new Controls(new Board(5, 5), 50);
-		final BomberHuman b = new BomberHuman(true, 70, 149);
+		final Controls c = new Controls(board5, 50);
+		final BomberHuman b = new BomberHuman(true, 70, 144);
 
 		assertEquals(b.getPosX(), 70);
-		assertEquals(b.getPosY(), 149);
+		assertEquals(b.getPosY(), 144);
 		b.boostSpeed(3);
 		assertEquals(b.getSpeed(), 4);
 
@@ -105,11 +108,11 @@ public class ControlsTest {
 
 	@Test
 	public void testCanMoveAgainstCollisionMidFieldEdgeCase() {
-		final Controls c = new Controls(new Board(5, 5), 50);
-		final BomberHuman b = new BomberHuman(true, 70, 150);
+		final Controls c = new Controls(board5, 50);
+		final BomberHuman b = new BomberHuman(true, 70, 145);
 
 		assertEquals(b.getPosX(), 70);
-		assertEquals(b.getPosY(), 150);
+		assertEquals(b.getPosY(), 145);
 		b.boostSpeed(3);
 		assertEquals(b.getSpeed(), 4);
 
@@ -121,11 +124,11 @@ public class ControlsTest {
 
 	@Test
 	public void testCanMoveDownwardsAgainstCollisionMidField() {
-		final Controls c = new Controls(new Board(5, 5), 50);
-		final BomberHuman b = new BomberHuman(true, 70, 100);
+		final Controls c = new Controls(board3, 50);
+		final BomberHuman b = new BomberHuman(true, 70, 105);
 
 		assertEquals(b.getPosX(), 70);
-		assertEquals(b.getPosY(), 100);
+		assertEquals(b.getPosY(), 105);
 		b.boostSpeed(3);
 		assertEquals(b.getSpeed(), 4);
 
@@ -137,7 +140,7 @@ public class ControlsTest {
 
 	@Test
 	public void testGetArrayPosNegativeValues() {
-		final Controls c = new Controls(new Board(3, 3), 50);
+		final Controls c = new Controls(board3, 50);
 		assertEquals(c.getArrayPos(-1), -1);
 		assertEquals(c.getArrayPos(-49), -1);
 		assertEquals(c.getArrayPos(-5235346), -1);
@@ -145,13 +148,13 @@ public class ControlsTest {
 
 	@Test
 	public void testGetArrayPosZero() {
-		final Controls c = new Controls(new Board(3, 3), 50);
+		final Controls c = new Controls(board3, 50);
 		assertEquals(c.getArrayPos(0), 0);
 	}
 
 	@Test
 	public void testGetArrayPos() {
-		final Controls c = new Controls(new Board(3, 3), 50);
+		final Controls c = new Controls(board3, 50);
 		assertEquals(c.getArrayPos(49), 0);
 		assertEquals(c.getArrayPos(50), 1);
 		assertEquals(c.getArrayPos(51), 1);
