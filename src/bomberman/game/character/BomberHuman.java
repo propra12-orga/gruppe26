@@ -7,9 +7,8 @@ import bomberman.game.Settings;
 import bomberman.game.objects.Bomb;
 
 /**
- * Human Player Bomferman
- * Bomfermanklasse, welche Methoden fuer Bewegung und Netzwerkanbindung bereit
- * stellt.
+ * Human Player Bomferman Bomfermanklasse, welche Methoden fuer Bewegung und
+ * Netzwerkanbindung bereit stellt.
  */
 public class BomberHuman {
 	private final boolean human;
@@ -31,8 +30,8 @@ public class BomberHuman {
 	 *            Startposition auf der Y-Achse (> Kollisionsbox nach unten).
 	 **/
 	public BomberHuman(final boolean human, final int posX, final int posY) {
-		if (posX <= Math.abs(Settings.collisionLeftOffset)
-				|| posY <= Math.abs(Settings.collisionBottomOffset))
+		if (posX < Math.abs(Settings.collisionLeftOffset)
+				|| posY < Math.abs(Settings.collisionBottomOffset))
 			throw new IllegalArgumentException(
 					"got negative arguments while constructing Bomferhuman");
 		this.human = human;
@@ -62,8 +61,7 @@ public class BomberHuman {
 
 	/**
 	 * Schreibt in das Feld "move" den Netzwerkbefehl, um die neue Position vom
-	 * Bomferman anzugeben.
-	 * network only
+	 * Bomferman anzugeben. network only
 	 */
 	public void addMove() {
 		move = "mv " + posX + " " + posY;
@@ -71,8 +69,7 @@ public class BomberHuman {
 
 	/**
 	 * Schreibt in das Feld "bomb" Netzwerkbefehl die Angabe, ob eine Bombe
-	 * gesetzt wurde, oder nicht.
-	 * network only
+	 * gesetzt wurde, oder nicht. network only
 	 * 
 	 * @param bombDrop
 	 *            Ist wahr, wenn eine Bombe im aktuellen Tick gelegt wurde.
@@ -88,16 +85,14 @@ public class BomberHuman {
 	/**
 	 * Bekommt die Geschwindigkeit des Bomferman angegeben.
 	 * 
-	 * @return
-	 *         Gibt die Geschwindigkeit des Bomferman zurueck.
+	 * @return Gibt die Geschwindigkeit des Bomferman zurueck.
 	 */
 	public int getSpeed() {
 		return speed;
 	}
 
 	/**
-	 * Liest fuer den Mitspieler die neue Position ein.
-	 * network only
+	 * Liest fuer den Mitspieler die neue Position ein. network only
 	 * 
 	 * @param bombs
 	 *            aktualisiert die Liste der Bomben im Spiel, falls eine Bombe
@@ -126,8 +121,7 @@ public class BomberHuman {
 	/**
 	 * Gibt die x-Koordinate des Bomferman zurueck.
 	 * 
-	 * @return
-	 *         Bomfermans x-Koordinate.
+	 * @return Bomfermans x-Koordinate.
 	 */
 	public int getPosX() {
 		return posX;
@@ -136,8 +130,7 @@ public class BomberHuman {
 	/**
 	 * Gibt die y-Koordinate des Bomferman zurueck.
 	 * 
-	 * @return
-	 *         Bomfermans y-Koordinate
+	 * @return Bomfermans y-Koordinate
 	 */
 	public int getPosY() {
 		return posY;
@@ -158,8 +151,8 @@ public class BomberHuman {
 	}
 
 	/**
-	 * Aendert die y-Koordinate bei Bewegung nach oben.
-	 * move up (higher posY by speed)
+	 * Aendert die y-Koordinate bei Bewegung nach oben. move up (higher posY by
+	 * speed)
 	 */
 	public void moveUp() {
 		posY += speed;
@@ -196,8 +189,7 @@ public class BomberHuman {
 	/**
 	 * wird derzeit nicht gebraucht
 	 * 
-	 * @return
-	 *         human field
+	 * @return human field
 	 */
 	@Deprecated
 	public boolean isHuman() {
@@ -206,11 +198,9 @@ public class BomberHuman {
 
 	/**
 	 * Uebergibt in einen String die neuen x- und y-Koordinaten des eigenen
-	 * Bomfermans.
-	 * network only
+	 * Bomfermans. network only
 	 * 
-	 * @return
-	 *         Bomfermans Bewegung
+	 * @return Bomfermans Bewegung
 	 */
 	public String getMove() {
 		return move;
@@ -220,8 +210,7 @@ public class BomberHuman {
 	 * Uebergibt in einen String, ob eine Bombe gelegt wurde, oder nicht.
 	 * network only
 	 * 
-	 * @return
-	 *         "bomb 0", wenn keine Bombe gelegt wurde, "bomb 1", wenn eine
+	 * @return "bomb 0", wenn keine Bombe gelegt wurde, "bomb 1", wenn eine
 	 *         gelegt wurde.
 	 */
 	public String getBomb() {
@@ -229,8 +218,7 @@ public class BomberHuman {
 	}
 
 	/**
-	 * Setter fuer die x-Koordinate des Gegenspielers.
-	 * network only
+	 * Setter fuer die x-Koordinate des Gegenspielers. network only
 	 * 
 	 * @param posX
 	 *            x-Koordinate des Gegenspielers.
@@ -240,8 +228,7 @@ public class BomberHuman {
 	}
 
 	/**
-	 * Setter fuer die y-Koordinate des Gegenspielers.
-	 * network only
+	 * Setter fuer die y-Koordinate des Gegenspielers. network only
 	 * 
 	 * @param posY
 	 *            y-Koordinate des Gegenspielers.
