@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.UnknownHostException;
 
 import bomberman.game.character.BomberHuman;
+import bomberman.game.objects.Bomb;
 import bomberman.game.objects.Exit;
 import bomberman.gui.GameGui;
 
@@ -54,13 +55,37 @@ public class TwoPlayerGameServer extends Game {
 					e.printStackTrace();
 				}
 			}
-			checkWin();
 			nw.write(bman.get(0));
 			controls.doSomethingWithInput(bman.get(0), bombs);
 			bman.get(1).getNetworkMovement(bombs);
 			manageBombs();
+			checkWin();
+
 			gui.draw(bombs, bman, exit);
 			lastTickAt = System.currentTimeMillis();
+		}
+
+		nw.write(bman.get(0));
+
+		if (alive) {
+			gui.won();
+		} else {
+			gui.lost();
+		}
+	}
+
+	@Override
+	protected void checkWin() {
+		if (bman.size() == 1) {
+			won = true;
+		}
+	}
+
+	@Override
+	protected void tryToKillStuff(final Bomb b) {
+		super.tryToKillStuff(b);
+		if (eac.isInExplosionArea(b, bman.get(1))) {
+			bman.remove(1);
 		}
 	}
 }

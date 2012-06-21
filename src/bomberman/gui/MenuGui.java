@@ -59,6 +59,10 @@ public class MenuGui {
 	 * Set up the GUI
 	 */
 	public MenuGui() {
+		setSizeAndScales();
+	}
+
+	private void setSizeAndScales() {
 		StdDraw.setCanvasSize(512, 512); // magic standard constants
 		StdDraw.setXscale(0, 1000);
 		StdDraw.setYscale(0, 1000);
@@ -115,10 +119,11 @@ public class MenuGui {
 			final Controls controls = new Controls(b, TILESIZE);
 			Game g = new TwoPlayerGameServer(controls, exit, eac, gui, b);
 			g.start();
+			setSizeAndScales();
 		} else if (isMouseOverClient() && StdDraw.mousePressed()) {
-
 			Game g = new TwoPlayerGameClient();
 			g.start();
+			setSizeAndScales();
 		}
 
 		return false;

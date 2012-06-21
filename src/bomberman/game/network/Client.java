@@ -25,8 +25,8 @@ public class Client implements Reader {
 	private PrintWriter out;
 
 	/**
-	 * Konstruktor, der versucht, mit localhost:9001 zu verbinden.
-	 * ohne jegliche Garantien bzgl. Funktionalität.
+	 * Konstruktor, der versucht, mit localhost:9001 zu verbinden. ohne jegliche
+	 * Garantien bzgl. Funktionalität.
 	 * 
 	 */
 	public Client() {
@@ -85,8 +85,7 @@ public class Client implements Reader {
 	 * Implementierung, die das (vom Server geschriebene) Level aus dem Netzwerk
 	 * einliest.
 	 * 
-	 * @return
-	 *         Level Objekt, das das Level enthält
+	 * @return Level Objekt, das das Level enthält
 	 * @see bomberman.game.network.Reader#readLevel()
 	 */
 	@Override
@@ -99,8 +98,9 @@ public class Client implements Reader {
 		while (!"poison".equals(tmp)) {
 			if (in.hasNext()) {
 				tmp = in.nextLine();
-				if (!"poison".equals(tmp))
+				if (!"poison".equals(tmp)) {
 					list.add(tmp);
+				}
 			}
 		}
 

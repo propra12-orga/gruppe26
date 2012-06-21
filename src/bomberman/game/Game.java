@@ -98,6 +98,9 @@ public class Game {
 			gui.draw(bombs, bman, exit);
 			lastTickAt = System.currentTimeMillis();
 		}
+		if (!alive) {
+			gui.lost();
+		}
 	}
 
 	protected void manageBombs() {
@@ -139,7 +142,7 @@ public class Game {
 	 * @param b
 	 *            - bomb which tries to kill stuff
 	 */
-	private void tryToKillStuff(final Bomb b) {
+	protected void tryToKillStuff(final Bomb b) {
 		// right now, there's only bomferman. as soon as enemies are
 		// implemented, we should add a list of Characters or something like
 		// that. we will probably need that interface at this point.
@@ -152,7 +155,6 @@ public class Game {
 		if (eac.isInExplosionArea(b, bman.get(0))) {
 			// KILL IT!
 			alive = false;
-			gui.lost();
 		}
 	}
 
