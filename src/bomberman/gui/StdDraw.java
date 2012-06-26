@@ -21,10 +21,8 @@ package bomberman.gui;
  *       it can cause flicker
  *
  *************************************************************************/
-
 import java.awt.BasicStroke;
 import java.awt.Color;
-import java.awt.FileDialog;
 import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics2D;
@@ -47,7 +45,9 @@ import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 import java.awt.image.DirectColorModel;
 import java.awt.image.WritableRaster;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
 import java.util.LinkedList;
@@ -60,6 +60,12 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.KeyStroke;
+
+import bomberman.game.Game;
+import bomberman.game.Settings;
+
+import com.thoughtworks.xstream.XStream;
+import com.thoughtworks.xstream.io.json.JettisonMappedXmlDriver;
 
 /**
  * <i>Standard draw</i>. This class provides a basic capability for creating
@@ -163,6 +169,7 @@ public final class StdDraw implements ActionListener, MouseListener,
 	// keyboard state
 	private static LinkedList<Character> keysTyped = new LinkedList<Character>();
 	public static volatile boolean[] typedKeys = new boolean[200];
+	public static Game reference = null;
 
 	// not instantiable
 	private StdDraw() {
@@ -252,7 +259,9 @@ public final class StdDraw implements ActionListener, MouseListener,
 		JMenuBar menuBar = new JMenuBar();
 		JMenu menu = new JMenu("File");
 		menuBar.add(menu);
-		JMenuItem menuItem1 = new JMenuItem(" Save...   ");
+		JMenuItem menuItem1 = new JMenuItem(" Save   ");
+		if (reference == null)
+			menuItem1.setEnabled(false);
 		menuItem1.addActionListener(std);
 		menuItem1.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, Toolkit
 				.getDefaultToolkit().getMenuShortcutKeyMask()));
@@ -1168,13 +1177,18 @@ public final class StdDraw implements ActionListener, MouseListener,
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		FileDialog chooser = new FileDialog(StdDraw.frame,
-				"Use a .png or .jpg extension", FileDialog.SAVE);
-		chooser.setVisible(true);
-		String filename = chooser.getFile();
-		if (filename != null) {
-			StdDraw.save(chooser.getDirectory() + File.separator
-					+ chooser.getFile());
+		if (reference == null)
+			return;
+		XStream xstream = new XStream(new JettisonMappedXmlDriver());
+		String xml = xstream.toXML(reference);
+
+		try {
+			FileWriter fw = new FileWriter(Settings.saveGamePath);
+			final BufferedWriter bw = new BufferedWriter(fw);
+			bw.write(xml);
+			bw.close();
+		} catch (IOException e1) {
+			System.out.println("could not create file");
 		}
 	}
 

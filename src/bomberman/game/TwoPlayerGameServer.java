@@ -7,6 +7,7 @@ import bomberman.game.character.BomberHuman;
 import bomberman.game.objects.Bomb;
 import bomberman.game.objects.Exit;
 import bomberman.gui.GameGui;
+import bomberman.gui.StdDraw;
 
 public class TwoPlayerGameServer extends Game {
 
@@ -32,6 +33,7 @@ public class TwoPlayerGameServer extends Game {
 			final ExplosionAreaCalculator eac, final GameGui gui, final Board b)
 			throws UnknownHostException, IOException {
 		super(controls, exit, eac, gui, b);
+		StdDraw.reference = null;
 		final Level l = new Level(b.getField(), exit);
 		nw = new Network(true, l.toString());
 		bman.add(new BomberHuman(25, 25, nw, true));
@@ -44,7 +46,7 @@ public class TwoPlayerGameServer extends Game {
 	}
 
 	@Override
-	protected void loop() {
+	public void loop() {
 		while (alive && !won) {
 			final long diff = System.currentTimeMillis() - lastTickAt;
 			if (diff < 5) {

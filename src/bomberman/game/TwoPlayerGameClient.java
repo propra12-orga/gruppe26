@@ -41,7 +41,7 @@ public class TwoPlayerGameClient extends Game {
 	 * @see bomberman.game.Game#loop()
 	 */
 	@Override
-	protected void loop() {
+	public void loop() {
 		while (alive && !won) {
 			final long diff = System.currentTimeMillis() - lastTickAt;
 			if (diff < 5) {

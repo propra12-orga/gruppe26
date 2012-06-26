@@ -7,6 +7,7 @@ import bomberman.game.character.BomberHuman;
 import bomberman.game.objects.Bomb;
 import bomberman.game.objects.Exit;
 import bomberman.gui.GameGui;
+import bomberman.gui.StdDraw;
 
 /**
  * Game Object After constructing a Game object, it requires to be started via
@@ -53,6 +54,8 @@ public class Game {
 		this.eac = eac;
 		this.gui = gui;
 		this.controls = controls;
+		StdDraw.reference = this;
+		// gameGuiStuff();
 	}
 
 	protected Game(final Level l, final Controls c,
@@ -82,7 +85,7 @@ public class Game {
 		loop();
 	}
 
-	protected void loop() {
+	public void loop() {
 		while (alive && !won) {
 			final long diff = System.currentTimeMillis() - lastTickAt;
 			if (diff < 5) {
@@ -101,6 +104,8 @@ public class Game {
 		if (!alive) {
 			gui.lost();
 		}
+		StdDraw.reference = null;
+
 	}
 
 	protected void manageBombs() {
@@ -171,4 +176,8 @@ public class Game {
 		}
 	}
 
+	public GameGui getGameGui() {
+		StdDraw.reference = this;
+		return gui;
+	}
 }

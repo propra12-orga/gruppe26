@@ -21,4 +21,6 @@ public class Settings {
 	public final static int collisionLeftOffset = -10;
 	public final static int collisionTopOffset = 5;
 	public final static int collisionBottomOffset = -5;
+
+	final public static String saveGamePath = "saveGame.sav";
 }

@@ -1,6 +1,12 @@
 package bomberman.gui;
 
+import java.io.BufferedReader;
+import java.io.DataInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.UnknownHostException;
 
 import bomberman.game.Board;
@@ -12,6 +18,9 @@ import bomberman.game.TwoPlayerGameClient;
 import bomberman.game.TwoPlayerGameServer;
 import bomberman.game.objects.Exit;
 
+import com.thoughtworks.xstream.XStream;
+import com.thoughtworks.xstream.io.json.JettisonMappedXmlDriver;
+
 /**
  * 
  * GUI after winning / loosing a game. User can restart or exit the game by
@@ -20,7 +29,6 @@ import bomberman.game.objects.Exit;
  * @author Jan
  */
 public class MenuGui {
-
 	/*
 	 * Useless Comments my ass... Variables:
 	 * 
@@ -55,11 +63,25 @@ public class MenuGui {
 	final private double text_x_client = 900;
 	final private double text_y_client = 500;
 
+	final private double text_x_load = 500;
+	final private double text_y_load = 700;
+	final private double load_size_X = 60;
+	final private double load_size_Y = 20;
+
+	private boolean savedGameExists = false;
+
 	/**
 	 * Set up the GUI
 	 */
 	public MenuGui() {
 		setSizeAndScales();
+
+		try {
+			new FileInputStream(Settings.saveGamePath);
+			savedGameExists = true;
+		} catch (FileNotFoundException swallowed) {
+		}
+
 	}
 
 	private void setSizeAndScales() {
@@ -100,6 +122,8 @@ public class MenuGui {
 			StdDraw.text(text_x_exit, text_y_exit, "Exit");
 			StdDraw.text(text_x_server, text_y_server, "Server");
 			StdDraw.text(text_x_client, text_y_client, "Client");
+			if (savedGameExists)
+				StdDraw.text(text_x_load, text_y_load, "Load Game");
 		}
 		StdDraw.show();
 		if (isMouseOverNewGame() && StdDraw.mousePressed())
@@ -124,9 +148,42 @@ public class MenuGui {
 			Game g = new TwoPlayerGameClient();
 			g.start();
 			setSizeAndScales();
+		} else if (savedGameExists && isMouseOverLoad()
+				&& StdDraw.mousePressed()) {
+			loadSaveGame();
 		}
 
 		return false;
+	}
+
+	private void loadSaveGame() {
+		FileInputStream fstream;
+		StringBuffer sb = new StringBuffer();
+		try {
+			fstream = new FileInputStream(Settings.saveGamePath);
+
+			final DataInputStream in = new DataInputStream(fstream);
+			final BufferedReader br = new BufferedReader(new InputStreamReader(
+					in));
+
+			String tmp;
+
+			try {
+				while ((tmp = br.readLine()) != null)
+					sb.append(tmp);
+				in.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		} catch (FileNotFoundException e) {
+		}
+		File f = new File(Settings.saveGamePath);
+		f.delete();
+		XStream xstream = new XStream(new JettisonMappedXmlDriver());
+		Game g = (Game) xstream.fromXML(sb.toString());
+		g.getGameGui().initialize();
+		g.loop();
+
 	}
 
 	/**
@@ -256,7 +313,6 @@ public class MenuGui {
 	 * Draws arrows and labels for the key outlines
 	 * 
 	 */
-	// FIXME: Windows does not display fancy arrow symbols correctly
 	private void drawAwesomeArrowsAndLabels() {
 		StdDraw.text(320, 700, "left");
 		StdDraw.text(400, 700, "←");
@@ -334,4 +390,12 @@ public class MenuGui {
 		StdDraw.text(text_x_client, text_y_client, "Client");
 		StdDraw.text(text_x_controls, text_y_controls, "Controls");
 	}
+
+	private boolean isMouseOverLoad() {
+		return (StdDraw.mouseX() <= text_x_load + load_size_X)
+				&& (StdDraw.mouseX() >= text_x_load - load_size_X)
+				&& (StdDraw.mouseY() <= text_y_load + load_size_Y)
+				&& (StdDraw.mouseY() >= text_y_load - load_size_Y);
+	}
+
 }
