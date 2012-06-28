@@ -238,9 +238,8 @@ public class GameGui {
 	 * Show "Victory" Message
 	 */
 	public void won() {
-		StdDraw.setPenColor(StdDraw.GREEN);
-		StdDraw.text(width * TILESIZE / 2, height * TILESIZE / 2, "VICTORY");
-		StdDraw.setPenColor(StdDraw.BLACK);
+		StdDraw.picture(width * TILESIZE / 2, height * TILESIZE / 2,
+				"graphics/victory.png");
 		StdDraw.show();
 
 		try {
