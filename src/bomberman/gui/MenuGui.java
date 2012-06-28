@@ -116,6 +116,8 @@ public class MenuGui {
 			mouseOverClientActions();
 		} else if (isMouseOverServer()) {
 			mouseOverServerActions();
+		} else if (isMouseOverLoad()) {
+			mouseOverLoadActions();
 		} else {
 			StdDraw.text(text_x_controls, text_y_controls, "Controls");
 			StdDraw.text(text_x_newgame, text_y_newgame, "New Game?");
@@ -198,6 +200,8 @@ public class MenuGui {
 		StdDraw.text(text_x_client, text_y_client, "Client");
 		StdDraw.text(text_x_controls, text_y_controls, "Controls");
 
+		if (savedGameExists)
+			StdDraw.text(text_x_load, text_y_load, "Load Game");
 	}
 
 	/**
@@ -212,6 +216,9 @@ public class MenuGui {
 		StdDraw.text(text_x_controls, text_y_controls, "Controls");
 		StdDraw.text(text_x_server, text_y_server, "Server");
 		StdDraw.text(text_x_client, text_y_client, "Client");
+
+		if (savedGameExists)
+			StdDraw.text(text_x_load, text_y_load, "Load Game");
 	}
 
 	/**
@@ -226,6 +233,9 @@ public class MenuGui {
 		StdDraw.text(text_x_newgame, text_y_newgame, "New Game?");
 		StdDraw.text(text_x_server, text_y_server, "Server");
 		StdDraw.text(text_x_client, text_y_client, "Client");
+
+		if (savedGameExists)
+			StdDraw.text(text_x_load, text_y_load, "Load Game");
 	}
 
 	/**
@@ -376,6 +386,9 @@ public class MenuGui {
 		StdDraw.text(text_x_newgame, text_y_newgame, "New Game?");
 		StdDraw.text(text_x_server, text_y_server, "Server");
 		StdDraw.text(text_x_controls, text_y_controls, "Controls");
+
+		if (savedGameExists)
+			StdDraw.text(text_x_load, text_y_load, "Load Game");
 	}
 
 	/**
@@ -389,6 +402,10 @@ public class MenuGui {
 		StdDraw.text(text_x_newgame, text_y_newgame, "New Game?");
 		StdDraw.text(text_x_client, text_y_client, "Client");
 		StdDraw.text(text_x_controls, text_y_controls, "Controls");
+
+		if (savedGameExists)
+			StdDraw.text(text_x_load, text_y_load, "Load Game");
+
 	}
 
 	private boolean isMouseOverLoad() {
@@ -396,6 +413,20 @@ public class MenuGui {
 				&& (StdDraw.mouseX() >= text_x_load - load_size_X)
 				&& (StdDraw.mouseY() <= text_y_load + load_size_Y)
 				&& (StdDraw.mouseY() >= text_y_load - load_size_Y);
+
 	}
 
+	private void mouseOverLoadActions() {
+		StdDraw.text(text_x_client, text_y_client, "Client");
+		StdDraw.text(text_x_exit, text_y_exit, "Exit");
+		StdDraw.text(text_x_newgame, text_y_newgame, "New Game?");
+		StdDraw.text(text_x_server, text_y_server, "Server");
+		StdDraw.text(text_x_controls, text_y_controls, "Controls");
+
+		if (savedGameExists) {
+			StdDraw.setPenColor(StdDraw.BOOK_RED);
+			StdDraw.text(text_x_load, text_y_load, "Load Game");
+			StdDraw.setPenColor(StdDraw.BLACK);
+		}
+	}
 }

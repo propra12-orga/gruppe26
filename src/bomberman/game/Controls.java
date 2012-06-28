@@ -41,7 +41,13 @@ public class Controls {
 	 * Ticks until Bomb goes bomf (int)
 	 */
 	private final int BOMBTICKS = Settings.TIMERCONSTANT;
+	/**
+	 * Anzahl an Ticks, bis eine neue Bombe gesetzt werden darf.
+	 */
 	private final int BOMBTHRESH = 100;
+	/**
+	 * Anzahl der ticks, die seit dem Setzen der Letzten Bombe vergangen sind.
+	 */
 	private int ticksSinceLastBomb = 0;
 
 	/**
