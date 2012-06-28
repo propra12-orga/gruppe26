@@ -1,5 +1,6 @@
 package bomberman.game;
 
+import bomberman.game.character.BomberHuman
 import bomberman.game.objects.Bomb
 import bomberman.game.objects.Exit
 import bomberman.gui.GameGui
@@ -15,7 +16,7 @@ class GameTest extends Specification {
 
 	def setup() {
 		final int TILESIZE = 50;
-
+		g = new Game();
 		final Board b = new Board(15, 30);
 		final ExplosionAreaCalculator eac = new ExplosionAreaCalculator(
 				b.getField(), TILESIZE);
@@ -24,7 +25,11 @@ class GameTest extends Specification {
 		def c = mock(Controls.class)
 		def gui = mock(GameGui.class)
 
-		g = new Game(c, exit, eac, gui, b)
+		g.bman.add(new BomberHuman(true, 25, 25));
+		g.gui = gui;
+		g.eac = eac;
+		g.exit = exit;
+		g.controls = c;
 	}
 
 	def "the game object is constructed properly"() {
