@@ -19,6 +19,8 @@ public class GameGui {
 	private final int height;
 	private final ExplosionAreaCalculator eac;
 
+	private final Explosion bombe = new Explosion();
+
 	/**
 	 * Constructor of the GameGUI initializes a given field with given tilesizes
 	 * 
@@ -78,9 +80,10 @@ public class GameGui {
 	public void drawBomber(final List<BomberHuman> bman) {
 		StdDraw.picture(bman.get(0).getPosX(), bman.get(0).getPosY(),
 				"graphics/bomberman.png");
-		if (bman.size() > 1)
+		if (bman.size() > 1) {
 			StdDraw.picture(bman.get(1).getPosX(), bman.get(1).getPosY(),
 					"graphics/bomferman.png");
+		}
 	}
 
 	/**
@@ -137,38 +140,34 @@ public class GameGui {
 
 		// TODO: calculating too much here, a whole rectangle. but this is a lot
 		// shorter.
-		for (int i = leftBound; i <= rightBound; i++) {
-			if (eac.isInExplosionArea(b, i, arrPosY)) {
-				if (i == leftBound) {
-					StdDraw.picture(i * TILESIZE + TILESIZE / 2, arrPosY
-							* TILESIZE + TILESIZE / 2,
-							"graphics/explosion/explosion_edge_l.png");
-				} else if (i == rightBound) {
-					StdDraw.picture(i * TILESIZE + TILESIZE / 2, arrPosY
-							* TILESIZE + TILESIZE / 2,
-							"graphics/explosion/explosion_edge_r.png");
-				} else {
-					StdDraw.picture(i * TILESIZE + TILESIZE / 2, arrPosY
-							* TILESIZE + TILESIZE / 2,
-							"graphics/explosion/explosion_hori.png");
+		if (b.getTimer() == -1) {
+			for (int i = leftBound; i <= rightBound; i++) {
+				if (eac.isInExplosionArea(b, i, arrPosY)) {
+					if (i == leftBound) {
+						bombe.dropBomb(i * TILESIZE + TILESIZE / 2, arrPosY
+								* TILESIZE + TILESIZE / 2);
+					} else if (i == rightBound) {
+						bombe.dropBomb(i * TILESIZE + TILESIZE / 2, arrPosY
+								* TILESIZE + TILESIZE / 2);
+					} else {
+						bombe.dropBomb(i * TILESIZE + TILESIZE / 2, arrPosY
+								* TILESIZE + TILESIZE / 2);
+					}
 				}
 			}
-		}
 
-		for (int j = lowerBound; j <= upperBound; j++) {
-			if (eac.isInExplosionArea(b, arrPosX, j)) {
-				if (j == lowerBound) {
-					StdDraw.picture(arrPosX * TILESIZE + TILESIZE / 2, j
-							* TILESIZE + TILESIZE / 2,
-							"graphics/explosion/explosion_edge_b.png");
-				} else if (j == upperBound) {
-					StdDraw.picture(arrPosX * TILESIZE + TILESIZE / 2, j
-							* TILESIZE + TILESIZE / 2,
-							"graphics/explosion/explosion_edge_t.png");
-				} else {
-					StdDraw.picture(arrPosX * TILESIZE + TILESIZE / 2, j
-							* TILESIZE + TILESIZE / 2,
-							"graphics/explosion/explosion_vert.png");
+			for (int j = lowerBound; j <= upperBound; j++) {
+				if (eac.isInExplosionArea(b, arrPosX, j)) {
+					if (j == lowerBound) {
+						bombe.dropBomb(arrPosX * TILESIZE + TILESIZE / 2, j
+								* TILESIZE + TILESIZE / 2);
+					} else if (j == upperBound) {
+						bombe.dropBomb(arrPosX * TILESIZE + TILESIZE / 2, j
+								* TILESIZE + TILESIZE / 2);
+					} else {
+						bombe.dropBomb(arrPosX * TILESIZE + TILESIZE / 2, j
+								* TILESIZE + TILESIZE / 2);
+					}
 				}
 			}
 		}
@@ -203,8 +202,8 @@ public class GameGui {
 		drawExit(exit);
 		drawWalls();
 		drawBomber(bmans);
-
 		drawBombs(bombs);
+		bombe.drawBombs();
 		StdDraw.show();
 	}
 
