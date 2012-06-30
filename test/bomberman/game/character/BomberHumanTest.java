@@ -13,28 +13,28 @@ public class BomberHumanTest {
 		assertTrue(b.isHuman());
 		assertEquals(b.getPosX(), 11);
 		assertEquals(b.getPosY(), 12);
-		assertEquals(b.getSpeed(), 1);
+		assertEquals(b.getSpeed(), 4);
 
 		final BomberHuman c = new BomberHuman(false, 500, 3487);
 		assertFalse(c.isHuman());
 		assertEquals(c.getPosX(), 500);
 		assertEquals(c.getPosY(), 3487);
-		assertEquals(b.getSpeed(), 1);
+		assertEquals(b.getSpeed(), 4);
 	}
 
 	@Test
 	public void testMovement() {
 		final BomberHuman b = new BomberHuman(false, 11, 11);
 
-		assertEquals(b.getSpeed(), 1);
+		assertEquals(b.getSpeed(), 4);
 
 		b.moveDown();
 		assertEquals(b.getPosX(), 11);
-		assertEquals(b.getPosY(), 10);
+		assertEquals(b.getPosY(), 7);
 
 		b.moveRight();
-		assertEquals(b.getPosX(), 12);
-		assertEquals(b.getPosY(), 10);
+		assertEquals(b.getPosX(), 15);
+		assertEquals(b.getPosY(), 7);
 	}
 
 	@Test
@@ -42,15 +42,15 @@ public class BomberHumanTest {
 		final BomberHuman b = new BomberHuman(false, 11, 11);
 
 		b.boostSpeed(2);
-		assertEquals(b.getSpeed(), 3);
+		assertEquals(b.getSpeed(), 6);
 
 		b.moveUp();
 		assertEquals(b.getPosX(), 11);
-		assertEquals(b.getPosY(), 14);
+		assertEquals(b.getPosY(), 17);
 
 		b.moveLeft();
-		assertEquals(b.getPosX(), 8);
-		assertEquals(b.getPosY(), 14);
+		assertEquals(b.getPosX(), 5);
+		assertEquals(b.getPosY(), 17);
 	}
 
 	@Test(expected = IllegalArgumentException.class)

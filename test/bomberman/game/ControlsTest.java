@@ -18,7 +18,7 @@ public class ControlsTest {
 		final Controls c = new Controls(board3, 50);
 		final BomberHuman b = new BomberHuman(true, 10, 5);
 
-		assertEquals(b.getSpeed(), 1);
+		assertEquals(b.getSpeed(), 4);
 
 		assertFalse(c.canMoveThere('s', b));
 		assertFalse(c.canMoveThere('a', b));
@@ -34,7 +34,7 @@ public class ControlsTest {
 		// do we really test this method?
 		assertEquals(b.getPosX(), 14);
 		assertEquals(b.getPosY(), 10);
-		assertEquals(b.getSpeed(), 1);
+		assertEquals(b.getSpeed(), 4);
 
 		assertTrue(c.canMoveThere('s', b));
 		assertTrue(c.canMoveThere('a', b));
@@ -50,7 +50,7 @@ public class ControlsTest {
 		assertEquals(b.getPosX(), 13);
 		assertEquals(b.getPosY(), 8);
 		b.boostSpeed(3);
-		assertEquals(b.getSpeed(), 4);
+		assertEquals(b.getSpeed(), 7);
 
 		assertFalse(c.canMoveThere('s', b));
 		assertFalse(c.canMoveThere('a', b));
@@ -66,7 +66,7 @@ public class ControlsTest {
 		assertEquals(b.getPosX(), 139);
 		assertEquals(b.getPosY(), 144);
 		b.boostSpeed(3);
-		assertEquals(b.getSpeed(), 4);
+		assertEquals(b.getSpeed(), 7);
 
 		assertTrue(c.canMoveThere('s', b));
 		assertTrue(c.canMoveThere('a', b));
@@ -82,7 +82,7 @@ public class ControlsTest {
 		assertEquals(b.getPosX(), 40);
 		assertEquals(b.getPosY(), 44);
 		b.boostSpeed(3);
-		assertEquals(b.getSpeed(), 4);
+		assertEquals(b.getSpeed(), 7);
 
 		assertTrue(c.canMoveThere('s', b));
 		assertTrue(c.canMoveThere('a', b));
@@ -98,7 +98,7 @@ public class ControlsTest {
 		assertEquals(b.getPosX(), 70);
 		assertEquals(b.getPosY(), 144);
 		b.boostSpeed(3);
-		assertEquals(b.getSpeed(), 4);
+		assertEquals(b.getSpeed(), 7);
 
 		assertTrue(c.canMoveThere('s', b));
 		assertTrue(c.canMoveThere('a', b));
@@ -114,7 +114,7 @@ public class ControlsTest {
 		assertEquals(b.getPosX(), 70);
 		assertEquals(b.getPosY(), 145);
 		b.boostSpeed(3);
-		assertEquals(b.getSpeed(), 4);
+		assertEquals(b.getSpeed(), 7);
 
 		assertTrue(c.canMoveThere('s', b));
 		assertFalse(c.canMoveThere('a', b));
@@ -130,7 +130,7 @@ public class ControlsTest {
 		assertEquals(b.getPosX(), 70);
 		assertEquals(b.getPosY(), 105);
 		b.boostSpeed(3);
-		assertEquals(b.getSpeed(), 4);
+		assertEquals(b.getSpeed(), 7);
 
 		assertFalse(c.canMoveThere('s', b));
 		assertTrue(c.canMoveThere('a', b));
