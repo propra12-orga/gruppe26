@@ -1,25 +1,11 @@
 package bomberman.gui;
 
-import java.io.BufferedReader;
-import java.io.DataInputStream;
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.net.UnknownHostException;
 
-import bomberman.game.Board;
-import bomberman.game.Controls;
-import bomberman.game.ExplosionAreaCalculator;
-import bomberman.game.Game;
 import bomberman.game.Settings;
-import bomberman.game.TwoPlayerGameClient;
-import bomberman.game.TwoPlayerGameServer;
-import bomberman.game.objects.Exit;
-
-import com.thoughtworks.xstream.XStream;
-import com.thoughtworks.xstream.io.json.JettisonMappedXmlDriver;
 
 /**
  * 
@@ -96,14 +82,19 @@ public class MenuGui {
 	 * Draws the Menu with texts "New Game?" and "Exit" Starts a new game or
 	 * closes the window
 	 * 
-	 * @return true or false, null
+	 * @return <pre>
+	 * int value
+	 *  0 | no interaction
+	 *  1 | new single player game
+	 *  2 | starts server
+	 *  3 | starts client
+	 * -1 | exits
+	 * </pre>
 	 * @throws IOException
 	 * @throws UnknownHostException
 	 */
-	public Boolean gameStarted() throws UnknownHostException, IOException {
+	public int gameStarted() {
 		StdDraw.resetMousePressedStatus();
-		// Game in progress?
-
 		StdDraw.clear();
 		// Maus ueber Button "New Game?"
 		if (isMouseOverNewGame()) {
@@ -128,63 +119,22 @@ public class MenuGui {
 				StdDraw.text(text_x_load, text_y_load, "Load Game");
 		}
 		StdDraw.show();
-		if (isMouseOverNewGame() && StdDraw.mousePressed())
-			return true;
-		else if (isMouseOverExit() && StdDraw.mousePressed())
-			return null;
-		else if (isMouseOverControls() && StdDraw.mousePressed()) {
+		if (isMouseOverNewGame() && StdDraw.mousePressed()) {
+			return 1;
+		} else if (isMouseOverExit() && StdDraw.mousePressed()) {
+			return -1;
+		} else if (isMouseOverControls() && StdDraw.mousePressed()) {
 			showControls();
 		} else if (isMouseOverServer() && StdDraw.mousePressed()) {
-			final int TILESIZE = Settings.TILESIZE;
-
-			final Board b = new Board(10, 10);
-			final ExplosionAreaCalculator eac = new ExplosionAreaCalculator(
-					b.getField(), TILESIZE);
-			final GameGui gui = new GameGui(b.getField(), TILESIZE, eac);
-			final Exit exit = new Exit(21, 10, TILESIZE);
-			final Controls controls = new Controls(b, TILESIZE);
-			Game g = new TwoPlayerGameServer(controls, exit, eac, gui, b);
-			g.start();
-			setSizeAndScales();
+			return 2;
 		} else if (isMouseOverClient() && StdDraw.mousePressed()) {
-			Game g = new TwoPlayerGameClient();
-			g.start();
-			setSizeAndScales();
+			return 3;
 		} else if (savedGameExists && isMouseOverLoad()
 				&& StdDraw.mousePressed()) {
-			loadSaveGame();
+			return 4;
 		}
 
-		return false;
-	}
-
-	private void loadSaveGame() {
-		FileInputStream fstream;
-		StringBuffer sb = new StringBuffer();
-		try {
-			fstream = new FileInputStream(Settings.saveGamePath);
-
-			final DataInputStream in = new DataInputStream(fstream);
-			final BufferedReader br = new BufferedReader(new InputStreamReader(
-					in));
-
-			String tmp;
-
-			try {
-				while ((tmp = br.readLine()) != null)
-					sb.append(tmp);
-				in.close();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		} catch (FileNotFoundException e) {
-		}
-		File f = new File(Settings.saveGamePath);
-		f.delete();
-		XStream xstream = new XStream(new JettisonMappedXmlDriver());
-		Game g = (Game) xstream.fromXML(sb.toString());
-		g.getGameGui().initialize();
-		g.loop();
+		return 0;
 
 	}
 
