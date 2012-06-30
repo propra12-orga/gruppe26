@@ -1,11 +1,16 @@
 package bomberman.gui;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import bomberman.game.ExplosionAreaCalculator;
+import bomberman.game.Wall;
 import bomberman.game.character.BomberHuman;
 import bomberman.game.objects.Bomb;
+import bomberman.game.objects.EPowerUps;
 import bomberman.game.objects.Exit;
+import bomberman.game.objects.PowerUp;
 
 /**
  * @author Jan
@@ -195,16 +200,43 @@ public class GameGui {
 	 *            - list of bomfermans to be drawn
 	 * @param exit
 	 *            - exit to be drawn
+	 * @param powerups
 	 */
 	public void draw(final List<Bomb> bombs, final List<BomberHuman> bmans,
-			final Exit exit) {
+			final Exit exit, Map<Wall, PowerUp> powerups) {
 		drawFloor();
 		drawExit(exit);
 		drawWalls();
 		drawBomber(bmans);
 		drawBombs(bombs);
+		drawPowerups(powerups);
 		bombe.drawBombs();
 		StdDraw.show();
+	}
+
+	private void drawPowerups(Map<Wall, PowerUp> powerups) {
+		final Set<Wall> locations = powerups.keySet();
+
+		for (Wall wall : locations) {
+			EPowerUps ep = powerups.get(wall).getType();
+
+			if (ep == EPowerUps.BOMBRANGE) {
+				StdDraw.setPenColor(StdDraw.GREEN);
+				StdDraw.filledCircle(wall.getX() * TILESIZE + TILESIZE / 2,
+						wall.getY() * TILESIZE + TILESIZE / 2, 10);
+				StdDraw.setPenColor(StdDraw.BLACK);
+			} else if (ep == EPowerUps.BOMBRATIO) {
+				StdDraw.setPenColor(StdDraw.RED);
+				StdDraw.filledCircle(wall.getX() * TILESIZE + TILESIZE / 2,
+						wall.getY() * TILESIZE + TILESIZE / 2, 10);
+				StdDraw.setPenColor(StdDraw.BLACK);
+			} else if (ep == EPowerUps.SPEEDUP) {
+				StdDraw.setPenColor(StdDraw.BLUE);
+				StdDraw.filledCircle(wall.getX() * TILESIZE + TILESIZE / 2,
+						wall.getY() * TILESIZE + TILESIZE / 2, 10);
+				StdDraw.setPenColor(StdDraw.BLACK);
+			}
+		}
 	}
 
 	/**

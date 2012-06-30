@@ -28,7 +28,7 @@ public class Explosion {
 
 			for (int k = 0; k < 5; k++) {
 
-				if (bomb.getMove() < 400) {
+				if (bomb.getMove() < 200) {
 
 					StdDraw.picture(bomb.getB1X(k), bomb.getB1Y(k),
 							"graphics/Bomb1.png");

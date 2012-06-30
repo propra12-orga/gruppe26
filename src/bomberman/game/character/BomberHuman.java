@@ -14,7 +14,7 @@ public class BomberHuman {
 	private final boolean human;
 	private int posX;
 	private int posY;
-	private int speed = 1;
+	private int speed = Settings.BMANSPEED;
 	private Network nw;
 	private String move = "mv 25 75";
 	private String bomb = "bomb 0";

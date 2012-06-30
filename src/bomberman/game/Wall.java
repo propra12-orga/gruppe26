@@ -6,7 +6,7 @@ package bomberman.game;
 public class Wall {
 	final private int X;
 	final private int Y;
-	
+
 	/**
 	 * @param X
 	 *            - X-Position
@@ -31,5 +31,17 @@ public class Wall {
 	public int getY() {
 		return Y;
 	}
-	
+
+	@Override
+	public boolean equals(Object obj) {
+		if (!(obj instanceof Wall))
+			return false;
+		final Wall that = (Wall) obj;
+		return (this.X == that.X && this.Y == that.Y);
+	}
+
+	@Override
+	public int hashCode() {
+		return 100 * X + Y;
+	}
 }

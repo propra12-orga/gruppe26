@@ -14,8 +14,10 @@ public class Settings {
 	public static int P1_BOMB = 32;
 	public static int P1_PAUSE = 80;
 
-	final public static int TIMERCONSTANT = 300;
+	public static final int MINTICKLENGTH = 10;
+	final public static int TIMERCONSTANT = 1600 / MINTICKLENGTH;
 	final public static int TILESIZE = 50;
+	public static final int BMANSPEED = MINTICKLENGTH * 2 / 5;
 
 	public final static int collisionRightOffset = 10;
 	public final static int collisionLeftOffset = -10;
@@ -23,4 +25,6 @@ public class Settings {
 	public final static int collisionBottomOffset = -5;
 
 	final public static String saveGamePath = "saveGame.sav";
+	public static final double POWERUPCHANCE = 0.3;
+
 }

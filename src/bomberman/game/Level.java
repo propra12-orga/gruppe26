@@ -1,6 +1,11 @@
 package bomberman.game;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import bomberman.game.objects.EPowerUps;
 import bomberman.game.objects.Exit;
+import bomberman.game.objects.PowerUp;
 import bomberman.gui.GameGui;
 
 /**
@@ -60,6 +65,40 @@ public class Level {
 				new Board(board));
 	}
 
+	public Map<Wall, PowerUp> generatePowerUps() {
+		final Map<Wall, PowerUp> powerUps = new HashMap<Wall, PowerUp>();
+
+		for (int i = 0; i < board.length; i++) {
+			for (int j = 0; j < board[0].length; j++) {
+				if (!(board[i][j] == 2)
+						|| !(Math.random() < Settings.POWERUPCHANCE)) {
+					continue;
+				}
+
+				final Wall ie = new Wall(j, i);
+				PowerUp pu;
+				final int d = (int) (Math.random() * 3);
+
+				switch (d) {
+				case 0:
+					pu = new PowerUp(EPowerUps.BOMBRANGE);
+					break;
+
+				case 1:
+					pu = new PowerUp(EPowerUps.BOMBRATIO);
+					break;
+
+				default:
+					pu = new PowerUp(EPowerUps.SPEEDUP);
+					break;
+				}
+
+				powerUps.put(ie, pu);
+			}
+		}
+
+		return powerUps;
+	}
 
 	@Override
 	public String toString() {

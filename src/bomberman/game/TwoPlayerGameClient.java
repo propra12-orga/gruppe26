@@ -33,6 +33,10 @@ public class TwoPlayerGameClient extends Game {
 		this.gui = new GameGui(field, TILESIZE, eac);
 		this.controls = new Controls(new Board(field), TILESIZE);
 		bman.add(new BomberHuman(25, 25, nw, false));
+
+		// no powerups in network, hence:
+		eac.bombRangeUp();
+		eac.bombRangeUp();
 	}
 
 	/*
@@ -44,9 +48,9 @@ public class TwoPlayerGameClient extends Game {
 	public void loop() {
 		while (alive && !won) {
 			final long diff = System.currentTimeMillis() - lastTickAt;
-			if (diff < 5) {
+			if (diff < Settings.MINTICKLENGTH) {
 				try {
-					Thread.sleep(5 - diff);
+					Thread.sleep(Settings.MINTICKLENGTH - diff);
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -57,7 +61,7 @@ public class TwoPlayerGameClient extends Game {
 			controls.doSomethingWithInput(bman.get(0), bombs);
 			manageBombs();
 			checkWin();
-			gui.draw(bombs, bman, exit);
+			gui.draw(bombs, bman, exit, powerups);
 			lastTickAt = System.currentTimeMillis();
 		}
 		nw.write(bman.get(0));

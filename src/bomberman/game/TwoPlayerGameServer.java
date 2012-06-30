@@ -2,10 +2,12 @@ package bomberman.game;
 
 import java.io.IOException;
 import java.net.UnknownHostException;
+import java.util.HashMap;
 
 import bomberman.game.character.BomberHuman;
 import bomberman.game.objects.Bomb;
 import bomberman.game.objects.Exit;
+import bomberman.game.objects.PowerUp;
 import bomberman.gui.GameGui;
 import bomberman.gui.StdDraw;
 
@@ -33,25 +35,24 @@ public class TwoPlayerGameServer extends Game {
 			final ExplosionAreaCalculator eac, final GameGui gui, final Board b)
 			throws UnknownHostException, IOException {
 		super(controls, exit, eac, gui, b);
+		powerups = new HashMap<Wall, PowerUp>();
 		StdDraw.reference = null;
 		final Level l = new Level(b.getField(), exit);
 		nw = new Network(true, l.toString());
 		bman.add(new BomberHuman(25, 25, nw, true));
-	}
 
-	@Deprecated
-	public TwoPlayerGameServer(final Level l, final Controls c,
-			final ExplosionAreaCalculator eac, final GameGui gui) {
-		super(l, c, eac, gui);
+		// no powerups in network, hence:
+		eac.bombRangeUp();
+		eac.bombRangeUp();
 	}
 
 	@Override
 	public void loop() {
 		while (alive && !won) {
 			final long diff = System.currentTimeMillis() - lastTickAt;
-			if (diff < 5) {
+			if (diff < Settings.MINTICKLENGTH) {
 				try {
-					Thread.sleep(5 - diff);
+					Thread.sleep(Settings.MINTICKLENGTH - diff);
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -63,7 +64,7 @@ public class TwoPlayerGameServer extends Game {
 			manageBombs();
 			checkWin();
 
-			gui.draw(bombs, bman, exit);
+			gui.draw(bombs, bman, exit, powerups);
 			lastTickAt = System.currentTimeMillis();
 		}
 

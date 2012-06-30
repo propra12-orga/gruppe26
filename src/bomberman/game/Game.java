@@ -1,11 +1,15 @@
 package bomberman.game;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import bomberman.game.character.BomberHuman;
 import bomberman.game.objects.Bomb;
+import bomberman.game.objects.EPowerUps;
 import bomberman.game.objects.Exit;
+import bomberman.game.objects.PowerUp;
 import bomberman.gui.GameGui;
 import bomberman.gui.StdDraw;
 
@@ -20,9 +24,7 @@ import bomberman.gui.StdDraw;
  */
 public class Game {
 
-	// it's not in use for now...
-	// private final Board board;
-
+	protected Map<Wall, PowerUp> powerups;
 	protected final List<BomberHuman> bman = new ArrayList<BomberHuman>();
 	protected Exit exit;
 	protected final List<Bomb> bombs = new ArrayList<Bomb>();
@@ -48,14 +50,15 @@ public class Game {
 	 */
 	public Game(final Controls controls, final Exit exit,
 			final ExplosionAreaCalculator eac, final GameGui gui, final Board b) {
-		// this.board = board;
 		bman.add(new BomberHuman(true, 25, 25));
 		this.exit = exit;
 		this.eac = eac;
 		this.gui = gui;
 		this.controls = controls;
 		StdDraw.reference = this;
-		// gameGuiStuff();
+
+		final Level l = new Level(b.getField(), exit);
+		this.powerups = l.generatePowerUps();
 	}
 
 	protected Game(final Level l, final Controls c,
@@ -65,6 +68,7 @@ public class Game {
 		this.gui = gui;
 		this.exit = l.getEx();
 		bman.add(new BomberHuman(true, 25, 25));
+		this.powerups = new HashMap<Wall, PowerUp>();
 	}
 
 	protected Game() {
@@ -72,6 +76,7 @@ public class Game {
 		this.exit = null;
 		this.eac = null;
 		this.controls = null;
+		this.powerups = new HashMap<Wall, PowerUp>();
 	}
 
 	/**
@@ -79,26 +84,24 @@ public class Game {
 	 */
 	public void start() {
 		gui.initialize();
-		// DEBUG mode
-		bman.get(0).boostSpeed(2);
-
 		loop();
 	}
 
 	public void loop() {
 		while (alive && !won) {
 			final long diff = System.currentTimeMillis() - lastTickAt;
-			if (diff < 5) {
+			if (diff < Settings.MINTICKLENGTH) {
 				try {
-					Thread.sleep(5 - diff);
+					Thread.sleep(Settings.MINTICKLENGTH - diff);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
 			}
 			checkWin();
 			controls.doSomethingWithInput(bman.get(0), bombs);
+			checkPowerUp();
 			manageBombs();
-			gui.draw(bombs, bman, exit);
+			gui.draw(bombs, bman, exit, powerups);
 			lastTickAt = System.currentTimeMillis();
 		}
 		if (!alive) {
@@ -106,6 +109,25 @@ public class Game {
 		}
 		StdDraw.reference = null;
 
+	}
+
+	private void checkPowerUp() {
+		final BomberHuman bomfman = bman.get(0);
+		final Wall bmanArrayPos = new Wall(bomfman.getPosX() / 50,
+				bomfman.getPosY() / 50);
+
+		if (powerups.containsKey(bmanArrayPos)) {
+			PowerUp pup = powerups.get(bmanArrayPos);
+			if (pup.getType() == EPowerUps.BOMBRANGE) {
+				eac.bombRangeUp();
+			} else if (pup.getType() == EPowerUps.BOMBRATIO) {
+				controls.bombRatioUp();
+			} else if (pup.getType() == EPowerUps.SPEEDUP) {
+				bman.get(0).boostSpeed(1);
+			}
+
+			powerups.remove(bmanArrayPos);
+		}
 	}
 
 	protected void manageBombs() {

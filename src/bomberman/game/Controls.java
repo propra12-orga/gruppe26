@@ -44,7 +44,7 @@ public class Controls {
 	/**
 	 * Anzahl an Ticks, bis eine neue Bombe gesetzt werden darf.
 	 */
-	private final int BOMBTHRESH = 100;
+	private int bombthresh = 60;
 	/**
 	 * Anzahl der ticks, die seit dem Setzen der Letzten Bombe vergangen sind.
 	 */
@@ -217,7 +217,7 @@ public class Controls {
 			if (ticksSinceLastBomb < 0) {
 				dropBomb(bman, bombs);
 				bman.addBombStatus(true);
-				ticksSinceLastBomb = BOMBTHRESH;
+				ticksSinceLastBomb = bombthresh;
 			} else {
 				bman.addBombStatus(false);
 			}
@@ -251,5 +251,9 @@ public class Controls {
 		final int posY = bman.getPosY();
 		final Bomb b = new Bomb(posX, posY, BOMBTICKS);
 		bombs.add(b);
+	}
+
+	public void bombRatioUp() {
+		bombthresh -= 5;
 	}
 }
