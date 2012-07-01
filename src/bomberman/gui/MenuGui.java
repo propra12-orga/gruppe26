@@ -16,6 +16,7 @@ import bomberman.game.Settings;
  * @author Jan
  */
 public class MenuGui {
+	public boolean unknownHost = false;
 	/*
 	 * Useless Comments my ass... Variables:
 	 * 
@@ -137,7 +138,8 @@ public class MenuGui {
 		} else if (isMouseOverServer() && StdDraw.mousePressed()) {
 			return 2;
 		} else if (isMouseOverClient() && StdDraw.mousePressed()) {
-			return 3;
+			if (enterIPLoop())
+				return 3;
 		} else if (savedGameExists && isMouseOverLoad()
 				&& StdDraw.mousePressed()) {
 			return 4;
@@ -417,5 +419,62 @@ public class MenuGui {
 
 		if (savedGameExists)
 			StdDraw.text(text_x_load, text_y_load, "Load Game");
+	}
+
+	public boolean enterIPLoop() {
+		boolean returnValue = false;
+		StdDraw.resetMousePressedStatus();
+		boolean flag = false;
+		StringBuffer sb = new StringBuffer();
+		while (!flag) {
+			StdDraw.clear();
+
+			if (StdDraw.hasNextKeyTyped()) {
+				char next = StdDraw.nextKeyTyped();
+				try {
+					Integer.parseInt("" + next);
+					sb.append(next);
+				} catch (Exception swallowed) {
+					if (next == '.')
+						sb.append(next);
+				}
+			}
+
+			StdDraw.text(500, 650, "Type Server IP (Enter to accept)");
+			StdDraw.text(500, 500, sb.toString());
+
+			if (unknownHost)
+				StdDraw.text(500, 350, "Can't connect to " + Settings.server);
+
+			if (mouseOverBack()) {
+				StdDraw.setPenColor(StdDraw.BOOK_RED);
+			}
+			StdDraw.text(text_x_back, text_y_back, "back");
+			if (mouseOverBack()) {
+				StdDraw.setPenColor(StdDraw.BLACK);
+			}
+
+			StdDraw.show();
+
+			if (StdDraw.typedKeys[10]) {
+				if (sb.toString().length() > 0)
+					Settings.server = sb.toString();
+				flag = true;
+				returnValue = true;
+			}
+
+			if (StdDraw.typedKeys[8]) {
+				StdDraw.typedKeys[8] = false;
+				if (sb.toString().length() > 0)
+					sb.deleteCharAt(sb.length() - 1);
+			}
+
+			if (mouseOverBack() && StdDraw.mousePressed()) {
+				flag = true;
+				returnValue = false;
+				unknownHost = false;
+			}
+		}
+		return returnValue;
 	}
 }

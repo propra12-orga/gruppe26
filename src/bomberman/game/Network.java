@@ -17,7 +17,7 @@ import bomberman.game.objects.Bomb;
  */
 public class Network {
 
-	Reader r;
+	public Reader r;
 
 	/**
 	 * Constructs Server and Client.

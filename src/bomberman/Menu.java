@@ -33,7 +33,7 @@ public class Menu {
 	 * @throws IOException
 	 * @throws UnknownHostException
 	 */
-	public void startGame() throws UnknownHostException, IOException {
+	public void startGame() {
 		HighScore hs;
 		try {
 			new FileInputStream(Settings.highScorePath);
@@ -74,8 +74,21 @@ public class Menu {
 					h.start();
 				break;
 			case 3:
-				Game c = new TwoPlayerGameClient();
-				c.start();
+				Game c;
+				try {
+					c = new TwoPlayerGameClient();
+					c.start();
+					// } catch (Exception e) {
+
+					// } catch (SocketException f) {
+
+				} catch (Exception swallowed) {
+
+				} finally {
+					mg.unknownHost = true;
+					mg.enterIPLoop();
+				}
+
 				break;
 			case 4:
 				loadSaveGame();

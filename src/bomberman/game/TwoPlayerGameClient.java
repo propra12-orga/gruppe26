@@ -24,6 +24,8 @@ public class TwoPlayerGameClient extends Game {
 	public TwoPlayerGameClient() throws UnknownHostException, IOException {
 		super();
 		nw = new Network(false, null);
+		if (nw.r == null)
+			throw new IOException("cannot initialize network");
 		bman.add(new BomberHuman(25, 75, nw, false));
 		final int TILESIZE = Settings.TILESIZE;
 		final Level l = nw.readLevel();

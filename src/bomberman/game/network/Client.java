@@ -30,18 +30,22 @@ public class Client implements Reader {
 	 * 
 	 */
 	public Client() {
-		final Socket socket;
+		Socket socket = null;
 		try {
 			// Verbinden mit Server
-			socket = new Socket("localhost", 9001);
+			socket = new Socket(Settings.server, 9001);
 			this.in = new Scanner(socket.getInputStream());
 			this.out = new PrintWriter(socket.getOutputStream());
 		} catch (UnknownHostException e) {
 			e.printStackTrace();
 			System.out.println(e.getMessage());
-		} catch (IOException e) {
-			e.printStackTrace();
-			System.out.println(e.getMessage());
+		} catch (IOException swallowed) {
+			try {
+				if (socket != null)
+					socket.close();
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
 		}
 
 	}
