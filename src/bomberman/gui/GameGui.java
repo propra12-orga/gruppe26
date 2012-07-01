@@ -280,4 +280,15 @@ public class GameGui {
 			// we seriously don't care as this is just temporary
 		}
 	}
+
+	public void highScore(final boolean newScore) {
+		StdDraw.setPenColor(StdDraw.PINK);
+		if (newScore) {
+			StdDraw.text(width * TILESIZE / 2, 120, "new high score!");
+		} else {
+			StdDraw.text(width * TILESIZE / 2, 120, "no score for you");
+		}
+		StdDraw.setPenColor(StdDraw.BLACK);
+		won();
+	}
 }

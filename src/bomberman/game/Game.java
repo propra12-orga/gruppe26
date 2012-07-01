@@ -109,13 +109,6 @@ public class Game {
 		}
 		if (!alive) {
 			gui.lost();
-		} else {
-			// TODO:
-			final int score = HighScore.generateScore(numberOfTicks);
-			if (HighScore.newScore(score))
-				System.out.println("added score");
-			else
-				System.out.println("no score for you");
 		}
 		StdDraw.reference = null;
 
@@ -203,7 +196,9 @@ public class Game {
 				&& bman.get(0).getPosX() > exit.getPosX() - 20
 				&& bman.get(0).getPosY() < exit.getPosY() + 20
 				&& bman.get(0).getPosY() > exit.getPosY() - 20) {
-			gui.won();
+			final int score = HighScore.generateScore(numberOfTicks);
+
+			gui.highScore(HighScore.newScore(score));
 			won = true;
 		}
 	}
