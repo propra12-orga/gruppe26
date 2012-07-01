@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.UnknownHostException;
 
+import bomberman.HighScore;
 import bomberman.game.Settings;
 
 /**
@@ -32,7 +33,7 @@ public class MenuGui {
 	final private double text_x_newgame = 500;
 	final private double text_y_newgame = 400;
 	final private double text_x_exit = 500;
-	final private double text_y_exit = 200;
+	final private double text_y_exit = 100;
 
 	final private double controls_size_X = 60;
 	final private double controls_size_Y = 20;
@@ -53,6 +54,11 @@ public class MenuGui {
 	final private double text_y_load = 700;
 	final private double load_size_X = 60;
 	final private double load_size_Y = 20;
+
+	final private double text_x_score = 500;
+	final private double text_y_score = 200;
+	final private double score_size_X = 100;
+	final private double score_size_Y = 20;
 
 	private boolean savedGameExists = false;
 
@@ -109,12 +115,15 @@ public class MenuGui {
 			mouseOverServerActions();
 		} else if (isMouseOverLoad()) {
 			mouseOverLoadActions();
+		} else if (isMouseOverScore()) {
+			mouseOverScoreActions();
 		} else {
 			StdDraw.text(text_x_controls, text_y_controls, "Controls");
 			StdDraw.text(text_x_newgame, text_y_newgame, "New Game?");
 			StdDraw.text(text_x_exit, text_y_exit, "Exit");
 			StdDraw.text(text_x_server, text_y_server, "Server");
 			StdDraw.text(text_x_client, text_y_client, "Client");
+			StdDraw.text(text_x_score, text_y_score, "High Score");
 			if (savedGameExists)
 				StdDraw.text(text_x_load, text_y_load, "Load Game");
 		}
@@ -132,6 +141,8 @@ public class MenuGui {
 		} else if (savedGameExists && isMouseOverLoad()
 				&& StdDraw.mousePressed()) {
 			return 4;
+		} else if (isMouseOverScore() && StdDraw.mousePressed()) {
+			HighScore.printScore();
 		}
 
 		return 0;
@@ -149,6 +160,7 @@ public class MenuGui {
 		StdDraw.text(text_x_server, text_y_server, "Server");
 		StdDraw.text(text_x_client, text_y_client, "Client");
 		StdDraw.text(text_x_controls, text_y_controls, "Controls");
+		StdDraw.text(text_x_score, text_y_score, "High Score");
 
 		if (savedGameExists)
 			StdDraw.text(text_x_load, text_y_load, "Load Game");
@@ -166,6 +178,7 @@ public class MenuGui {
 		StdDraw.text(text_x_controls, text_y_controls, "Controls");
 		StdDraw.text(text_x_server, text_y_server, "Server");
 		StdDraw.text(text_x_client, text_y_client, "Client");
+		StdDraw.text(text_x_score, text_y_score, "High Score");
 
 		if (savedGameExists)
 			StdDraw.text(text_x_load, text_y_load, "Load Game");
@@ -183,6 +196,7 @@ public class MenuGui {
 		StdDraw.text(text_x_newgame, text_y_newgame, "New Game?");
 		StdDraw.text(text_x_server, text_y_server, "Server");
 		StdDraw.text(text_x_client, text_y_client, "Client");
+		StdDraw.text(text_x_score, text_y_score, "High Score");
 
 		if (savedGameExists)
 			StdDraw.text(text_x_load, text_y_load, "Load Game");
@@ -336,6 +350,7 @@ public class MenuGui {
 		StdDraw.text(text_x_newgame, text_y_newgame, "New Game?");
 		StdDraw.text(text_x_server, text_y_server, "Server");
 		StdDraw.text(text_x_controls, text_y_controls, "Controls");
+		StdDraw.text(text_x_score, text_y_score, "High Score");
 
 		if (savedGameExists)
 			StdDraw.text(text_x_load, text_y_load, "Load Game");
@@ -352,6 +367,7 @@ public class MenuGui {
 		StdDraw.text(text_x_newgame, text_y_newgame, "New Game?");
 		StdDraw.text(text_x_client, text_y_client, "Client");
 		StdDraw.text(text_x_controls, text_y_controls, "Controls");
+		StdDraw.text(text_x_score, text_y_score, "High Score");
 
 		if (savedGameExists)
 			StdDraw.text(text_x_load, text_y_load, "Load Game");
@@ -366,17 +382,40 @@ public class MenuGui {
 
 	}
 
+	private boolean isMouseOverScore() {
+		return (StdDraw.mouseX() <= text_x_score + score_size_X)
+				&& (StdDraw.mouseX() >= text_x_score - score_size_X)
+				&& (StdDraw.mouseY() <= text_y_score + score_size_Y)
+				&& (StdDraw.mouseY() >= text_y_score - score_size_Y);
+
+	}
+
 	private void mouseOverLoadActions() {
 		StdDraw.text(text_x_client, text_y_client, "Client");
 		StdDraw.text(text_x_exit, text_y_exit, "Exit");
 		StdDraw.text(text_x_newgame, text_y_newgame, "New Game?");
 		StdDraw.text(text_x_server, text_y_server, "Server");
 		StdDraw.text(text_x_controls, text_y_controls, "Controls");
+		StdDraw.text(text_x_score, text_y_score, "High Score");
 
 		if (savedGameExists) {
 			StdDraw.setPenColor(StdDraw.BOOK_RED);
 			StdDraw.text(text_x_load, text_y_load, "Load Game");
 			StdDraw.setPenColor(StdDraw.BLACK);
 		}
+	}
+
+	private void mouseOverScoreActions() {
+		StdDraw.setPenColor(StdDraw.BOOK_RED);
+		StdDraw.text(text_x_score, text_y_score, "High Score");
+		StdDraw.setPenColor(StdDraw.BLACK);
+		StdDraw.text(text_x_client, text_y_client, "Client");
+		StdDraw.text(text_x_exit, text_y_exit, "Exit");
+		StdDraw.text(text_x_newgame, text_y_newgame, "New Game?");
+		StdDraw.text(text_x_server, text_y_server, "Server");
+		StdDraw.text(text_x_controls, text_y_controls, "Controls");
+
+		if (savedGameExists)
+			StdDraw.text(text_x_load, text_y_load, "Load Game");
 	}
 }
