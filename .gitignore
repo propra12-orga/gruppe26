@@ -4,3 +4,4 @@ doc/
 .directory
 .gradle
 saveGame.sav
+highScore.hsc

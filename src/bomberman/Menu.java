@@ -1,10 +1,12 @@
 package bomberman;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.DataInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.UnknownHostException;
@@ -32,6 +34,15 @@ public class Menu {
 	 * @throws UnknownHostException
 	 */
 	public void startGame() throws UnknownHostException, IOException {
+		HighScore hs;
+		try {
+			new FileInputStream(Settings.highScorePath);
+			hs = loadHighScore();
+			hs.copyFromInstance();
+		} catch (FileNotFoundException swallowed) {
+			hs = new HighScore();
+		}
+
 		while (true) {
 			final MenuGui mg = new MenuGui();
 			int i = 0;
@@ -40,6 +51,17 @@ public class Menu {
 			}
 			switch (i) {
 			case -1:
+				hs.copyToInstance();
+				XStream xstream = new XStream(new JettisonMappedXmlDriver());
+				String xml = xstream.toXML(hs);
+				try {
+					FileWriter fw = new FileWriter(Settings.highScorePath);
+					final BufferedWriter bw = new BufferedWriter(fw);
+					bw.write(xml);
+					bw.close();
+				} catch (IOException e1) {
+					System.out.println("could not create file");
+				}
 				System.exit(0);
 				break;
 			case 1:
@@ -133,7 +155,32 @@ public class Menu {
 		Game g = (Game) xstream.fromXML(sb.toString());
 		g.getGameGui().initialize();
 		g.loop();
+	}
 
+	private static HighScore loadHighScore() {
+		FileInputStream fstream;
+		StringBuffer sb = new StringBuffer();
+		try {
+			fstream = new FileInputStream(Settings.highScorePath);
+
+			final DataInputStream in = new DataInputStream(fstream);
+			final BufferedReader br = new BufferedReader(new InputStreamReader(
+					in));
+
+			String tmp;
+
+			try {
+				while ((tmp = br.readLine()) != null)
+					sb.append(tmp);
+				in.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		} catch (FileNotFoundException e) {
+		}
+		XStream xstream = new XStream(new JettisonMappedXmlDriver());
+		final HighScore hs = (HighScore) xstream.fromXML(sb.toString());
+		return hs;
 	}
 
 }

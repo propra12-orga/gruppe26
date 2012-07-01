@@ -26,5 +26,6 @@ public class Settings {
 
 	final public static String saveGamePath = "saveGame.sav";
 	public static final double POWERUPCHANCE = 0.3;
+	public static final String highScorePath = "highScore.hsc";
 
 }

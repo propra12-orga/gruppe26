@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import bomberman.HighScore;
 import bomberman.game.character.BomberHuman;
 import bomberman.game.objects.Bomb;
 import bomberman.game.objects.EPowerUps;
@@ -38,6 +39,7 @@ public class Game {
 	protected boolean won = false;
 
 	protected long lastTickAt = System.currentTimeMillis();
+	private long numberOfTicks = 0;
 
 	/**
 	 * Associates a Game with controls, an Exit, an EAC and a GUI. It will also
@@ -103,9 +105,17 @@ public class Game {
 			manageBombs();
 			gui.draw(bombs, bman, exit, powerups);
 			lastTickAt = System.currentTimeMillis();
+			numberOfTicks++;
 		}
 		if (!alive) {
 			gui.lost();
+		} else {
+			final int score = HighScore.generateScore(numberOfTicks);
+			if (HighScore.newScore(score))
+				System.out.println("added score");
+			else
+				System.out.println("no score for you");
+			HighScore.printScore();
 		}
 		StdDraw.reference = null;
 
