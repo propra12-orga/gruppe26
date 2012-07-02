@@ -203,38 +203,35 @@ public class GameGui {
 	 * @param powerups
 	 */
 	public void draw(final List<Bomb> bombs, final List<BomberHuman> bmans,
-			final Exit exit, Map<Wall, PowerUp> powerups) {
+			final Exit exit, final Map<Wall, PowerUp> powerups) {
 		drawFloor();
 		drawExit(exit);
+		drawPowerups(powerups);
 		drawWalls();
 		drawBomber(bmans);
 		drawBombs(bombs);
-		drawPowerups(powerups);
 		bombe.drawBombs();
 		StdDraw.show();
 	}
 
-	private void drawPowerups(Map<Wall, PowerUp> powerups) {
+	private void drawPowerups(final Map<Wall, PowerUp> powerups) {
 		final Set<Wall> locations = powerups.keySet();
 
 		for (Wall wall : locations) {
 			EPowerUps ep = powerups.get(wall).getType();
 
 			if (ep == EPowerUps.BOMBRANGE) {
-				StdDraw.setPenColor(StdDraw.GREEN);
-				StdDraw.filledCircle(wall.getX() * TILESIZE + TILESIZE / 2,
-						wall.getY() * TILESIZE + TILESIZE / 2, 10);
-				StdDraw.setPenColor(StdDraw.BLACK);
+				StdDraw.picture(wall.getX() * TILESIZE + TILESIZE / 2,
+						wall.getY() * TILESIZE + TILESIZE / 2,
+						"graphics/rangeup.png");
 			} else if (ep == EPowerUps.BOMBRATIO) {
-				StdDraw.setPenColor(StdDraw.RED);
-				StdDraw.filledCircle(wall.getX() * TILESIZE + TILESIZE / 2,
-						wall.getY() * TILESIZE + TILESIZE / 2, 10);
-				StdDraw.setPenColor(StdDraw.BLACK);
+				StdDraw.picture(wall.getX() * TILESIZE + TILESIZE / 2,
+						wall.getY() * TILESIZE + TILESIZE / 2,
+						"graphics/bombup.png");
 			} else if (ep == EPowerUps.SPEEDUP) {
-				StdDraw.setPenColor(StdDraw.BLUE);
-				StdDraw.filledCircle(wall.getX() * TILESIZE + TILESIZE / 2,
-						wall.getY() * TILESIZE + TILESIZE / 2, 10);
-				StdDraw.setPenColor(StdDraw.BLACK);
+				StdDraw.picture(wall.getX() * TILESIZE + TILESIZE / 2,
+						wall.getY() * TILESIZE + TILESIZE / 2,
+						"graphics/speedup.png");
 			}
 		}
 	}

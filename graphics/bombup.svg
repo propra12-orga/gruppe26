@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="744.09448819"
+   height="1052.3622047"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.48.2 r9819"
+   sodipodi:docname="speedup.svg">
+  <defs
+     id="defs4">
+    <inkscape:perspective
+       sodipodi:type="inkscape:persp3d"
+       inkscape:vp_x="0 : 526.18109 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_z="744.09448 : 526.18109 : 1"
+       inkscape:persp3d-origin="372.04724 : 350.78739 : 1"
+       id="perspective3771" />
+    <filter
+       inkscape:collect="always"
+       id="filter3853"
+       x="-0.14307692"
+       width="1.2861538"
+       y="-0.74400005"
+       height="2.4880001">
+      <feGaussianBlur
+         inkscape:collect="always"
+         stdDeviation="10.463017"
+         id="feGaussianBlur3855" />
+    </filter>
+    <filter
+       inkscape:collect="always"
+       id="filter3859">
+      <feGaussianBlur
+         inkscape:collect="always"
+         stdDeviation="1.0217995"
+         id="feGaussianBlur3861" />
+    </filter>
+    <filter
+       inkscape:collect="always"
+       id="filter3887">
+      <feGaussianBlur
+         inkscape:collect="always"
+         stdDeviation="0.71361985"
+         id="feGaussianBlur3889" />
+    </filter>
+    <filter
+       inkscape:collect="always"
+       id="filter3912">
+      <feGaussianBlur
+         inkscape:collect="always"
+         stdDeviation="0.22857485"
+         id="feGaussianBlur3914" />
+    </filter>
+    <filter
+       inkscape:collect="always"
+       id="filter3922">
+      <feGaussianBlur
+         inkscape:collect="always"
+         stdDeviation="0.40173257"
+         id="feGaussianBlur3924" />
+    </filter>
+    <filter
+       inkscape:collect="always"
+       id="filter3944">
+      <feGaussianBlur
+         inkscape:collect="always"
+         stdDeviation="0.56167638"
+         id="feGaussianBlur3946" />
+    </filter>
+    <filter
+       inkscape:collect="always"
+       id="filter3873">
+      <feGaussianBlur
+         inkscape:collect="always"
+         stdDeviation="7.3157955"
+         id="feGaussianBlur3875" />
+    </filter>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.48145766"
+     inkscape:cx="638.77736"
+     inkscape:cy="752.44422"
+     inkscape:document-units="px"
+     inkscape:current-layer="g3837"
+     showgrid="false"
+     inkscape:window-width="1333"
+     inkscape:window-height="715"
+     inkscape:window-x="-3"
+     inkscape:window-y="-3"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <rect
+       style="fill:none;fill-opacity:1;stroke:none"
+       id="rect3051"
+       width="348.81128"
+       height="441.70203"
+       x="105.01054"
+       y="159.40535"
+       inkscape:export-filename="/home/philipp/code/gruppe26/graphics/bomb1.png"
+       inkscape:export-xdpi="9.1416006"
+       inkscape:export-ydpi="9.1416006" />
+    <g
+       id="g3837"
+       transform="translate(-111.90741,-69.888245)"
+       inkscape:export-filename="/home/philipp/workspace/Bomberman/gruppe26/graphics/bombup.png"
+       inkscape:export-xdpi="5.9934096"
+       inkscape:export-ydpi="5.9934096">
+      <path
+         sodipodi:type="arc"
+         style="fill:#4d4d4d;fill-opacity:0.66145833;filter:url(#filter3873)"
+         id="path3099"
+         sodipodi:cx="415.92441"
+         sodipodi:cy="353.96225"
+         sodipodi:rx="246.64682"
+         sodipodi:ry="246.64682"
+         d="m 662.57123,353.96225 c 0,136.21928 -110.42754,246.64682 -246.64682,246.64682 -136.21928,0 -246.64682,-110.42754 -246.64682,-246.64682 0,-136.21928 110.42754,-246.64682 246.64682,-246.64682 136.21928,0 246.64682,110.42754 246.64682,246.64682 z"
+         transform="translate(103.52551,103.95042)"
+         inkscape:export-filename="/home/philipp/workspace/Bomberman/gruppe26/graphics/rangeup.png"
+         inkscape:export-xdpi="47"
+         inkscape:export-ydpi="47" />
+      <path
+         style="fill:#008000;fill-opacity:1;stroke:none"
+         d="m 596.81633,237.33543 c 4.92803,60.27798 -43.49501,49.81018 -43.49501,49.81018 0,0 48.81294,19.83393 -4.03943,45.3156 21.25302,-7.60887 30.88939,-8.41 33.82313,1.39389 -3.33815,3.76509 -6.17559,6.08081 -7.19702,6.82721 -3.17123,2.31737 -18.63259,11.29334 -18.63259,11.29334 0,0 -23.82398,9.71405 -44.31997,65.96791 -0.0864,-0.01 -0.16927,-0.0203 -0.25602,-0.0284 -0.4161,-0.0389 -0.81959,-0.0523 -1.2232,-0.0569 -5.04356,-0.0576 -8.99254,2.51211 -10.04169,6.28672 -6.21796,-1.34759 -12.67036,-2.07661 -19.28687,-2.07661 -40.46401,0 -74.77818,26.54025 -86.84779,63.32236 -0.37507,1.14307 -0.7209,2.30814 -1.05252,3.4705 -0.33156,1.16216 -0.6516,2.31848 -0.93875,3.49895 -0.28871,1.18697 -0.55367,2.37979 -0.7965,3.58428 -0.24092,1.19499 -0.45949,2.40147 -0.65428,3.61273 -0.16863,1.04863 -0.32176,2.09743 -0.45515,3.15759 -0.0201,0.15995 -0.0376,0.32338 -0.0569,0.48359 -0.004,0.0279 0.004,0.0573 0,0.0853 -0.14534,1.2147 -0.27159,2.4409 -0.36981,3.66963 -0.0995,1.2446 -0.17739,2.49694 -0.22757,3.75496 -0.0501,1.25595 -0.0853,2.51506 -0.0853,3.78342 0,51.03851 40.95393,92.42334 91.4846,92.42334 1.04452,0 2.0928,-0.0212 3.12914,-0.0569 0.87632,-0.0298 1.74718,-0.0593 2.61709,-0.11379 0.16314,-0.0102 0.32069,-0.0174 0.4836,-0.0284 0.0866,-0.006 0.16951,-0.0223 0.25602,-0.0284 0.92947,-0.0658 1.86615,-0.16233 2.78777,-0.25602 0.0281,-0.003 0.0573,0.003 0.0853,0 2.01544,-0.20678 3.99915,-0.4882 5.97381,-0.82496 43.23034,-7.37241 76.18027,-45.35632 76.18027,-91.11479 0,-35.62063 -19.98033,-66.52853 -49.2128,-81.95496 0.57159,-1.12278 0.86372,-2.38666 0.79651,-3.75496 -0.17768,-3.61733 -2.78007,-6.99941 -6.48585,-9.01761 20.52003,-51.21239 35.07487,-58.55973 39.37024,-61.92848 l 20.08337,-11.5778 c 1.6278,-0.88426 3.67358,-2.72165 5.88847,-5.14886 0.26713,8.85305 -1.66664,22.08982 -4.66526,40.67879 24.25998,-52.13648 57.37701,-34.36362 57.37701,-34.36362 0,0 -29.57779,-33.28385 12.71567,-42.01578 -37.3928,2.67191 -25.46351,-16.79792 1.79215,-46.6526 -40.29383,30.42481 -45.51749,37.86126 -54.50389,-21.42037 z m 52.71174,68.07297 c 4.36578,-0.31196 9.36776,-0.88492 15.13365,-1.82059 -5.84582,0.3216 -10.86028,0.9383 -15.13365,1.82059 z"
+         id="path3833"
+         inkscape:connector-curvature="0" />
+      <path
+         style="fill:#d45500;stroke:none"
+         d="m 358.12443,268.54248 c -164.14468,569.13863 -82.07234,284.56932 0,0 z"
+         id="path3831"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="cc" />
+      <rect
+         style="fill:#4d4d4d;fill-opacity:0"
+         id="rect3877"
+         width="735.80823"
+         height="650.62482"
+         x="10.280753"
+         y="46.317036"
+         transform="translate(111.90741,69.888245)" />
+    </g>
+    <rect
+       style="fill:none;stroke:none;stroke-width:1;stroke-opacity:1"
+       id="rect3948"
+       width="403.98151"
+       height="492.2551"
+       x="61.272259"
+       y="127.0472"
+       inkscape:export-xdpi="9.1416006"
+       inkscape:export-ydpi="9.1416006"
+       inkscape:export-filename="/home/philipp/code/gruppe26/graphics/bomb1.png" />
+  </g>
+</svg>
