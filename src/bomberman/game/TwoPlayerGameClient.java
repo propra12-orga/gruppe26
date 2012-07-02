@@ -1,27 +1,29 @@
 package bomberman.game;
 
 import java.io.IOException;
-import java.net.UnknownHostException;
 
 import bomberman.game.character.BomberHuman;
 import bomberman.game.objects.Bomb;
 import bomberman.gui.GameGui;
 
 /**
- * Two Player GameClient, inherits from {@link #Game}
+ * Two Player GameClient, inherits from {@link Game}
  * 
  */
 public class TwoPlayerGameClient extends Game {
 
+	/**
+	 * Network object. Should contain a Client-Reader later on.
+	 */
 	Network nw;
 
 	/**
 	 * Constructs a two-player gameclient
 	 * 
-	 * @throws UnknownHostException
 	 * @throws IOException
+	 *             if server does not exist
 	 */
-	public TwoPlayerGameClient() throws UnknownHostException, IOException {
+	public TwoPlayerGameClient() throws IOException {
 		super();
 		nw = new Network(false, null);
 		if (nw.r == null)

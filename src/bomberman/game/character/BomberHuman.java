@@ -11,12 +11,35 @@ import bomberman.game.objects.Bomb;
  * Netzwerkanbindung bereit stellt.
  */
 public class BomberHuman {
+	/**
+	 * unused
+	 */
 	private final boolean human;
+	/**
+	 * Bomferman's current x-position in pixels.
+	 */
 	private int posX;
+	/**
+	 * Bomferman's current y-position in pixels.
+	 */
 	private int posY;
+	/**
+	 * Bomferman's current speed.
+	 */
 	private int speed = Settings.BMANSPEED;
+	/**
+	 * Network object. May not be initialized.
+	 */
 	private Network nw;
+	/**
+	 * String containing Bomferman's position that will be send via the Network
+	 * object.
+	 */
 	private String move = "mv 25 75";
+	/**
+	 * String containing whether a bomb was dropped that will be send via the
+	 * Network object.
+	 */
 	private String bomb = "bomb 0";
 
 	/**

@@ -14,7 +14,13 @@ import bomberman.gui.GameGui;
  * 
  */
 public class Level {
+	/**
+	 * Saves the field, i.e. collisions.
+	 */
 	final int[][] board;
+	/**
+	 * Saves the exit.
+	 */
 	final Exit ex;
 
 	/**

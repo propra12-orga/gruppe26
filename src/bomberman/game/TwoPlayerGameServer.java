@@ -1,7 +1,6 @@
 package bomberman.game;
 
 import java.io.IOException;
-import java.net.UnknownHostException;
 import java.util.HashMap;
 
 import bomberman.game.character.BomberHuman;
@@ -13,7 +12,9 @@ import bomberman.gui.StdDraw;
 
 public class TwoPlayerGameServer extends Game {
 
-	// private final BomberHuman other;
+	/**
+	 * Network object. Should contain a Server-Reader later on.
+	 */
 	Network nw;
 
 	/**
@@ -27,13 +28,15 @@ public class TwoPlayerGameServer extends Game {
 	 *            - ExplosionAreaCalculator
 	 * @param gui
 	 *            - Graphical User Interface
-	 * @throws UnknownHostException
+	 * @param b
+	 *            Board object
 	 * @throws IOException
+	 *             on network issues
 	 */
 
 	public TwoPlayerGameServer(final Controls controls, final Exit exit,
 			final ExplosionAreaCalculator eac, final GameGui gui, final Board b)
-			throws UnknownHostException, IOException {
+			throws IOException {
 		super(controls, exit, eac, gui, b);
 		powerups = new HashMap<Wall, PowerUp>();
 		StdDraw.reference = null;

@@ -4,7 +4,13 @@ package bomberman.game;
  * Wall just has its Position X and Y
  */
 public class Wall {
+	/**
+	 * X array-position of Wall.
+	 */
 	final private int X;
+	/**
+	 * Y array-position of Wall.
+	 */
 	final private int Y;
 
 	/**

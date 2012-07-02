@@ -1,7 +1,6 @@
 package bomberman.game;
 
 import java.io.IOException;
-import java.net.UnknownHostException;
 import java.util.List;
 
 import bomberman.game.character.BomberHuman;
@@ -17,17 +16,23 @@ import bomberman.game.objects.Bomb;
  */
 public class Network {
 
+	/**
+	 * Reader object - is an instance of Server if Network is constructed so, an
+	 * instance of Client otherwise.
+	 */
 	public Reader r;
 
 	/**
-	 * Constructs Server and Client.
+	 * Constructs the server and client.
 	 * 
 	 * @param server
-	 * @throws UnknownHostException
+	 *            true, if caller is acting as a server, false if client
+	 * @param level
+	 *            only needed if caller is server, ignored otherwise
 	 * @throws IOException
+	 *             If server does not exist at entered IP.
 	 */
-	public Network(final boolean server, final String level)
-			throws UnknownHostException, IOException {
+	public Network(final boolean server, final String level) throws IOException {
 		if (server) {
 			try {
 				r = new Server(level);
@@ -36,9 +41,6 @@ public class Network {
 			}
 		} else {
 			r = new Client();
-			if (r == null) {
-				System.out.println("debugwtf");
-			}
 		}
 	}
 
@@ -64,6 +66,11 @@ public class Network {
 		r.write(bman.getMove() + "\n" + bman.getBomb());
 	}
 
+	/**
+	 * Reads a Level from Network.
+	 * 
+	 * @return Level object or null.
+	 */
 	public Level readLevel() {
 		return r.readLevel();
 	}

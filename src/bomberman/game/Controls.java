@@ -158,6 +158,13 @@ public class Controls {
 		return false;
 	}
 
+	/**
+	 * Checks if a char array contains a certain char as its element.
+	 * 
+	 * @param arr
+	 * @param c
+	 * @return true, if arr contains c; false otherwise
+	 */
 	private boolean arrayContainsChar(final char[] arr, final char c) {
 		for (int i = 0; i < arr.length; i++) {
 			if (arr[i] == c)
@@ -253,6 +260,9 @@ public class Controls {
 		bombs.add(b);
 	}
 
+	/**
+	 * Reduces the bomb threshold. Result: Can set next bomb faster.
+	 */
 	public void bombRatioUp() {
 		bombthresh -= 5;
 	}

@@ -44,6 +44,10 @@ public class FileReader {
 	 * List that contains the to-be evaluated/parsed level file.
 	 */
 	private final List<String> file;
+	/**
+	 * Flag for validity of the level. True as long as proven otherwise. Set by
+	 * constructor.
+	 */
 	private boolean valid = true;
 
 	/**
@@ -193,7 +197,7 @@ public class FileReader {
 	 * @throws IllegalArgumentException
 	 *             if level format is not valid.
 	 */
-	private void checkValid() {
+	private void checkValid() throws IllegalArgumentException {
 		assertHelper(file.size() > 4);
 		assertHelper(file.get(0).equals("# bomferman level file"));
 		assertHelper(file.get(1).equals("spawn 0 0"));

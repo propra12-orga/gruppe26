@@ -8,8 +8,17 @@ package bomberman.game.objects;
  */
 public class Exit {
 
+	/**
+	 * X array-position.
+	 */
 	private final int posX;
+	/**
+	 * Y array-position.
+	 */
 	private final int posY;
+	/**
+	 * Size of a tile.
+	 */
 	private final int TILESIZE;
 
 	/**

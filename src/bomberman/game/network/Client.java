@@ -21,7 +21,13 @@ import bomberman.game.objects.Bomb;
  * 
  */
 public class Client implements Reader {
+	/**
+	 * Scanner of socket's inputStream.
+	 */
 	private Scanner in;
+	/**
+	 * PrintWriter of socket's outputStream.
+	 */
 	private PrintWriter out;
 
 	/**
@@ -73,7 +79,6 @@ public class Client implements Reader {
 				}
 			}
 		}
-		// System.out.println(line);
 	}
 
 	@Override

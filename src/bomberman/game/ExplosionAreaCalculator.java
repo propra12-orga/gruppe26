@@ -15,15 +15,25 @@ import bomberman.game.objects.Bomb;
  */
 public class ExplosionAreaCalculator {
 
-	// Variablen, wie eigentlich immer:
-	// Spielfeld-array mit Kollisionen
-	// Hoehe und Breite des Feldes
-	// Groesse der Spielfeldzellen
-	// Radius der Bombe
+	/**
+	 * Spielfeld-array mit Kollisionen
+	 */
 	final private int[][] field;
+	/**
+	 * Hoehe des Feldes
+	 */
 	final private int height;
+	/**
+	 * Breite des Feldes
+	 */
 	final private int width;
+	/**
+	 * Groesse der Spielfeldzellen
+	 */
 	final private int TILESIZE;
+	/**
+	 * Radius der Bombe
+	 */
 	private int radius = 2;
 
 	/**
@@ -234,11 +244,21 @@ public class ExplosionAreaCalculator {
 		}
 	}
 
+	/**
+	 * Increases the radius of all bombs by one field.
+	 */
 	public void bombRangeUp() {
 		radius++;
 	}
 
 	// TODO: copied from Controls.java; maybe we could refactor again?
+	/**
+	 * Converts pixel-position to array-position.
+	 * 
+	 * @param pos
+	 *            in pixels
+	 * @return position in the array
+	 */
 	public int getArrayPos(final int pos) {
 		if (pos < 0)
 			return -1;

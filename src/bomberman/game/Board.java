@@ -9,8 +9,17 @@ package bomberman.game;
  */
 public class Board {
 
+	/**
+	 * Save the height of the board.
+	 */
 	final private int height;
+	/**
+	 * Saves the width of the board.
+	 */
 	final private int width;
+	/**
+	 * Saves the field, i.e. positions and type of walls.
+	 */
 	final private int[][] field;
 
 	/**
