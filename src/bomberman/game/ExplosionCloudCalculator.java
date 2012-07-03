@@ -1,5 +1,9 @@
 package bomberman.game;
 
+/**
+ * Calculates Cloudeffect for explosion
+ * 
+ */
 public class ExplosionCloudCalculator {
 
 	// b1, b2 und b3 sind verschiedene Rauchbilder. b1 ist das unterste b3 das
@@ -22,6 +26,10 @@ public class ExplosionCloudCalculator {
 
 	public double smaller = 1;
 
+	/**
+	 * @param xPar
+	 * @param yPar
+	 */
 	public ExplosionCloudCalculator(final double xPar, final double yPar) {
 
 		for (int i = 0; i < 5; i++) {
@@ -36,6 +44,10 @@ public class ExplosionCloudCalculator {
 		}
 	}
 
+	/**
+	 * @param iPar
+	 * @return
+	 */
 	public double getB1X(int iPar) {
 
 		if (iPar < 0) {
@@ -47,6 +59,10 @@ public class ExplosionCloudCalculator {
 		return b1X[iPar];
 	}
 
+	/**
+	 * @param iPar
+	 * @return
+	 */
 	public double getB2X(int iPar) {
 
 		if (iPar < 0) {
@@ -58,6 +74,10 @@ public class ExplosionCloudCalculator {
 		return b2X[iPar];
 	}
 
+	/**
+	 * @param iPar
+	 * @return
+	 */
 	public double getB3X(int iPar) {
 
 		if (iPar < 0) {
@@ -69,6 +89,10 @@ public class ExplosionCloudCalculator {
 		return b3X[iPar];
 	}
 
+	/**
+	 * @param iPar
+	 * @return
+	 */
 	public double getB1Y(int iPar) {
 
 		if (iPar < 0) {
@@ -80,6 +104,10 @@ public class ExplosionCloudCalculator {
 		return b1Y[iPar];
 	}
 
+	/**
+	 * @param iPar
+	 * @return
+	 */
 	public double getB2Y(int iPar) {
 
 		if (iPar < 0) {
@@ -91,6 +119,10 @@ public class ExplosionCloudCalculator {
 		return b2Y[iPar];
 	}
 
+	/**
+	 * @param iPar
+	 * @return
+	 */
 	public double getB3Y(int iPar) {
 
 		if (iPar < 0) {
@@ -102,6 +134,9 @@ public class ExplosionCloudCalculator {
 		return b3Y[iPar];
 	}
 
+	/**
+	 * 
+	 */
 	public void b1move() {
 
 		for (int i = 1; i < 3; i++) {
@@ -132,6 +167,9 @@ public class ExplosionCloudCalculator {
 
 	}
 
+	/**
+	 * 
+	 */
 	public void b2move() {
 
 		for (int i = 1; i < 3; i++) {
@@ -164,6 +202,9 @@ public class ExplosionCloudCalculator {
 		move2 += 3;
 	}
 
+	/**
+	 * 
+	 */
 	public void b3move() {
 
 		double x = b3X[0];
@@ -200,16 +241,25 @@ public class ExplosionCloudCalculator {
 
 	}
 
+	/**
+	 * @return
+	 */
 	public double getMove() {
 
 		return move;
 	}
 
+	/**
+	 * @return
+	 */
 	public double getSmaller() {
 
 		return smaller;
 	}
 
+	/**
+	 * 
+	 */
 	public void setSmaller() {
 
 		double x = smaller;
