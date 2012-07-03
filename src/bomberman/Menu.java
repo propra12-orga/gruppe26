@@ -70,25 +70,26 @@ public class Menu {
 				break;
 			case 2:
 				final Game h = setupServer();
-				if (h != null)
+				if (h != null) {
 					h.start();
+				}
 				break;
 			case 3:
-				Game c;
-				try {
-					c = new TwoPlayerGameClient();
-					c.start();
-					// } catch (Exception e) {
+				while (true) {
+					Game c;
+					boolean reconnect = false;
+					try {
+						c = new TwoPlayerGameClient();
+						c.start();
+					} catch (Exception swallowed) {
+						mg.unknownHost = true;
+						reconnect = mg.enterIPLoop();
+					}
 
-					// } catch (SocketException f) {
-
-				} catch (Exception swallowed) {
-
-				} finally {
-					mg.unknownHost = true;
-					mg.enterIPLoop();
+					if (!reconnect) {
+						break;
+					}
 				}
-
 				break;
 			case 4:
 				loadSaveGame();
@@ -162,8 +163,9 @@ public class Menu {
 			String tmp;
 
 			try {
-				while ((tmp = br.readLine()) != null)
+				while ((tmp = br.readLine()) != null) {
 					sb.append(tmp);
+				}
 				in.close();
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -196,8 +198,9 @@ public class Menu {
 			String tmp;
 
 			try {
-				while ((tmp = br.readLine()) != null)
+				while ((tmp = br.readLine()) != null) {
 					sb.append(tmp);
+				}
 				in.close();
 			} catch (IOException e) {
 				e.printStackTrace();

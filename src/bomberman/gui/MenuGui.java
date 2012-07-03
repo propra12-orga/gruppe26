@@ -125,25 +125,26 @@ public class MenuGui {
 			StdDraw.text(text_x_server, text_y_server, "Server");
 			StdDraw.text(text_x_client, text_y_client, "Client");
 			StdDraw.text(text_x_score, text_y_score, "High Score");
-			if (savedGameExists)
+			if (savedGameExists) {
 				StdDraw.text(text_x_load, text_y_load, "Load Game");
+			}
 		}
 		StdDraw.show();
-		if (isMouseOverNewGame() && StdDraw.mousePressed()) {
+		if (isMouseOverNewGame() && StdDraw.mousePressed())
 			return 1;
-		} else if (isMouseOverExit() && StdDraw.mousePressed()) {
+		else if (isMouseOverExit() && StdDraw.mousePressed())
 			return -1;
-		} else if (isMouseOverControls() && StdDraw.mousePressed()) {
+		else if (isMouseOverControls() && StdDraw.mousePressed()) {
 			showControls();
-		} else if (isMouseOverServer() && StdDraw.mousePressed()) {
+		} else if (isMouseOverServer() && StdDraw.mousePressed())
 			return 2;
-		} else if (isMouseOverClient() && StdDraw.mousePressed()) {
+		else if (isMouseOverClient() && StdDraw.mousePressed()) {
 			if (enterIPLoop())
 				return 3;
 		} else if (savedGameExists && isMouseOverLoad()
-				&& StdDraw.mousePressed()) {
+				&& StdDraw.mousePressed())
 			return 4;
-		} else if (isMouseOverScore() && StdDraw.mousePressed()) {
+		else if (isMouseOverScore() && StdDraw.mousePressed()) {
 			HighScore.printScore();
 		}
 
@@ -164,8 +165,9 @@ public class MenuGui {
 		StdDraw.text(text_x_controls, text_y_controls, "Controls");
 		StdDraw.text(text_x_score, text_y_score, "High Score");
 
-		if (savedGameExists)
+		if (savedGameExists) {
 			StdDraw.text(text_x_load, text_y_load, "Load Game");
+		}
 	}
 
 	/**
@@ -182,8 +184,9 @@ public class MenuGui {
 		StdDraw.text(text_x_client, text_y_client, "Client");
 		StdDraw.text(text_x_score, text_y_score, "High Score");
 
-		if (savedGameExists)
+		if (savedGameExists) {
 			StdDraw.text(text_x_load, text_y_load, "Load Game");
+		}
 	}
 
 	/**
@@ -200,8 +203,9 @@ public class MenuGui {
 		StdDraw.text(text_x_client, text_y_client, "Client");
 		StdDraw.text(text_x_score, text_y_score, "High Score");
 
-		if (savedGameExists)
+		if (savedGameExists) {
 			StdDraw.text(text_x_load, text_y_load, "Load Game");
+		}
 	}
 
 	/**
@@ -354,8 +358,9 @@ public class MenuGui {
 		StdDraw.text(text_x_controls, text_y_controls, "Controls");
 		StdDraw.text(text_x_score, text_y_score, "High Score");
 
-		if (savedGameExists)
+		if (savedGameExists) {
 			StdDraw.text(text_x_load, text_y_load, "Load Game");
+		}
 	}
 
 	/**
@@ -371,8 +376,9 @@ public class MenuGui {
 		StdDraw.text(text_x_controls, text_y_controls, "Controls");
 		StdDraw.text(text_x_score, text_y_score, "High Score");
 
-		if (savedGameExists)
+		if (savedGameExists) {
 			StdDraw.text(text_x_load, text_y_load, "Load Game");
+		}
 
 	}
 
@@ -417,8 +423,9 @@ public class MenuGui {
 		StdDraw.text(text_x_server, text_y_server, "Server");
 		StdDraw.text(text_x_controls, text_y_controls, "Controls");
 
-		if (savedGameExists)
+		if (savedGameExists) {
 			StdDraw.text(text_x_load, text_y_load, "Load Game");
+		}
 	}
 
 	public boolean enterIPLoop() {
@@ -427,6 +434,7 @@ public class MenuGui {
 		boolean flag = false;
 		StringBuffer sb = new StringBuffer();
 		while (!flag) {
+			StdDraw.resetMousePressedStatus();
 			StdDraw.clear();
 
 			if (StdDraw.hasNextKeyTyped()) {
@@ -435,16 +443,20 @@ public class MenuGui {
 					Integer.parseInt("" + next);
 					sb.append(next);
 				} catch (Exception swallowed) {
-					if (next == '.')
+					if (next == '.') {
 						sb.append(next);
+					}
 				}
 			}
 
 			StdDraw.text(500, 650, "Type Server IP (Enter to accept)");
-			StdDraw.text(500, 500, sb.toString());
+			StdDraw.text(500, 550, sb.toString());
 
-			if (unknownHost)
+			StdDraw.text(500, 450, "(leave blank for " + Settings.server + ")");
+
+			if (unknownHost) {
 				StdDraw.text(500, 350, "Can't connect to " + Settings.server);
+			}
 
 			if (mouseOverBack()) {
 				StdDraw.setPenColor(StdDraw.BOOK_RED);
@@ -457,16 +469,19 @@ public class MenuGui {
 			StdDraw.show();
 
 			if (StdDraw.typedKeys[10]) {
-				if (sb.toString().length() > 0)
+				if (sb.toString().length() > 0) {
 					Settings.server = sb.toString();
+				}
 				flag = true;
 				returnValue = true;
+				StdDraw.typedKeys[10] = false;
 			}
 
 			if (StdDraw.typedKeys[8]) {
 				StdDraw.typedKeys[8] = false;
-				if (sb.toString().length() > 0)
+				if (sb.toString().length() > 0) {
 					sb.deleteCharAt(sb.length() - 1);
+				}
 			}
 
 			if (mouseOverBack() && StdDraw.mousePressed()) {
