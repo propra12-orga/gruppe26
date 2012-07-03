@@ -1,8 +1,17 @@
 package bomberman.game.objects;
 
 
+/**
+ * Powerup
+ * 
+ * Contains: - a constructor to generate a powerup of one of three possible
+ * types and a getter-method for returning the type of the powerup
+ */
 public class PowerUp {
 
+	/**
+	 * type of Powerup
+	 */
 	private final EPowerUps type;
 
 	/**

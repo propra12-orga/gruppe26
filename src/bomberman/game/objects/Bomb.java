@@ -1,18 +1,49 @@
 package bomberman.game.objects;
 
+/**
+ * Contains everything regarding Bombs Constructor, Methods for controlling
+ * explosions Each Bomb has its x- and y-position, a timer, its 4
+ * explosion-borders and a variable indicating whether the bomb actually exists
+ * 
+ */
 public class Bomb {
-	/*
-	 * TODO: do we want to finalize them? thinking of pushing/kicking bombs...
+
+	/**
+	 * x-Position of Bomb
 	 */
 	final private int posX;
+	/**
+	 * y-Position of Bomb
+	 */
 	final private int posY;
+	/**
+	 * maximum timer that has to go down until bomb goes bomf
+	 */
 	final private int maxTimer;
+	/**
+	 * current timer of Bomb (ticks until Bomb goes bomf)
+	 */
 	private int timer;
+	/**
+	 * is Bomb existant? (i.e not gone bomf)
+	 */
 	private boolean exists = true;
 
+	/**
+	 * left explosion border
+	 */
 	private int explosionBorderLeft;
+	/**
+	 * right explosion border
+	 */
 	private int explosionBorderRight;
+	/**
+	 * top explosion border
+	 */
 	private int explosionBorderTop;
+	/**
+	 * bottom explosion border
+	 */
 	private int explosionBorderBottom;
 
 	/**

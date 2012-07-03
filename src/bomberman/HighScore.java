@@ -14,9 +14,27 @@ import bomberman.gui.StdDraw;
  * score
  */
 public class HighScore {
+
+	/**
+	 * Integer-Set of Score-Instances Sets can not contain more than one
+	 * identical element.
+	 */
 	private Set<Integer> instanceScores;
+
+	/**
+	 * Map of Player-Instances Keys: Integer Values: String
+	 */
 	private Map<Integer, String> instancePlayer;
+
+	/**
+	 * Hash-Set(Integer) of scores (static)
+	 * 
+	 */
 	private static Set<Integer> scores = new HashSet<Integer>();
+
+	/**
+	 * Hash-Map(Integer:String) of players (static)
+	 */
 	private static Map<Integer, String> player = new HashMap<Integer, String>();
 
 	/**
@@ -69,6 +87,13 @@ public class HighScore {
 
 	}
 
+	/**
+	 * Get the Minimum Score of a Highscore-Set
+	 * 
+	 * @param set
+	 *            - Set from which the Minimum should be obtained
+	 * @return (Integer) the Minimum Score
+	 */
 	private static Integer getMinimum(final Set<Integer> set) {
 		Integer minimumInteger = Integer.MAX_VALUE;
 		for (Integer score : set) {

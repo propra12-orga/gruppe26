@@ -77,6 +77,9 @@ public class MenuGui {
 
 	}
 
+	/**
+	 * 
+	 */
 	private void setSizeAndScales() {
 		StdDraw.setCanvasSize(512, 512); // magic standard constants
 		StdDraw.setXscale(0, 1000);
@@ -382,6 +385,11 @@ public class MenuGui {
 
 	}
 
+	/**
+	 * Works like isMouseOverControls()
+	 * 
+	 * @return true or false
+	 */
 	private boolean isMouseOverLoad() {
 		return (StdDraw.mouseX() <= text_x_load + load_size_X)
 				&& (StdDraw.mouseX() >= text_x_load - load_size_X)
@@ -390,6 +398,11 @@ public class MenuGui {
 
 	}
 
+	/**
+	 * Works like isMouseOverControls()
+	 * 
+	 * @return true or false
+	 */
 	private boolean isMouseOverScore() {
 		return (StdDraw.mouseX() <= text_x_score + score_size_X)
 				&& (StdDraw.mouseX() >= text_x_score - score_size_X)
@@ -398,6 +411,12 @@ public class MenuGui {
 
 	}
 
+	/**
+	 * Hover Effect
+	 * 
+	 * Also: checks whether a saved game exists and draws or deletes the
+	 * "Load Game" Button
+	 */
 	private void mouseOverLoadActions() {
 		StdDraw.text(text_x_client, text_y_client, "Client");
 		StdDraw.text(text_x_exit, text_y_exit, "Exit");
@@ -413,6 +432,12 @@ public class MenuGui {
 		}
 	}
 
+	/**
+	 * Hover Effect
+	 * 
+	 * Also: checks whether a saved game exists and draws or deletes the
+	 * "Load Game" Button
+	 */
 	private void mouseOverScoreActions() {
 		StdDraw.setPenColor(StdDraw.BOOK_RED);
 		StdDraw.text(text_x_score, text_y_score, "High Score");
@@ -428,6 +453,9 @@ public class MenuGui {
 		}
 	}
 
+	/**
+	 * @return true or false
+	 */
 	public boolean enterIPLoop() {
 		boolean returnValue = false;
 		StdDraw.resetMousePressedStatus();

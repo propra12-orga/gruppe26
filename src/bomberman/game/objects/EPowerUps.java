@@ -9,7 +9,7 @@ public enum EPowerUps {
 	 */
 	SPEEDUP,
 	/**
-	 * BOMBRATIO - more bombs for bomferman
+	 * BOMBRATIO - more bombs in shorter time for bomferman
 	 */
 	BOMBRATIO,
 	/**

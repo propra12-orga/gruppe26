@@ -25,6 +25,12 @@ import bomberman.gui.MenuGui;
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.json.JettisonMappedXmlDriver;
 
+/**
+ * Menu-Class Contains Methods to start and setup the game and its components
+ * 
+ * @author Jan
+ * 
+ */
 public class Menu {
 
 	/**
