@@ -45,13 +45,13 @@ public class HighScore {
 	}
 
 	/**
-	 * Adds a score to the Highscoreset checks whether minimum highscore ist
+	 * Adds a score to the Highscoreset checks whether minimum highscore is
 	 * below score and if yes adds it to the set together with playername also
 	 * deletes older highscores
 	 * 
 	 * @param score
 	 *            - score to add
-	 * @return
+	 * @return whether player scored a new highscore
 	 */
 	public static boolean newScore(final int score) {
 		if (scores.size() >= 10) {
@@ -91,10 +91,10 @@ public class HighScore {
 		return score < 0 ? 0 : score > 1000000 ? -1 : score;
 	}
 
-	final static double back_size_X = 60;
-	final static double back_size_Y = 20;
-	final static double text_x_back = 500;
-	final static double text_y_back = 100;
+	private final static double back_size_X = 60;
+	private final static double back_size_Y = 20;
+	private final static double text_x_back = 500;
+	private final static double text_y_back = 100;
 
 	/**
 	 * Print Highscore List
