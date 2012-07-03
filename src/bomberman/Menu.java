@@ -75,14 +75,19 @@ public class Menu {
 				}
 				break;
 			case 3:
-				Game c;
-				try {
-					c = new TwoPlayerGameClient();
-					c.start();
-				} catch (Exception swallowed) {
-					mg.unknownHost = true;
-					while (mg.enterIPLoop()) {
-						;
+				while (true) {
+					Game c;
+					boolean reconnect = false;
+					try {
+						c = new TwoPlayerGameClient();
+						c.start();
+					} catch (Exception swallowed) {
+						mg.unknownHost = true;
+						reconnect = mg.enterIPLoop();
+					}
+
+					if (!reconnect) {
+						break;
 					}
 				}
 				break;
