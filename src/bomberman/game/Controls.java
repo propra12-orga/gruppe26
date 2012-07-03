@@ -162,7 +162,9 @@ public class Controls {
 	 * Checks if a char array contains a certain char as its element.
 	 * 
 	 * @param arr
+	 *            array to be checked
 	 * @param c
+	 *            char thats containment is in question
 	 * @return true, if arr contains c; false otherwise
 	 */
 	private boolean arrayContainsChar(final char[] arr, final char c) {

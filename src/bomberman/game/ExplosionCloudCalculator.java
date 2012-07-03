@@ -1,5 +1,9 @@
 package bomberman.game;
 
+/**
+ * Calculates the position of explosion grahics.
+ * 
+ */
 public class ExplosionCloudCalculator {
 
 	// b1, b2 und b3 sind verschiedene Rauchbilder. b1 ist das unterste b3 das
@@ -7,21 +11,60 @@ public class ExplosionCloudCalculator {
 	// die Bilder werden uebereinander gelegt und sollen so eine Explosion
 	// simulieren
 
-	public double[] b1X = new double[5];
-	public double[] b1Y = new double[5];
+	/**
+	 * Contains x-coordinates of the first explosions graphics layer.
+	 */
+	private final double[] b1X = new double[5];
+	/**
+	 * Contains y-coordinates of the first explosions graphics layer.
+	 */
+	private final double[] b1Y = new double[5];
 
-	public double[] b2X = new double[5];
-	public double[] b2Y = new double[5];
+	/**
+	 * Contains x-coordinates of the second explosions graphics layer.
+	 */
+	private final double[] b2X = new double[5];
+	/**
+	 * Contains y-coordinates of the second explosions graphics layer.
+	 */
+	private final double[] b2Y = new double[5];
 
-	public double[] b3X = new double[5];
-	public double[] b3Y = new double[5];
+	/**
+	 * Contains x-coordinates of the third explosions graphics layer.
+	 */
+	private final double[] b3X = new double[5];
+	/**
+	 * Contains y-coordinates of the third explosions graphics layer.
+	 */
+	private final double[] b3Y = new double[5];
 
-	public double move = 1;
-	public double move2 = 1;
-	public double move3 = 1;
+	/**
+	 * Reciprocal value of movement speed of first cloud layer.
+	 */
+	private double move = 1;
+	/**
+	 * Reciprocal value of movement speed of second cloud layer.
+	 */
+	private double move2 = 1;
+	/**
+	 * Reciprocal value of movement speed of third cloud layer.
+	 */
+	private double move3 = 1;
 
-	public double smaller = 1;
+	/**
+	 * Resize factor.
+	 */
+	private double smaller = 1;
 
+	/**
+	 * Constructs the ExplosionCloudCalculator object and initializes the
+	 * coordinates of the graphics.
+	 * 
+	 * @param xPar
+	 *            x-coordinate of the center of the tile in bombradius
+	 * @param yPar
+	 *            y-coordinate of the center of the tile in bombradius
+	 */
 	public ExplosionCloudCalculator(final double xPar, final double yPar) {
 
 		for (int i = 0; i < 5; i++) {
@@ -36,6 +79,14 @@ public class ExplosionCloudCalculator {
 		}
 	}
 
+	/**
+	 * Returns specified element of B1X array, or the first or last one if out
+	 * of bounds.
+	 * 
+	 * @param iPar
+	 *            position in array
+	 * @return value in B1X array
+	 */
 	public double getB1X(int iPar) {
 
 		if (iPar < 0) {
@@ -47,6 +98,14 @@ public class ExplosionCloudCalculator {
 		return b1X[iPar];
 	}
 
+	/**
+	 * Returns specified element of B2X array, or the first or last one if out
+	 * of bounds.
+	 * 
+	 * @param iPar
+	 *            position in array
+	 * @return value in B2X array
+	 */
 	public double getB2X(int iPar) {
 
 		if (iPar < 0) {
@@ -58,6 +117,14 @@ public class ExplosionCloudCalculator {
 		return b2X[iPar];
 	}
 
+	/**
+	 * Returns specified element of B3X array, or the first or last one if out
+	 * of bounds.
+	 * 
+	 * @param iPar
+	 *            position in array
+	 * @return value in B3X array
+	 */
 	public double getB3X(int iPar) {
 
 		if (iPar < 0) {
@@ -69,6 +136,14 @@ public class ExplosionCloudCalculator {
 		return b3X[iPar];
 	}
 
+	/**
+	 * Returns specified element of B1Y array, or the first or last one if out
+	 * of bounds.
+	 * 
+	 * @param iPar
+	 *            position in array
+	 * @return value in B1Y array
+	 */
 	public double getB1Y(int iPar) {
 
 		if (iPar < 0) {
@@ -80,6 +155,14 @@ public class ExplosionCloudCalculator {
 		return b1Y[iPar];
 	}
 
+	/**
+	 * Returns specified element of B2Y array, or the first or last one if out
+	 * of bounds.
+	 * 
+	 * @param iPar
+	 *            position in array
+	 * @return value in B2Y array
+	 */
 	public double getB2Y(int iPar) {
 
 		if (iPar < 0) {
@@ -91,6 +174,14 @@ public class ExplosionCloudCalculator {
 		return b2Y[iPar];
 	}
 
+	/**
+	 * Returns specified element of B3Y array, or the first or last one if out
+	 * of bounds.
+	 * 
+	 * @param iPar
+	 *            position in array
+	 * @return value in B3Y array
+	 */
 	public double getB3Y(int iPar) {
 
 		if (iPar < 0) {
@@ -102,6 +193,9 @@ public class ExplosionCloudCalculator {
 		return b3Y[iPar];
 	}
 
+	/**
+	 * Moves every graphic of the first layer.
+	 */
 	public void b1move() {
 
 		for (int i = 1; i < 3; i++) {
@@ -132,6 +226,9 @@ public class ExplosionCloudCalculator {
 
 	}
 
+	/**
+	 * Moves every graphic of the second layer.
+	 */
 	public void b2move() {
 
 		for (int i = 1; i < 3; i++) {
@@ -164,6 +261,9 @@ public class ExplosionCloudCalculator {
 		move2 += 3;
 	}
 
+	/**
+	 * Moves every graphic of the third layer.
+	 */
 	public void b3move() {
 
 		double x = b3X[0];
@@ -200,21 +300,30 @@ public class ExplosionCloudCalculator {
 
 	}
 
+	/**
+	 * Get movement speed of clouds.
+	 * 
+	 * @return reciprocal value of movement speed.
+	 */
 	public double getMove() {
-
 		return move;
 	}
 
+	/**
+	 * Returns current resize factor.
+	 * 
+	 * @return current resize factor.
+	 */
 	public double getSmaller() {
-
 		return smaller;
 	}
 
+	/**
+	 * Resizes the graphics by a constant factor.
+	 */
 	public void setSmaller() {
-
 		double x = smaller;
 		smaller = x * 0.985;
-
 	}
 
 }

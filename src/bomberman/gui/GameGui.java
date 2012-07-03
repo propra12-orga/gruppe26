@@ -13,17 +13,37 @@ import bomberman.game.objects.Exit;
 import bomberman.game.objects.PowerUp;
 
 /**
+ * GameGui - draws everything game-related except the explosion smoke.
+ * 
  * @author Jan
  * 
  */
 public class GameGui {
 
+	/**
+	 * Length of a tile's side edge.
+	 */
 	private final int TILESIZE;
+	/**
+	 * Array contains collisions.
+	 */
 	private final int[][] field;
+	/**
+	 * Width of the field.
+	 */
 	private final int width;
+	/**
+	 * Height of the field.
+	 */
 	private final int height;
+	/**
+	 * ExplosionsAreaCalculator to calculate the explosion area.
+	 */
 	private final ExplosionAreaCalculator eac;
 
+	/**
+	 * Explosion graphics module.
+	 */
 	private final Explosion bombe = new Explosion();
 
 	/**
@@ -78,9 +98,10 @@ public class GameGui {
 	}
 
 	/**
-	 * draws Bomferman
+	 * draws Bomfermen
 	 * 
 	 * @param bman
+	 *            list of Bomfermen
 	 */
 	public void drawBomber(final List<BomberHuman> bman) {
 		StdDraw.picture(bman.get(0).getPosX(), bman.get(0).getPosY(),
@@ -95,6 +116,7 @@ public class GameGui {
 	 * draw bombs
 	 * 
 	 * @param bombs
+	 *            list of currently active bombs
 	 */
 	public void drawBombs(final List<Bomb> bombs) {
 		for (Bomb b : bombs) {
@@ -201,6 +223,7 @@ public class GameGui {
 	 * @param exit
 	 *            - exit to be drawn
 	 * @param powerups
+	 *            map of Walls to powerups to be drawn
 	 */
 	public void draw(final List<Bomb> bombs, final List<BomberHuman> bmans,
 			final Exit exit, final Map<Wall, PowerUp> powerups) {
@@ -214,6 +237,12 @@ public class GameGui {
 		StdDraw.show();
 	}
 
+	/**
+	 * Draws the powerups.
+	 * 
+	 * @param powerups
+	 *            map of Walls to powerups to be drawn
+	 */
 	private void drawPowerups(final Map<Wall, PowerUp> powerups) {
 		final Set<Wall> locations = powerups.keySet();
 
@@ -278,6 +307,13 @@ public class GameGui {
 		}
 	}
 
+	/**
+	 * Draws additionally to the victory screen a message in case you got a new
+	 * highscore.
+	 * 
+	 * @param newScore
+	 *            player achieved a new highscore
+	 */
 	public void highScore(final boolean newScore) {
 		StdDraw.setPenColor(StdDraw.PINK);
 		if (newScore) {
