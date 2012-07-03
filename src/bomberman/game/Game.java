@@ -25,20 +25,59 @@ import bomberman.gui.StdDraw;
  */
 public class Game {
 
+	/**
+	 * Map that maps walls to powerups
+	 */
 	protected Map<Wall, PowerUp> powerups;
+	/**
+	 * A List that contains Bomferman (singleplayer) or two Bomfermen
+	 * (multiplayer)
+	 */
 	protected final List<BomberHuman> bman = new ArrayList<BomberHuman>();
+	/**
+	 * The exit.
+	 */
 	protected Exit exit;
+	/**
+	 * Bombmanagement datastructure.
+	 */
 	protected final List<Bomb> bombs = new ArrayList<Bomb>();
 	// let's see if we can use this interface for something productive
+	/**
+	 * Guaranteed to be empty.
+	 */
 	private final List<Character> enemies = new ArrayList<Character>();
+	/**
+	 * The gui.
+	 */
 	protected GameGui gui;
+	/**
+	 * Controls object to control player's bomferman.
+	 */
 	protected Controls controls;
+	/**
+	 * ExplosionAreaCalculator to check if bomferman will be bomfed and to bomf
+	 * walls.
+	 */
 	protected ExplosionAreaCalculator eac;
 
+	/**
+	 * Is true, as long as bomferman is not bomfed.
+	 */
 	protected boolean alive = true;
+	/**
+	 * Is true, as soon it is won, i.e. bomferman on exit and enemies is empty
+	 * (single player) or last bomferman standing (multi player).
+	 */
 	protected boolean won = false;
 
+	/**
+	 * Remembers when the last tick happened.
+	 */
 	protected long lastTickAt = System.currentTimeMillis();
+	/**
+	 * Counts ticks to calculate score.
+	 */
 	private long numberOfTicks = 0;
 
 	/**
@@ -46,9 +85,16 @@ public class Game {
 	 * create a BomberHuman that is controlled by the player.
 	 * 
 	 * @param controls
+	 *            Controls object
 	 * @param exit
+	 *            Exit object (well, it should be reachable, but it is not
+	 *            required)
 	 * @param eac
+	 *            ExplosionAreaCalculator
 	 * @param gui
+	 *            game gui to be referenced
+	 * @param b
+	 *            the Board object that contains collisions
 	 */
 	public Game(final Controls controls, final Exit exit,
 			final ExplosionAreaCalculator eac, final GameGui gui, final Board b) {
@@ -88,8 +134,9 @@ public class Game {
 	}
 
 	/**
-	 * Destructor for the game: sets gui, exit, eac, controls and powerups to
-	 * empty/null
+	 * Constructor for the game: sets gui, exit, eac, controls and powerups to
+	 * empty/null. Should only be used by subclasses that want to set these
+	 * values themselves.
 	 */
 	protected Game() {
 		this.gui = null;
@@ -138,7 +185,7 @@ public class Game {
 	}
 
 	/**
-	 * 
+	 * Checks whether bomferman collected a powerup.
 	 */
 	private void checkPowerUp() {
 		final BomberHuman bomfman = bman.get(0);
