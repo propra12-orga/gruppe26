@@ -9,27 +9,49 @@ import java.util.Set;
 
 import bomberman.gui.StdDraw;
 
+/**
+ * Implements a Highscore System The faster you are the higher will be your
+ * score
+ */
 public class HighScore {
 	private Set<Integer> instanceScores;
 	private Map<Integer, String> instancePlayer;
 	private static Set<Integer> scores = new HashSet<Integer>();
 	private static Map<Integer, String> player = new HashMap<Integer, String>();
 
+	/**
+	 * Constructor for Highscores.
+	 */
 	public HighScore() {
 		instanceScores = new HashSet<Integer>();
 		instancePlayer = new HashMap<Integer, String>();
 	}
 
+	/**
+	 * 
+	 */
 	public void copyFromInstance() {
 		scores = instanceScores;
 		player = instancePlayer;
 	}
 
+	/**
+	 * 
+	 */
 	public void copyToInstance() {
 		instanceScores = scores;
 		instancePlayer = player;
 	}
 
+	/**
+	 * Adds a score to the Highscoreset checks whether minimum highscore ist
+	 * below score and if yes adds it to the set together with playername also
+	 * deletes older highscores
+	 * 
+	 * @param score
+	 *            - score to add
+	 * @return
+	 */
 	public static boolean newScore(final int score) {
 		if (scores.size() >= 10) {
 			final Integer min = getMinimum(scores);
@@ -56,6 +78,13 @@ public class HighScore {
 		return minimumInteger;
 	}
 
+	/**
+	 * Generate score out of ticks
+	 * 
+	 * @param numberOfTicks
+	 *            - Number of Ticks since gamestart
+	 * @return (int) Score
+	 */
 	public static int generateScore(final long numberOfTicks) {
 		final int score = (int) (1000000 - numberOfTicks * 423);
 		return score < 0 ? 0 : score > 1000000 ? -1 : score;
@@ -66,6 +95,9 @@ public class HighScore {
 	final static double text_x_back = 500;
 	final static double text_y_back = 100;
 
+	/**
+	 * Print Highscore List
+	 */
 	public static void printScore() {
 		StdDraw.resetMousePressedStatus();
 		boolean back = false;
@@ -113,6 +145,11 @@ public class HighScore {
 		}
 	}
 
+	/**
+	 * Is Mouse over Back-Button?
+	 * 
+	 * @return true or false
+	 */
 	private static boolean mouseOverBack() {
 		return (StdDraw.mouseX() <= text_x_back + back_size_X)
 				&& (StdDraw.mouseX() >= text_x_back - back_size_X)

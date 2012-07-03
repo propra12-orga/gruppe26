@@ -121,6 +121,11 @@ public class Menu {
 		return g;
 	}
 
+	/**
+	 * Set up Multiplayer Game Server
+	 * 
+	 * @return Game-Object
+	 */
 	private Game setupServer() {
 		final int TILESIZE = Settings.TILESIZE;
 
@@ -141,6 +146,9 @@ public class Menu {
 		return g;
 	}
 
+	/**
+	 * Loads Save Game
+	 */
 	private void loadSaveGame() {
 		FileInputStream fstream;
 		StringBuffer sb = new StringBuffer();
@@ -170,6 +178,11 @@ public class Menu {
 		g.loop();
 	}
 
+	/**
+	 * Load the Highscores
+	 * 
+	 * @return Highscores
+	 */
 	private static HighScore loadHighScore() {
 		FileInputStream fstream;
 		StringBuffer sb = new StringBuffer();

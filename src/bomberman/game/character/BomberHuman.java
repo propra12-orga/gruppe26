@@ -32,7 +32,7 @@ public class BomberHuman {
 	 */
 	private Network nw;
 	/**
-	 * String containing Bomferman's position that will be send via the Network
+	 * String containing Bomferman's position that will be sent via the Network
 	 * object.
 	 */
 	private String move = "mv 25 75";
