@@ -10,6 +10,10 @@ import bomberman.game.objects.PowerUp;
 import bomberman.gui.GameGui;
 import bomberman.gui.StdDraw;
 
+/**
+ * Serverclass for Twoplayer game, inherits methods from {@link Game}
+ * 
+ */
 public class TwoPlayerGameServer extends Game {
 
 	/**

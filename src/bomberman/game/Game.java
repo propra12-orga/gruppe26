@@ -63,6 +63,20 @@ public class Game {
 		this.powerups = l.generatePowerUps();
 	}
 
+	/**
+	 * 
+	 * Associates a Game from a given level with controls, an Exit, an EAC and a
+	 * GUI. It will also create a BomberHuman that is controlled by the player.
+	 * 
+	 * @param l
+	 *            level from levelparser
+	 * @param c
+	 *            controls
+	 * @param eac
+	 *            explosion-area-calculator
+	 * @param gui
+	 *            gui
+	 */
 	protected Game(final Level l, final Controls c,
 			final ExplosionAreaCalculator eac, final GameGui gui) {
 		this.controls = c;
@@ -73,6 +87,10 @@ public class Game {
 		this.powerups = new HashMap<Wall, PowerUp>();
 	}
 
+	/**
+	 * Destructor for the game: sets gui, exit, eac, controls and powerups to
+	 * empty/null
+	 */
 	protected Game() {
 		this.gui = null;
 		this.exit = null;
@@ -89,6 +107,11 @@ public class Game {
 		loop();
 	}
 
+	/**
+	 * Gameloop. As long player is alive and hasn't won yet, listen to player
+	 * controls, manage bombs, check for win, count ticks and of course draw
+	 * everything...
+	 */
 	public void loop() {
 		while (alive && !won) {
 			final long diff = System.currentTimeMillis() - lastTickAt;
@@ -114,6 +137,9 @@ public class Game {
 
 	}
 
+	/**
+	 * 
+	 */
 	private void checkPowerUp() {
 		final BomberHuman bomfman = bman.get(0);
 		final Wall bmanArrayPos = new Wall(bomfman.getPosX() / 50,
@@ -133,6 +159,11 @@ public class Game {
 		}
 	}
 
+	/**
+	 * Manage Bombs: -checks for bombs in list who have not exploded, count
+	 * their ticks, explode them, try to kill stuff and finally removes them
+	 * from the list
+	 */
 	protected void manageBombs() {
 		final List<Integer> exploded = new ArrayList<Integer>();
 
@@ -188,6 +219,11 @@ public class Game {
 		}
 	}
 
+	/**
+	 * Has player won yet?
+	 * 
+	 * Player has won if enemies are dead and bomferman is at the exit
+	 */
 	protected void checkWin() {
 		if (!enemies.isEmpty())
 			return;
@@ -203,6 +239,11 @@ public class Game {
 		}
 	}
 
+	/**
+	 * get the game gui
+	 * 
+	 * @return gui-object
+	 */
 	public GameGui getGameGui() {
 		StdDraw.reference = this;
 		return gui;
