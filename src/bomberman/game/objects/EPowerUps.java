@@ -1,11 +1,19 @@
 package bomberman.game.objects;
 
 /**
- * Enumeration of Powerups:
- * 
- * SPEEDUP - more speed for bomferman BOMBRATIO - more bombs for bomferman
- * BOMBRANGE - more bombrange of bombs
+ * Enumeration of Powerups.
  */
 public enum EPowerUps {
-	SPEEDUP, BOMBRATIO, BOMBRANGE;
+	/**
+	 * SPEEDUP - more speed for bomferman
+	 */
+	SPEEDUP,
+	/**
+	 * BOMBRATIO - more bombs for bomferman
+	 */
+	BOMBRATIO,
+	/**
+	 * BOMBRANGE - more bombrange of bombs
+	 */
+	BOMBRANGE;
 }

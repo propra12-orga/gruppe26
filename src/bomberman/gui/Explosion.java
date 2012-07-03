@@ -5,19 +5,40 @@ import java.util.List;
 
 import bomberman.game.ExplosionCloudCalculator;
 
+/**
+ * Draws explosions.
+ */
 public class Explosion {
 
-	public List<ExplosionCloudCalculator> bombs = new ArrayList<ExplosionCloudCalculator>();
+	/**
+	 * Contains ExplosionCloudCalculator concerning a position that is currently
+	 * bomfed.
+	 */
+	private final List<ExplosionCloudCalculator> bombs;
 
+	/**
+	 * Constructs the Explosion object.
+	 */
 	public Explosion() {
 		bombs = new ArrayList<ExplosionCloudCalculator>();
 	}
 
+	/**
+	 * Adds the specified location in pixels to the explosions to be drawn.
+	 * 
+	 * @param xPar
+	 *            x-coordinate of center of explosion in pixels.
+	 * @param yPar
+	 *            y-coordinate of center of explosion in pixels.
+	 */
 	public void dropBomb(final double xPar, final double yPar) {
 		ExplosionCloudCalculator bomb = new ExplosionCloudCalculator(xPar, yPar);
 		bombs.add(bomb);
 	}
 
+	/**
+	 * Draws the explosion clouds.
+	 */
 	public void drawBombs() {
 
 		ExplosionCloudCalculator bomb;

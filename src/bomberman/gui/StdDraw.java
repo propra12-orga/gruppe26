@@ -247,7 +247,7 @@ public final class StdDraw implements ActionListener, MouseListener,
 																// windows
 		// frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // closes
 		// only current window
-		frame.setTitle("Standard Draw");
+		frame.setTitle("Bomferman");
 		frame.setJMenuBar(createMenuBar());
 		frame.pack();
 		frame.requestFocusInWindow();
