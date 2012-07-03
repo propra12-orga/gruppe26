@@ -434,6 +434,7 @@ public class MenuGui {
 		boolean flag = false;
 		StringBuffer sb = new StringBuffer();
 		while (!flag) {
+			StdDraw.resetMousePressedStatus();
 			StdDraw.clear();
 
 			if (StdDraw.hasNextKeyTyped()) {
@@ -473,6 +474,7 @@ public class MenuGui {
 				}
 				flag = true;
 				returnValue = true;
+				StdDraw.typedKeys[10] = false;
 			}
 
 			if (StdDraw.typedKeys[8]) {
