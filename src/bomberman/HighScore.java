@@ -28,7 +28,7 @@ public class HighScore {
 	}
 
 	/**
-	 * 
+	 * copy score into a dynamic instance of scoreobject
 	 */
 	public void copyFromInstance() {
 		scores = instanceScores;
@@ -36,7 +36,8 @@ public class HighScore {
 	}
 
 	/**
-	 * 
+	 * Copies the refrence of scoreobject to a static variable to be printable
+	 * through xstream
 	 */
 	public void copyToInstance() {
 		instanceScores = scores;

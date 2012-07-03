@@ -72,7 +72,7 @@ public class BomberHuman {
 	 * @param nw
 	 *            Network Objekt, ueber das Informationen ausgetauscht werden.
 	 * @param server
-	 *            wird ignoriert (warum auch immer?).
+	 *            wird ignoriert.
 	 */
 	public BomberHuman(final int posX, final int posY, final Network nw,
 			final boolean server) {

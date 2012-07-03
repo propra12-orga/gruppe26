@@ -71,6 +71,12 @@ public class Level {
 				new Board(board));
 	}
 
+	/**
+	 * generate destructible Walls with powerups under them randomly select one
+	 * of three possible powerups
+	 * 
+	 * @return map with pairs of wall(key) and powerup under the wall(value)
+	 */
 	public Map<Wall, PowerUp> generatePowerUps() {
 		final Map<Wall, PowerUp> powerUps = new HashMap<Wall, PowerUp>();
 
