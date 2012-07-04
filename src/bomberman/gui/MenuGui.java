@@ -16,15 +16,13 @@ import bomberman.game.Settings;
  * @author Jan
  */
 public class MenuGui {
+	/**
+	 * true, if can't connect to server
+	 */
 	public boolean unknownHost = false;
 	/*
-	 * Useless Comments my ass... Variables:
-	 * 
-	 * size of exit text (x and y) size of "Newgame?"-text
-	 * 
-	 * Positions of the texts
-	 * 
-	 * I know I'm lazy but I just can renember var-names, no values...
+	 * lots of sizes of menu text (x and y) and positions of the texts - won't
+	 * javadoc them.
 	 */
 	final private double exit_size_X = 50;
 	final private double exit_size_Y = 20;
@@ -61,6 +59,14 @@ public class MenuGui {
 	final private double score_size_X = 100;
 	final private double score_size_Y = 20;
 
+	private final double back_size_X = 60;
+	private final double back_size_Y = 20;
+	private final double text_x_back = 500;
+	private final double text_y_back = 100;
+
+	/**
+	 * Indicates whether a file called "saveGame.sav" exists.
+	 */
 	private boolean savedGameExists = false;
 
 	/**
@@ -78,7 +84,7 @@ public class MenuGui {
 	}
 
 	/**
-	 * 
+	 * Sets the size for the Menu-window and scales to 1000x1000 pixels.
 	 */
 	private void setSizeAndScales() {
 		StdDraw.setCanvasSize(512, 512); // magic standard constants
@@ -86,8 +92,6 @@ public class MenuGui {
 		StdDraw.setYscale(0, 1000);
 	}
 
-	// we'll use the wrapper, because I want to exit via the Menu class. The
-	// wrapper gives us a third option, i.e. null
 	/**
 	 * Draws the Menu with texts "New Game?" and "Exit" Starts a new game or
 	 * closes the window
@@ -246,11 +250,6 @@ public class MenuGui {
 				&& (StdDraw.mouseY() <= text_y_controls + controls_size_Y)
 				&& (StdDraw.mouseY() >= text_y_controls - controls_size_Y);
 	}
-
-	private final double back_size_X = 60;
-	private final double back_size_Y = 20;
-	private final double text_x_back = 500;
-	private final double text_y_back = 100;
 
 	/**
 	 * Displays "Controls" menu item
@@ -454,7 +453,9 @@ public class MenuGui {
 	}
 
 	/**
-	 * @return true or false
+	 * Submenu for client that reads an IP to the server.
+	 * 
+	 * @return true, if user hits return or false if he uses the back button
 	 */
 	public boolean enterIPLoop() {
 		boolean returnValue = false;

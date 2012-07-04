@@ -168,7 +168,19 @@ public final class StdDraw implements ActionListener, MouseListener,
 
 	// keyboard state
 	private static LinkedList<Character> keysTyped = new LinkedList<Character>();
+	/**
+	 * Contains status of pressed keys. Problems we've encountered without it:
+	 * 
+	 * <pre>
+	 * Only one key can be pressed at a time.
+	 * On certain systems (windows, mac) the user was not able to hold down a key and get the proper result.
+	 * E.g. arrow keys were not usable.
+	 * </pre>
+	 */
 	public static volatile boolean[] typedKeys = new boolean[200];
+	/**
+	 * References the current Game (used for saving).
+	 */
 	public static Game reference = null;
 
 	// not instantiable
@@ -1193,7 +1205,11 @@ public final class StdDraw implements ActionListener, MouseListener,
 	}
 
 	/**
-	 * This method cannot be called directly.
+	 * Saves a single player game to saveGame.sav, when File > Save Game or
+	 * Ctrl+S is pressed.
+	 * 
+	 * @param e
+	 *            awt magic
 	 */
 	@Override
 	public void actionPerformed(final ActionEvent e) {
@@ -1358,7 +1374,11 @@ public final class StdDraw implements ActionListener, MouseListener,
 	}
 
 	/**
-	 * This method cannot be called directly.
+	 * Changes a position in typedKeys to true, if a typed key's keyCode is
+	 * smaller than 200.
+	 * 
+	 * @param e
+	 *            awt magic
 	 */
 	@Override
 	public void keyPressed(final KeyEvent e) {
@@ -1369,7 +1389,8 @@ public final class StdDraw implements ActionListener, MouseListener,
 	}
 
 	/**
-	 * This method cannot be called directly.
+	 * Changes a position in typedKeys to false, if a released key's keyCode is
+	 * smaller than 200.
 	 */
 	@Override
 	public void keyReleased(final KeyEvent e) {

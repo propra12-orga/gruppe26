@@ -1,7 +1,5 @@
 package bomberman;
 
-import java.io.IOException;
-
 /**
  * Main Class contains main method which starts the game...
  * 
@@ -12,13 +10,12 @@ import java.io.IOException;
 public class Main {
 
 	/**
-	 * main-method start the game
+	 * main-method opens the Menu
 	 * 
 	 * @param args
-	 * @throws IOException
+	 *            Call arguments (ignored)
 	 */
-	public static void main(final String[] args) throws IOException {
-
+	public static void main(final String[] args) {
 		final Menu m = new Menu();
 		m.startGame();
 	}
