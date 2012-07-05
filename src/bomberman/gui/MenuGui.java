@@ -10,7 +10,7 @@ import bomberman.game.Settings;
 
 /**
  * 
- * GUI after winning / loosing a game. User can restart or exit the game by
+ * GUI after winning / losing a game. User can restart or exit the game by
  * clicking one option.
  * 
  * @author Jan
@@ -50,9 +50,14 @@ public class MenuGui {
 	final private double text_y_client = 500;
 
 	final private double text_x_load = 500;
-	final private double text_y_load = 700;
-	final private double load_size_X = 60;
+	final private double text_y_load = 800;
+	final private double load_size_X = 70;
 	final private double load_size_Y = 20;
+
+	final private double text_x_loadLevel = 500;
+	final private double text_y_loadLevel = 900;
+	final private double loadLevel_size_X = 150;
+	final private double loadLevel_size_Y = 20;
 
 	final private double text_x_score = 500;
 	final private double text_y_score = 200;
@@ -102,6 +107,8 @@ public class MenuGui {
 	 *  1 | new single player game
 	 *  2 | starts server
 	 *  3 | starts client
+	 *  4 | load saved game
+	 *  5 | load custom game
 	 * -1 | exits
 	 * </pre>
 	 * @throws IOException
@@ -110,6 +117,7 @@ public class MenuGui {
 	public int gameStarted() {
 		StdDraw.resetMousePressedStatus();
 		StdDraw.clear();
+		StdDraw.picture(500, 670, "graphics/logo.png");
 		// Maus ueber Button "New Game?"
 		if (isMouseOverNewGame()) {
 			mouseOverNewGameActions();
@@ -125,6 +133,8 @@ public class MenuGui {
 			mouseOverLoadActions();
 		} else if (isMouseOverScore()) {
 			mouseOverScoreActions();
+		} else if (isMouseOverLoadLevel()) {
+			mouseOverLoadLevelActions();
 		} else {
 			StdDraw.text(text_x_controls, text_y_controls, "Controls");
 			StdDraw.text(text_x_newgame, text_y_newgame, "New Game?");
@@ -132,6 +142,8 @@ public class MenuGui {
 			StdDraw.text(text_x_server, text_y_server, "Server");
 			StdDraw.text(text_x_client, text_y_client, "Client");
 			StdDraw.text(text_x_score, text_y_score, "High Score");
+			StdDraw.text(text_x_loadLevel, text_y_loadLevel,
+					"Load Custom Level");
 			if (savedGameExists) {
 				StdDraw.text(text_x_load, text_y_load, "Load Game");
 			}
@@ -153,7 +165,8 @@ public class MenuGui {
 			return 4;
 		else if (isMouseOverScore() && StdDraw.mousePressed()) {
 			HighScore.printScore();
-		}
+		} else if (isMouseOverLoadLevel() && StdDraw.mousePressed())
+			return 5;
 
 		return 0;
 
@@ -171,6 +184,7 @@ public class MenuGui {
 		StdDraw.text(text_x_client, text_y_client, "Client");
 		StdDraw.text(text_x_controls, text_y_controls, "Controls");
 		StdDraw.text(text_x_score, text_y_score, "High Score");
+		StdDraw.text(text_x_loadLevel, text_y_loadLevel, "Load Custom Level");
 
 		if (savedGameExists) {
 			StdDraw.text(text_x_load, text_y_load, "Load Game");
@@ -190,6 +204,7 @@ public class MenuGui {
 		StdDraw.text(text_x_server, text_y_server, "Server");
 		StdDraw.text(text_x_client, text_y_client, "Client");
 		StdDraw.text(text_x_score, text_y_score, "High Score");
+		StdDraw.text(text_x_loadLevel, text_y_loadLevel, "Load Custom Level");
 
 		if (savedGameExists) {
 			StdDraw.text(text_x_load, text_y_load, "Load Game");
@@ -209,6 +224,7 @@ public class MenuGui {
 		StdDraw.text(text_x_server, text_y_server, "Server");
 		StdDraw.text(text_x_client, text_y_client, "Client");
 		StdDraw.text(text_x_score, text_y_score, "High Score");
+		StdDraw.text(text_x_loadLevel, text_y_loadLevel, "Load Custom Level");
 
 		if (savedGameExists) {
 			StdDraw.text(text_x_load, text_y_load, "Load Game");
@@ -359,6 +375,7 @@ public class MenuGui {
 		StdDraw.text(text_x_server, text_y_server, "Server");
 		StdDraw.text(text_x_controls, text_y_controls, "Controls");
 		StdDraw.text(text_x_score, text_y_score, "High Score");
+		StdDraw.text(text_x_loadLevel, text_y_loadLevel, "Load Custom Level");
 
 		if (savedGameExists) {
 			StdDraw.text(text_x_load, text_y_load, "Load Game");
@@ -377,6 +394,7 @@ public class MenuGui {
 		StdDraw.text(text_x_client, text_y_client, "Client");
 		StdDraw.text(text_x_controls, text_y_controls, "Controls");
 		StdDraw.text(text_x_score, text_y_score, "High Score");
+		StdDraw.text(text_x_loadLevel, text_y_loadLevel, "Load Custom Level");
 
 		if (savedGameExists) {
 			StdDraw.text(text_x_load, text_y_load, "Load Game");
@@ -411,6 +429,19 @@ public class MenuGui {
 	}
 
 	/**
+	 * Works like isMouseOverControls()
+	 * 
+	 * @return true or false
+	 */
+	private boolean isMouseOverLoadLevel() {
+		return (StdDraw.mouseX() <= text_x_loadLevel + loadLevel_size_X)
+				&& (StdDraw.mouseX() >= text_x_loadLevel - loadLevel_size_X)
+				&& (StdDraw.mouseY() <= text_y_loadLevel + loadLevel_size_Y)
+				&& (StdDraw.mouseY() >= text_y_loadLevel - loadLevel_size_Y);
+
+	}
+
+	/**
 	 * Hover Effect
 	 * 
 	 * Also: checks whether a saved game exists and draws or deletes the
@@ -423,11 +454,35 @@ public class MenuGui {
 		StdDraw.text(text_x_server, text_y_server, "Server");
 		StdDraw.text(text_x_controls, text_y_controls, "Controls");
 		StdDraw.text(text_x_score, text_y_score, "High Score");
+		StdDraw.text(text_x_loadLevel, text_y_loadLevel, "Load Custom Level");
 
 		if (savedGameExists) {
 			StdDraw.setPenColor(StdDraw.BOOK_RED);
 			StdDraw.text(text_x_load, text_y_load, "Load Game");
 			StdDraw.setPenColor(StdDraw.BLACK);
+		}
+	}
+
+	/**
+	 * Hover Effect
+	 * 
+	 * Also: checks whether a saved game exists and draws or deletes the
+	 * "Load Game" Button
+	 */
+	private void mouseOverLoadLevelActions() {
+		StdDraw.text(text_x_client, text_y_client, "Client");
+		StdDraw.text(text_x_exit, text_y_exit, "Exit");
+		StdDraw.text(text_x_newgame, text_y_newgame, "New Game?");
+		StdDraw.text(text_x_server, text_y_server, "Server");
+		StdDraw.text(text_x_controls, text_y_controls, "Controls");
+		StdDraw.text(text_x_score, text_y_score, "High Score");
+
+		StdDraw.setPenColor(StdDraw.BOOK_RED);
+		StdDraw.text(text_x_loadLevel, text_y_loadLevel, "Load Custom Level");
+		StdDraw.setPenColor(StdDraw.BLACK);
+
+		if (savedGameExists) {
+			StdDraw.text(text_x_load, text_y_load, "Load Game");
 		}
 	}
 
@@ -446,6 +501,7 @@ public class MenuGui {
 		StdDraw.text(text_x_newgame, text_y_newgame, "New Game?");
 		StdDraw.text(text_x_server, text_y_server, "Server");
 		StdDraw.text(text_x_controls, text_y_controls, "Controls");
+		StdDraw.text(text_x_loadLevel, text_y_loadLevel, "Load Custom Level");
 
 		if (savedGameExists) {
 			StdDraw.text(text_x_load, text_y_load, "Load Game");

@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.UnknownHostException;
 
+import bomberman.file.FileReader;
 import bomberman.game.Board;
 import bomberman.game.Controls;
 import bomberman.game.ExplosionAreaCalculator;
@@ -100,6 +101,8 @@ public class Menu {
 			case 4:
 				loadSaveGame();
 				break;
+			case 5:
+				FileReader.main(null);
 			default:
 				break;
 			}
